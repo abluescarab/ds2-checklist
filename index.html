@@ -18,76 +18,64 @@
 
         <link rel="stylesheet" href="material/material.css" />
     </head>
-    <body class="material-theme--light">
-        <div class="material-container material-container--hfill">
-            <header class="material-app-bar material-app-bar--center">
-                <span class="material-app-bar__headline">
-                    Dark Souls 2 Checklist
-                </span>
-                <span class="material-app-bar__trailing">
+    <body class="md-window md-theme--light">
+        <main class="md-body">
+            <div id="cookie-banner" class="md-banner">
+                <span class="md-banner__text"
+                    >This website can use cookies to save your data.</span
+                >
+                <div class="md-banner__actions">
+                    <button id="accept-cookies" class="md-banner__action">
+                        Accept
+                    </button>
+                    <button id="decline-cookies" class="md-banner__action">
+                        Decline
+                    </button>
+                </div>
+            </div>
+
+            <div class="md-app-bar md-app-bar--center">
+                <h1 class="md-app-bar__headline">Dark Souls 2 Checklist</h1>
+                <div class="md-app-bar__trailing">
                     <button
                         id="change-theme"
-                        class="material-app-bar__icon material-symbols-outlined">
+                        class="md-app-bar__icon material-symbols-outlined">
                         dark_mode
                     </button>
-                </span>
-            </header>
-
-            <main>
-                <div
-                    class="material-tabs material-tabs--top"
-                    data-tab="locations">
-                    <nav
-                        class="material-tabs__nav material-tabs__nav--secondary">
-                        <button
-                            class="material-tabs__nav-button current"
-                            data-tab="locations">
-                            <span class="material-tabs__nav-button-text"
-                                >Locations</span
-                            >
-                        </button>
-                        <button
-                            class="material-tabs__nav-button"
-                            data-tab="secrets">
-                            <span class="material-tabs__nav-button-text"
-                                >Secrets</span
-                            >
-                        </button>
-                        <button
-                            class="material-tabs__nav-button"
-                            data-tab="npcs">
-                            <span class="material-tabs__nav-button-text"
-                                >NPCs</span
-                            >
-                        </button>
-                        <button
-                            class="material-tabs__nav-button"
-                            data-tab="bosses">
-                            <span class="material-tabs__nav-button-text"
-                                >Bosses</span
-                            >
-                        </button>
-                    </nav>
-                    <div class="material-tabs__content">
-                        <section
-                            class="material-tabs__page current"
-                            data-tab="locations">
-                            Locations.
-                        </section>
-                        <section class="material-tabs__page" data-tab="secrets">
-                            Secrets.
-                        </section>
-                        <section class="material-tabs__page" data-tab="npcs">
-                            NPCs.
-                        </section>
-                        <section class="material-tabs__page" data-tab="bosses">
-                            Bosses.
-                        </section>
-                    </div>
                 </div>
-            </main>
+            </div>
 
-            <footer>
+            <div class="md-tabs">
+                <div class="md-tabs__nav md-tabs__nav--secondary">
+                    <button
+                        class="md-tabs__button md-tabs__button--selected"
+                        data-tab="locations">
+                        <span class="md-tabs__text">Locations</span>
+                    </button>
+                    <button class="md-tabs__button" data-tab="secrets">
+                        <span class="md-tabs__text">Secrets</span>
+                    </button>
+                    <button class="md-tabs__button" data-tab="npcs">
+                        <span class="md-tabs__text">NPCs</span>
+                    </button>
+                    <button class="md-tabs__button" data-tab="bosses">
+                        <span class="md-tabs__text">Bosses</span>
+                    </button>
+                </div>
+                <div class="md-tabs__content">
+                    <div
+                        class="md-tabs__page md-tabs__page--selected"
+                        data-tab="locations">
+                        Locations.
+                    </div>
+                    <div class="md-tabs__page" data-tab="secrets">Secrets.</div>
+                    <div class="md-tabs__page" data-tab="npcs">NPCs.</div>
+                    <div class="md-tabs__page" data-tab="bosses">Bosses.</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- <footer>
                 <div class="footer-left">
                     <a
                         href="https://github.com/abluescarab/ds2-checklist"
@@ -109,8 +97,7 @@
                     <button type="button" id="accept-cookies">Accept</button>
                     <button type="button" id="decline-cookies">Decline</button>
                 </div>
-            </footer>
-        </div>
+            </footer> -->
 
         <script type="module" src="material/material.js"></script>
         <script type="module" src="js/script.js"></script>
