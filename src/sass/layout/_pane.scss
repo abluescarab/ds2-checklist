@@ -1,0 +1,26 @@
+@use "../abstracts" as *;
+@use "../themes";
+
+.md-pane {
+    $padding: 24px;
+
+    overflow: hidden;
+    margin: $padding;
+    border-radius: sys("shape", "corner", "large");
+
+    @include themes.themify() {
+        @include themes.colorify("surface");
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1;
+        padding: $padding;
+
+        &--fill {
+            padding: 0;
+        }
+    }
+}

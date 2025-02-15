@@ -1,0 +1,149 @@
+@use "../abstracts" as *;
+@use "../themes";
+
+.md-tabs {
+    $parent: &;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    @include themes.themify() {
+        @include themes.colorify("surface");
+    }
+
+    &__button {
+        box-sizing: border-box;
+        flex: 1;
+        border: 0;
+        background-color: transparent;
+
+        @include themes.themify() {
+            color: themes.color("on-surface-variant");
+        }
+
+        &:not(:disabled) {
+            cursor: pointer;
+        }
+    }
+
+    &__icon {
+        font-size: 24px;
+    }
+
+    &__text {
+        @include font-styling("title-small");
+        align-content: center;
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: row;
+        height: 48px;
+
+        @include themes.themify() {
+            @include divider;
+        }
+
+        &--primary {
+            #{$parent}__button {
+                display: grid;
+                grid-template-rows: 1fr;
+                justify-content: center;
+
+                @include indicator(transparent, true);
+
+                @include themes.themify() {
+                    @include mix-states(
+                        transparent,
+                        themes.color("on-surface"),
+                        false,
+                        false,
+                        "hover",
+                        "focus"
+                    );
+
+                    &:active {
+                        color: themes.color("on-surface");
+                        background-color: mix-color(
+                            transparent,
+                            themes.color("primary"),
+                            "pressed"
+                        );
+                    }
+
+                    &--selected {
+                        @include mix-states(
+                            transparent,
+                            themes.color("primary"),
+                            true
+                        );
+
+                        @include indicator(themes.color("primary"), true);
+
+                        &:focus {
+                            @include indicator(themes.color("secondary"), true);
+                        }
+                    }
+                }
+            }
+
+            &:has(#{$parent}__icon) {
+                height: 64px;
+
+                #{$parent}__button {
+                    display: grid;
+                    grid-template-rows: 1fr 1fr;
+                }
+
+                #{$parent}__icon {
+                    align-content: end;
+                }
+
+                #{$parent}__text {
+                    align-content: start;
+                }
+            }
+        }
+
+        &--secondary {
+            height: 48px;
+
+            #{$parent}__button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+
+                @include themes.themify() {
+                    @include mix-states(
+                        transparent,
+                        themes.color("on-surface")
+                    );
+
+                    &--selected {
+                        color: themes.color("on-surface");
+                        @include indicator(themes.color("primary"));
+
+                        &:focus {
+                            @include indicator(themes.color("secondary"));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__page {
+        padding: 16px;
+        display: none;
+
+        &--selected {
+            display: block;
+        }
+
+        @include themes.themify() {
+            @include themes.colorify("surface");
+        }
+    }
+}

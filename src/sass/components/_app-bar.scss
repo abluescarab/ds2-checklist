@@ -1,0 +1,104 @@
+@use "../abstracts" as *;
+@use "../themes";
+
+.md-app-bar {
+    $parent: &;
+    $gap: 4px;
+    $button-size: 48px;
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: $gap;
+    box-sizing: border-box;
+    padding: $gap;
+
+    @include themes.themify() {
+        @include themes.colorify("surface");
+    }
+
+    &__icon {
+        grid-row: 1;
+        border: 0;
+        font-size: calc($button-size / 2);
+        border-radius: sys("shape", "corner", "full");
+        @include square($button-size);
+
+        @include themes.themify() {
+            color: themes.color("on-surface");
+            @include mix-states(transparent, themes.color("on-surface"));
+        }
+    }
+
+    &__trailing {
+        grid-column: 3;
+        display: flex;
+        flex-direction: row;
+        gap: $gap;
+
+        #{$parent}__icon {
+            @include themes.themify() {
+                color: themes.color("on-surface-variant");
+            }
+        }
+    }
+
+    &__headline {
+        grid-row: 1;
+        grid-column: 2;
+        margin: 0 16px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &--center,
+    &--small {
+        height: 64px;
+        align-items: center;
+
+        > #{$parent}__icon:first-child + #{$parent}__headline {
+            margin: 0;
+        }
+
+        #{$parent}__headline {
+            @include font-styling("title-large");
+        }
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+    &--medium,
+    &--large {
+        grid-template-rows: auto 1fr;
+
+        > #{$parent}__icon:first-child {
+            grid-column: span 2;
+        }
+
+        #{$parent}__headline {
+            grid-column: span 3;
+            grid-row: 2;
+            align-content: end;
+        }
+    }
+
+    &--medium {
+        height: 112px;
+        padding-bottom: 24px;
+
+        #{$parent}__headline {
+            @include font-styling("headline-small");
+        }
+    }
+
+    &--large {
+        height: 152px;
+        padding-bottom: 28px;
+
+        #{$parent}__headline {
+            @include font-styling("headline-medium");
+        }
+    }
+}
