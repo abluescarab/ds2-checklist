@@ -1,0 +1,12 @@
+@use "../themes";
+
+.md-window {
+    // prevents border collapse
+    display: flex;
+    flex-direction: column;
+
+    @include themes.themify(true) {
+        background-color: themes.color("surface-container");
+        color: themes.color("on-surface");
+    }
+}

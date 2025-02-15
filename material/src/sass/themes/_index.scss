@@ -1,0 +1,52 @@
+@use "light";
+@use "dark";
+
+$themes: (
+    light: light.$theme,
+    dark: dark.$theme,
+);
+
+@mixin -themify($theme, $map) {
+    $theme-map: () !global;
+    @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+            $theme-map,
+            (
+                $key: $value,
+            )
+        ) !global;
+    }
+
+    @content;
+    $theme-map: null !global;
+}
+
+// modified from https://medium.com/@dmitriy.borodiy/easy-color-theming-with-scss-bc38fd5734d1
+@mixin themify($self: false) {
+    @each $theme, $map in $themes {
+        @if ($self) {
+            &.md-theme--#{$theme} {
+                @include -themify($theme, $map) {
+                    @content;
+                }
+            }
+        } @else {
+            .md-theme--#{$theme} & {
+                @include -themify($theme, $map) {
+                    @content;
+                }
+            }
+        }
+    }
+}
+
+@function color($key) {
+    $result: map-get($theme-map, $key);
+    @return if($result, $result, $key);
+}
+
+@mixin colorify($color, $important: false) {
+    background-color: color($color) if($important, !important, null);
+    color: color("on-#{$color}") if($important, !important, null);
+}
