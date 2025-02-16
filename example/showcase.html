@@ -36,7 +36,7 @@
             }
         </style>
     </head>
-    <body class="md-window md-theme--light">
+    <body class="md-window" data-md-theme="light">
         <div class="md-navigation"></div>
         <div class="md-body">
             <div class="md-banner md-banner--visible">
@@ -55,7 +55,7 @@
             </div>
 
             <section id="center-app-bar" class="md-pane">
-                <div class="md-app-bar md-app-bar--center">
+                <div class="md-app-bar" data-md-type="center">
                     <button class="md-app-bar__icon material-symbols-outlined">
                         arrow_back
                     </button>
@@ -71,7 +71,7 @@
             </section>
 
             <section id="small-app-bar" class="md-pane">
-                <div class="md-app-bar md-app-bar--small">
+                <div class="md-app-bar">
                     <button class="md-app-bar__icon material-symbols-outlined">
                         arrow_back
                     </button>
@@ -90,7 +90,7 @@
             </section>
 
             <section id="medium-app-bar" class="md-pane">
-                <div class="md-app-bar md-app-bar--medium">
+                <div class="md-app-bar" data-md-type="medium">
                     <button class="md-app-bar__icon material-symbols-outlined">
                         arrow_back
                     </button>
@@ -109,7 +109,7 @@
             </section>
 
             <section id="large-app-bar" class="md-pane">
-                <div class="md-app-bar md-app-bar--large">
+                <div class="md-app-bar" data-md-type="large">
                     <button class="md-app-bar__icon material-symbols-outlined">
                         arrow_back
                     </button>
@@ -128,7 +128,7 @@
             </section>
 
             <section id="buttons" class="md-pane">
-                <div class="md-app-bar md-app-bar--small">
+                <div class="md-app-bar">
                     <h1 class="md-app-bar__headline">Buttons</h1>
                 </div>
 
@@ -147,83 +147,103 @@
                     </div>
 
                     <div class="flex cols center">
-                        <button class="md-button md-button--elevated">
+                        <button class="md-button" data-md-type="elevated">
                             Elevated
                         </button>
-                        <button class="md-button md-button--elevated">
+                        <button class="md-button" data-md-type="elevated">
                             <span class="material-symbols-outlined">add</span>
                             Elevated
                         </button>
-                        <button class="md-button md-button--elevated" disabled>
+                        <button
+                            class="md-button"
+                            data-md-type="elevated"
+                            disabled>
                             Elevated
                         </button>
-                        <button class="md-button md-button--elevated" disabled>
+                        <button
+                            class="md-button"
+                            data-md-type="elevated"
+                            disabled>
                             <span class="material-symbols-outlined">add</span>
                             Elevated
                         </button>
                     </div>
 
                     <div class="flex cols center">
-                        <button class="md-button md-button--filled">
+                        <button class="md-button" data-md-type="filled">
                             Filled
                         </button>
-                        <button class="md-button md-button--filled">
+                        <button class="md-button" data-md-type="filled">
                             <span class="material-symbols-outlined">add</span>
                             Filled
                         </button>
-                        <button class="md-button md-button--filled" disabled>
+                        <button
+                            class="md-button"
+                            data-md-type="filled"
+                            disabled>
                             Filled
                         </button>
-                        <button class="md-button md-button--filled" disabled>
+                        <button
+                            class="md-button"
+                            data-md-type="filled"
+                            disabled>
                             <span class="material-symbols-outlined">add</span>
                             Filled
                         </button>
                     </div>
 
                     <div class="flex cols center">
-                        <button class="md-button md-button--tonal">
+                        <button class="md-button" data-md-type="tonal">
                             Tonal
                         </button>
-                        <button class="md-button md-button--tonal">
+                        <button class="md-button" data-md-type="tonal">
                             <span class="material-symbols-outlined">add</span>
                             Tonal
                         </button>
-                        <button class="md-button md-button--tonal" disabled>
+                        <button class="md-button" data-md-type="tonal" disabled>
                             Tonal
                         </button>
-                        <button class="md-button md-button--tonal" disabled>
+                        <button class="md-button" data-md-type="tonal" disabled>
                             <span class="material-symbols-outlined">add</span>
                             Tonal
                         </button>
                     </div>
 
                     <div class="flex cols center">
-                        <button class="md-button md-button--outlined">
+                        <button class="md-button" data-md-type="outlined">
                             Outlined
                         </button>
-                        <button class="md-button md-button--outlined">
+                        <button class="md-button" data-md-type="outlined">
                             <span class="material-symbols-outlined">add</span>
                             Outlined
                         </button>
-                        <button class="md-button md-button--outlined" disabled>
+                        <button
+                            class="md-button"
+                            data-md-type="outlined"
+                            disabled>
                             Outlined
                         </button>
-                        <button class="md-button md-button--outlined" disabled>
+                        <button
+                            class="md-button"
+                            data-md-type="outlined"
+                            disabled>
                             <span class="material-symbols-outlined">add</span>
                             Outlined
                         </button>
                     </div>
 
                     <div class="flex cols center">
-                        <button class="md-button md-button--text">Text</button>
-                        <button class="md-button md-button--text">
+                        <button class="md-button" data-md-type="text">
+                            Text
+                        </button>
+                        <button class="md-button" data-md-type="text">
                             <span class="material-symbols-outlined">add</span>
                             Text
                         </button>
-                        <button class="md-button md-button--text" disabled>
+                        <button class="md-button" data-md-type="text" disabled>
                             Text
                         </button>
-                        <button class="md-button md-button--text" disabled>
+                        <button class="md-button" data-md-type="text" disabled>
                             <span class="material-symbols-outlined">add</span>
                             Text
                         </button>
@@ -232,7 +252,7 @@
             </section>
 
             <section id="primary-tabs-icons" class="md-pane">
-                <div class="md-app-bar md-app-bar--small">
+                <div class="md-app-bar">
                     <div class="md-app-bar__headline">
                         Primary tabs with icons
                     </div>
@@ -240,22 +260,22 @@
 
                 <div class="md-pane__content md-pane__content--fill">
                     <div class="md-tabs">
-                        <div class="md-tabs__nav md-tabs__nav--primary">
-                            <button class="md-tabs__button" data-tab="1">
+                        <div class="md-tabs__nav" data-md-type="primary">
+                            <button class="md-tabs__button" data-md-tab="1">
                                 <span
                                     class="md-tabs__icon material-symbols-outlined">
                                     home
                                 </span>
                                 <span class="md-tabs__text">Tab 1</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="2">
+                            <button class="md-tabs__button" data-md-tab="2">
                                 <span
                                     class="md-tabs__icon material-symbols-outlined">
                                     shopping_bag
                                 </span>
                                 <span class="md-tabs__text">Tab 2</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="3">
+                            <button class="md-tabs__button" data-md-tab="3">
                                 <span
                                     class="md-tabs__icon material-symbols-outlined">
                                     local_shipping
@@ -265,17 +285,17 @@
                         </div>
                         <div
                             class="md-tabs__page md-tabs__page--selected"
-                            data-tab="1">
+                            data-md-tab="1">
                             Tab 1.
                         </div>
-                        <div class="md-tabs__page" data-tab="2">Tab 2.</div>
-                        <div class="md-tabs__page" data-tab="3">Tab 3.</div>
+                        <div class="md-tabs__page" data-md-tab="2">Tab 2.</div>
+                        <div class="md-tabs__page" data-md-tab="3">Tab 3.</div>
                     </div>
                 </div>
             </section>
 
             <section id="primary-tabs" class="md-pane">
-                <div class="md-app-bar md-app-bar--small">
+                <div class="md-app-bar">
                     <div class="md-app-bar__headline">
                         Primary tabs without icons
                     </div>
@@ -283,30 +303,30 @@
 
                 <div class="md-pane__content md-pane__content--fill">
                     <div class="md-tabs">
-                        <div class="md-tabs__nav md-tabs__nav--primary">
-                            <button class="md-tabs__button" data-tab="1">
+                        <div class="md-tabs__nav" data-md-type="primary">
+                            <button class="md-tabs__button" data-md-tab="1">
                                 <span class="md-tabs__text">Tab 1</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="2">
+                            <button class="md-tabs__button" data-md-tab="2">
                                 <span class="md-tabs__text">Tab 2</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="3">
+                            <button class="md-tabs__button" data-md-tab="3">
                                 <span class="md-tabs__text">Tab 3</span>
                             </button>
                         </div>
                         <div
                             class="md-tabs__page md-tabs__page--selected"
-                            data-tab="1">
+                            data-md-tab="1">
                             Tab 1.
                         </div>
-                        <div class="md-tabs__page" data-tab="2">Tab 2.</div>
-                        <div class="md-tabs__page" data-tab="3">Tab 3.</div>
+                        <div class="md-tabs__page" data-md-tab="2">Tab 2.</div>
+                        <div class="md-tabs__page" data-md-tab="3">Tab 3.</div>
                     </div>
                 </div>
             </section>
 
             <section id="secondary-tabs-icons" class="md-pane">
-                <div class="md-app-bar md-app-bar--small">
+                <div class="md-app-bar">
                     <div class="md-app-bar__headline">
                         Secondary tabs with icons
                     </div>
@@ -314,22 +334,22 @@
 
                 <div class="md-pane__content md-pane__content--fill">
                     <div class="md-tabs">
-                        <div class="md-tabs__nav md-tabs__nav--secondary">
-                            <button class="md-tabs__button" data-tab="1">
+                        <div class="md-tabs__nav" data-md-type="secondary">
+                            <button class="md-tabs__button" data-md-tab="1">
                                 <span
                                     class="md-tabs__icon material-symbols-outlined">
                                     home
                                 </span>
                                 <span class="md-tabs__text">Tab 1</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="2">
+                            <button class="md-tabs__button" data-md-tab="2">
                                 <span
                                     class="md-tabs__icon material-symbols-outlined">
                                     shopping_bag
                                 </span>
                                 <span class="md-tabs__text">Tab 2</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="3">
+                            <button class="md-tabs__button" data-md-tab="3">
                                 <span
                                     class="md-tabs__icon material-symbols-outlined">
                                     local_shipping
@@ -339,17 +359,17 @@
                         </div>
                         <div
                             class="md-tabs__page md-tabs__page--selected"
-                            data-tab="1">
+                            data-md-tab="1">
                             Tab 1.
                         </div>
-                        <div class="md-tabs__page" data-tab="2">Tab 2.</div>
-                        <div class="md-tabs__page" data-tab="3">Tab 3.</div>
+                        <div class="md-tabs__page" data-md-tab="2">Tab 2.</div>
+                        <div class="md-tabs__page" data-md-tab="3">Tab 3.</div>
                     </div>
                 </div>
             </section>
 
             <section id="secondary-tabs" class="md-pane">
-                <div class="md-app-bar md-app-bar--small">
+                <div class="md-app-bar">
                     <div class="md-app-bar__headline">
                         Secondary tabs without icons
                     </div>
@@ -357,40 +377,41 @@
 
                 <div class="md-pane__content md-pane__content--fill">
                     <div class="md-tabs">
-                        <div class="md-tabs__nav md-tabs__nav--secondary">
-                            <button class="md-tabs__button" data-tab="1">
+                        <div class="md-tabs__nav" data-md-type="secondary">
+                            <button class="md-tabs__button" data-md-tab="1">
                                 <span class="md-tabs__text">Tab 1</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="2">
+                            <button class="md-tabs__button" data-md-tab="2">
                                 <span class="md-tabs__text">Tab 2</span>
                             </button>
-                            <button class="md-tabs__button" data-tab="3">
+                            <button class="md-tabs__button" data-md-tab="3">
                                 <span class="md-tabs__text">Tab 3</span>
                             </button>
                         </div>
                         <div
                             class="md-tabs__page md-tabs__page--selected"
-                            data-tab="1">
+                            data-md-tab="1">
                             Tab 1.
                         </div>
-                        <div class="md-tabs__page" data-tab="2">Tab 2.</div>
-                        <div class="md-tabs__page" data-tab="3">Tab 3.</div>
+                        <div class="md-tabs__page" data-md-tab="2">Tab 2.</div>
+                        <div class="md-tabs__page" data-md-tab="3">Tab 3.</div>
                     </div>
                 </div>
             </section>
 
+            <!-- TODO: move snackbars to fixed div? -->
             <section id="snackbars" class="md-pane">
-                <div class="md-app-bar md-app-bar--small">
+                <div class="md-app-bar">
                     <h1 class="md-app-bar__headline">Snackbars</h1>
                 </div>
 
                 <div class="md-pane__content flex rows">
-                    <button class="md-button md-button--tonal">
+                    <button class="md-button" data-md-type="tonal">
                         Show snackbar without action
                     </button>
                     <div class="md-snackbar">Lorem ipsum dolor sit amet.</div>
 
-                    <button class="md-button md-button--tonal">
+                    <button class="md-button" data-md-type="tonal">
                         Show snackbar with action
                     </button>
                     <div class="md-snackbar">
@@ -398,14 +419,14 @@
                         <button class="md-snackbar__action">Close</button>
                     </div>
 
-                    <button class="md-button md-button--tonal">
+                    <button class="md-button" data-md-type="tonal">
                         Show long snackbar without action
                     </button>
                     <div class="md-snackbar">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </div>
 
-                    <button class="md-button md-button--tonal">
+                    <button class="md-button" data-md-type="tonal">
                         Show long snackbar with action
                     </button>
                     <div class="md-snackbar">
@@ -413,7 +434,7 @@
                         <button class="md-snackbar__action">Close</button>
                     </div>
 
-                    <button class="md-button md-button--tonal">
+                    <button class="md-button" data-md-type="tonal">
                         Show long snackbar with long action
                     </button>
                     <div class="md-snackbar">
@@ -428,9 +449,55 @@
             </section>
         </div>
 
+        <div
+            class="md-fixed md-fixed--reverse"
+            data-md-lr="right"
+            data-md-tb="bottom"
+            data-md-direction="vertical">
+            <button
+                id="fab-elevation"
+                class="md-fab md-fab--low"
+                data-md-size="extended">
+                <span class="md-fab__button material-symbols-outlined"
+                    >height</span
+                >
+                <span class="md-fab__text">High</span>
+            </button>
+            <button
+                id="fab-size"
+                class="md-fab md-fab--low"
+                data-md-size="extended">
+                <span class="md-fab__button material-symbols-outlined"
+                    >aspect_ratio</span
+                >
+                <span class="md-fab__text">Extended</span>
+            </button>
+            <button
+                id="fab-color"
+                class="md-fab md-fab--low"
+                data-md-size="extended">
+                <span class="md-fab__button material-symbols-outlined"
+                    >palette</span
+                >
+                <span class="md-fab__text">Primary</span>
+            </button>
+            <button
+                id="fab"
+                class="md-fab"
+                data-md-size="extended"
+                data-md-color="primary">
+                <span class="md-fab__icon material-symbols-outlined"
+                    >arrow_upward</span
+                >
+                <span class="md-fab__text">Top</span>
+            </button>
+        </div>
+
         <script type="module">
             import {
                 getParentWithClass,
+                cycleData,
+                capitalize,
                 cycleThemes,
                 setTheme,
             } from "../material.js";
@@ -447,13 +514,10 @@
             document
                 .getElementById("toggle-theme")
                 .addEventListener("click", (e) => {
-                    if (
-                        cycleThemes(document.body, ["light", "dark"]) == "light"
-                    ) {
-                        e.currentTarget.innerText = "dark_mode";
-                    } else {
-                        e.currentTarget.innerText = "light_mode";
-                    }
+                    e.currentTarget.innerText =
+                        cycleThemes(document.body, "light", "dark") == "light"
+                            ? "dark_mode"
+                            : "light_mode";
                 });
 
             document
@@ -489,6 +553,60 @@
                             );
                     })
                 );
+
+            const fab = document.getElementById("fab");
+
+            fab.addEventListener("click", (e) =>
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth",
+                })
+            );
+
+            document
+                .getElementById("fab-elevation")
+                .addEventListener("click", (e) => {
+                    fab.classList.toggle("md-fab--low");
+                    e.currentTarget.getElementsByClassName(
+                        "md-fab__text"
+                    )[0].innerText = fab.classList.contains("md-fab--low")
+                        ? "Low"
+                        : "High";
+                });
+
+            document
+                .getElementById("fab-size")
+                .addEventListener("click", (e) => {
+                    const size = cycleData(
+                        fab,
+                        "size",
+                        "",
+                        "small",
+                        "large",
+                        "extended"
+                    );
+                    e.currentTarget.getElementsByClassName(
+                        "md-fab__text"
+                    )[0].innerText = size == "" ? "Medium" : capitalize(size);
+                });
+
+            document
+                .getElementById("fab-color")
+                .addEventListener("click", (e) => {
+                    const color = cycleData(
+                        fab,
+                        "color",
+                        "",
+                        "primary",
+                        "secondary",
+                        "tertiary"
+                    );
+                    e.currentTarget.getElementsByClassName(
+                        "md-fab__text"
+                    )[0].innerText =
+                        color == "" ? "Surface" : capitalize(color);
+                });
         </script>
     </body>
 </html>

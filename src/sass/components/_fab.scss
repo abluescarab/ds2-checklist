@@ -1,0 +1,124 @@
+@use "../abstracts" as *;
+@use "../themes";
+
+// defaults to surface styles
+.md-fab {
+    $parent: &;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include square(56px);
+    gap: 8px;
+    border: 0;
+    border-radius: sys("shape", "corner", "large");
+
+    @include themes.themify() {
+        @include elevation(3);
+
+        @include mix-states(
+            themes.color("surface-container-high"),
+            themes.color("primary"),
+            true
+        );
+    }
+
+    &:hover {
+        cursor: pointer;
+
+        @include themes.themify() {
+            @include elevation(4);
+        }
+    }
+
+    &:focus,
+    &:active {
+        @include themes.themify() {
+            @include elevation(3);
+        }
+    }
+
+    &__icon {
+        $icon-size: 24px;
+
+        @include square($icon-size);
+        font-size: $icon-size;
+    }
+
+    &__text {
+        display: none;
+        @include font-styling("label-large");
+    }
+
+    &--low {
+        @include themes.themify() {
+            @include elevation(1);
+
+            @include mix-states(
+                themes.color("surface-container-low"),
+                themes.color("primary"),
+                true
+            );
+
+            &:hover {
+                @include elevation(2);
+            }
+
+            &:focus,
+            &:active {
+                @include elevation(1);
+            }
+        }
+    }
+
+    &[data-md-size="small"]:not(&--branded) {
+        @include square(40px);
+        border-radius: sys("shape", "corner", "medium");
+    }
+
+    &[data-md-size="large"],
+    &--branded {
+        #{$parent}__icon {
+            $icon-size: 36px;
+
+            @include square($icon-size);
+            font-size: $icon-size;
+        }
+    }
+
+    &[data-md-size="large"] {
+        @include square(96px);
+        border-radius: sys("shape", "corner", "extra-large");
+
+        #{$parent}--branded {
+            #{$parent}__icon {
+                $icon-size: 48px;
+
+                @include square($icon-size);
+                font-size: $icon-size;
+            }
+        }
+    }
+
+    &[data-md-size="extended"] {
+        min-width: 80px;
+        width: auto;
+        padding: 0 16px;
+
+        #{$parent}__text {
+            display: initial;
+        }
+    }
+
+    @include themes.themify() {
+        @each $color in primary, secondary, tertiary {
+            &[data-md-color="#{$color}"] {
+                @include mix-states(
+                    themes.color("#{$color}-container"),
+                    themes.color("on-#{$color}-container"),
+                    true
+                );
+            }
+        }
+    }
+}
