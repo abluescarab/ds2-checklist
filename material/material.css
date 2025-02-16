@@ -18,6 +18,43 @@
 }
 
 /* layout */
+.md-body {
+  display: flex;
+  flex-direction: column;
+}
+.md-body[data-md-theme=light] {
+  background-color: rgb(251, 235, 225);
+  color: rgb(34, 26, 20);
+}
+.md-body[data-md-theme=dark] {
+  background-color: rgb(38, 30, 24);
+  color: rgb(239, 224, 214);
+}
+.md-body[data-md-color=surface][data-md-theme=light] {
+  background-color: rgb(255, 248, 245);
+  color: rgb(34, 26, 20);
+}
+.md-body[data-md-color=surface][data-md-theme=dark] {
+  background-color: rgb(25, 18, 12);
+  color: rgb(239, 224, 214);
+}
+.md-body[data-md-color=surface-variant][data-md-theme=light] {
+  background-color: rgb(243, 223, 210);
+  color: rgb(81, 68, 59);
+}
+.md-body[data-md-color=surface-variant][data-md-theme=dark] {
+  background-color: rgb(81, 68, 59);
+  color: rgb(214, 195, 182);
+}
+.md-body[data-md-color=background][data-md-theme=light] {
+  background-color: rgb(255, 248, 245);
+  color: rgb(34, 26, 20);
+}
+.md-body[data-md-color=background][data-md-theme=dark] {
+  background-color: rgb(25, 18, 12);
+  color: rgb(239, 224, 214);
+}
+
 .md-fixed {
   position: fixed;
   display: flex;
@@ -71,19 +108,6 @@
 }
 .md-pane__content--fill {
   padding: 0;
-}
-
-.md-window {
-  display: flex;
-  flex-direction: column;
-}
-.md-window[data-md-theme=light] {
-  background-color: rgb(251, 235, 225);
-  color: rgb(34, 26, 20);
-}
-.md-window[data-md-theme=dark] {
-  background-color: rgb(38, 30, 24);
-  color: rgb(239, 224, 214);
 }
 
 /* components */
