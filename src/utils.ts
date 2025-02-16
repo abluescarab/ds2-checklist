@@ -3,17 +3,15 @@ import { cycleThemes, setTheme } from "../material/material.js";
 
 export function changeTheme(
     themeButton: HTMLElement,
-    theme: string | null = null
+    theme: string | null | undefined = null
 ) {
-    let buttonText = theme;
-
     if (theme) {
         setTheme(document.body, theme);
     } else {
-        theme = cycleThemes(document.body, ["light", "dark"]);
+        theme = cycleThemes(document.body, "light", "dark");
     }
 
-    buttonText = theme == "light" ? "dark" : "light";
+    const buttonText = theme == "light" ? "dark" : "light";
     themeButton.innerText = `${buttonText}_mode`;
 
     if (cookies.get(cookieNames.allowed) == "true") {
@@ -35,7 +33,7 @@ export function load() {
 
     changeTheme(
         document.getElementById("change-theme") as HTMLElement,
-        cookies.get(cookieNames.theme)
+        cookies.get(cookieNames.theme, "light")
     );
 }
 

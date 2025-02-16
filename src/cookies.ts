@@ -9,12 +9,12 @@ export default class Cookies {
     }
 
     // modified from https://stackoverflow.com/a/25490531
-    get(name: string) {
+    get(name: string, fallback: any = null) {
         let result = document.cookie.match(
             `(^|;)\\s*${this.prefix}${name}\\s*=\\s*([^;]*)`
         );
 
-        return result?.pop() ?? null;
+        return result?.pop() ?? fallback;
     }
 
     // modified from https://stackoverflow.com/a/24103596

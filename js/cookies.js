@@ -7,10 +7,10 @@ export default class Cookies {
         this.prefix = prefix;
     }
     // modified from https://stackoverflow.com/a/25490531
-    get(name) {
+    get(name, fallback = null) {
         var _a;
         let result = document.cookie.match(`(^|;)\\s*${this.prefix}${name}\\s*=\\s*([^;]*)`);
-        return (_a = result === null || result === void 0 ? void 0 : result.pop()) !== null && _a !== void 0 ? _a : null;
+        return (_a = result === null || result === void 0 ? void 0 : result.pop()) !== null && _a !== void 0 ? _a : fallback;
     }
     // modified from https://stackoverflow.com/a/24103596
     set(name, value) {
