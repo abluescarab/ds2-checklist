@@ -551,6 +551,32 @@
   background-color: rgba(255, 179, 172, 0.1);
 }
 
+.md-checkbox {
+  display: flex;
+  flex-direction: row;
+}
+[data-md-theme=light] .md-checkbox {
+  color: rgb(35, 25, 24);
+}
+[data-md-theme=dark] .md-checkbox {
+  color: rgb(241, 222, 220);
+}
+[data-md-theme=light] .md-checkbox input[type=checkbox] {
+  accent-color: rgb(144, 74, 69);
+}
+[data-md-theme=light] .md-checkbox input[type=checkbox]:disabled {
+  accent-color: rgba(35, 25, 24, 0.38);
+}
+[data-md-theme=dark] .md-checkbox input[type=checkbox] {
+  accent-color: rgb(255, 179, 172);
+}
+[data-md-theme=dark] .md-checkbox input[type=checkbox]:disabled {
+  accent-color: rgba(241, 222, 220, 0.38);
+}
+.md-checkbox label {
+  padding-left: 16px;
+}
+
 .md-fab {
   display: flex;
   align-items: center;
@@ -1089,14 +1115,6 @@
 }
 .md-tabs__page--selected {
   display: block;
-}
-[data-md-theme=light] .md-tabs__page {
-  background-color: rgb(255, 248, 247);
-  color: rgb(35, 25, 24);
-}
-[data-md-theme=dark] .md-tabs__page {
-  background-color: rgb(26, 17, 16);
-  color: rgb(241, 222, 220);
 }
 
 /* pages */
