@@ -146,32 +146,56 @@
   background-color: rgb(252, 234, 232);
   color: rgb(35, 25, 24);
 }
+.md-body[data-md-theme=light][data-md-background=primary] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(59, 9, 8);
+}
+.md-body[data-md-theme=light][data-md-background=secondary] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(44, 21, 19);
+}
+.md-body[data-md-theme=light][data-md-background=tertiary] {
+  background-color: rgb(254, 222, 166);
+  color: rgb(38, 25, 0);
+}
+.md-body[data-md-theme=light][data-md-background=error] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(65, 0, 2);
+}
+.md-body[data-md-theme=light][data-md-background=surface] {
+  background-color: rgb(255, 248, 247);
+  color: rgb(35, 25, 24);
+}
+.md-body[data-md-theme=light][data-md-background=surface-container] {
+  background-color: rgb(252, 234, 232);
+  color: rgb(35, 25, 24);
+}
 .md-body[data-md-theme=dark] {
   background-color: rgb(39, 29, 28);
   color: rgb(241, 222, 220);
 }
-.md-body[data-md-color=surface][data-md-theme=light] {
-  background-color: rgb(255, 248, 247);
-  color: rgb(35, 25, 24);
+.md-body[data-md-theme=dark][data-md-background=primary] {
+  background-color: rgb(115, 51, 47);
+  color: rgb(255, 218, 214);
 }
-.md-body[data-md-color=surface][data-md-theme=dark] {
+.md-body[data-md-theme=dark][data-md-background=secondary] {
+  background-color: rgb(93, 63, 60);
+  color: rgb(255, 218, 214);
+}
+.md-body[data-md-theme=dark][data-md-background=tertiary] {
+  background-color: rgb(88, 68, 25);
+  color: rgb(254, 222, 166);
+}
+.md-body[data-md-theme=dark][data-md-background=error] {
+  background-color: rgb(147, 0, 10);
+  color: rgb(255, 218, 214);
+}
+.md-body[data-md-theme=dark][data-md-background=surface] {
   background-color: rgb(26, 17, 16);
   color: rgb(241, 222, 220);
 }
-.md-body[data-md-color=surface-variant][data-md-theme=light] {
-  background-color: rgb(245, 221, 219);
-  color: rgb(83, 67, 66);
-}
-.md-body[data-md-color=surface-variant][data-md-theme=dark] {
-  background-color: rgb(83, 67, 66);
-  color: rgb(216, 194, 191);
-}
-.md-body[data-md-color=background][data-md-theme=light] {
-  background-color: rgb(255, 248, 247);
-  color: rgb(35, 25, 24);
-}
-.md-body[data-md-color=background][data-md-theme=dark] {
-  background-color: rgb(26, 17, 16);
+.md-body[data-md-theme=dark][data-md-background=surface-container] {
+  background-color: rgb(39, 29, 28);
   color: rgb(241, 222, 220);
 }
 
@@ -210,13 +234,54 @@
   overflow: hidden;
   margin: 24px;
   border-radius: 16px;
+  gap: 8px;
 }
-[data-md-theme=light] .md-pane {
+[data-md-theme=light] .md-pane[data-md-background=primary] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(59, 9, 8);
+}
+[data-md-theme=light] .md-pane[data-md-background=secondary] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(44, 21, 19);
+}
+[data-md-theme=light] .md-pane[data-md-background=tertiary] {
+  background-color: rgb(254, 222, 166);
+  color: rgb(38, 25, 0);
+}
+[data-md-theme=light] .md-pane[data-md-background=error] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(65, 0, 2);
+}
+[data-md-theme=light] .md-pane[data-md-background=surface] {
   background-color: rgb(255, 248, 247);
   color: rgb(35, 25, 24);
 }
-[data-md-theme=dark] .md-pane {
+[data-md-theme=light] .md-pane[data-md-background=surface-container] {
+  background-color: rgb(252, 234, 232);
+  color: rgb(35, 25, 24);
+}
+[data-md-theme=dark] .md-pane[data-md-background=primary] {
+  background-color: rgb(115, 51, 47);
+  color: rgb(255, 218, 214);
+}
+[data-md-theme=dark] .md-pane[data-md-background=secondary] {
+  background-color: rgb(93, 63, 60);
+  color: rgb(255, 218, 214);
+}
+[data-md-theme=dark] .md-pane[data-md-background=tertiary] {
+  background-color: rgb(88, 68, 25);
+  color: rgb(254, 222, 166);
+}
+[data-md-theme=dark] .md-pane[data-md-background=error] {
+  background-color: rgb(147, 0, 10);
+  color: rgb(255, 218, 214);
+}
+[data-md-theme=dark] .md-pane[data-md-background=surface] {
   background-color: rgb(26, 17, 16);
+  color: rgb(241, 222, 220);
+}
+[data-md-theme=dark] .md-pane[data-md-background=surface-container] {
+  background-color: rgb(39, 29, 28);
   color: rgb(241, 222, 220);
 }
 .md-pane__content {
@@ -312,7 +377,7 @@
   grid-column: 3;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 4px;
 }
 [data-md-theme=light] .md-app-bar__trailing .md-app-bar__icon {
