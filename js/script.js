@@ -36,6 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("change-theme")?.addEventListener("click", (e) => {
     changeTheme(e.currentTarget);
 });
+document.getElementById("source-link")?.addEventListener("click", (e) => { });
+document
+    .getElementById("calculator-link")
+    ?.addEventListener("click", (e) => { });
 document
     .getElementById("accept-cookies")
     ?.addEventListener("click", function (e) {
