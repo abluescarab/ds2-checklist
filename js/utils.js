@@ -17,7 +17,7 @@ export function load() {
     const banner = document.getElementById("cookie-banner");
     const cookiesAllowed = cookies.get(cookieNames.allowed);
     if (cookiesAllowed == null) {
-        banner === null || banner === void 0 ? void 0 : banner.classList.add("md-banner--visible");
+        banner?.classList.add("md-banner--visible");
     }
     if (cookiesAllowed != "true") {
         return;

@@ -1,23 +1,53 @@
-var _a, _b, _c;
 import { save, load, changeTheme } from "./utils.js";
-import { cookieNames, cookies } from "./constants.js";
+import { cookieNames, cookies, bonfires } from "./constants.js";
 const cookieBanner = document.getElementById("cookie-banner");
 document.addEventListener("DOMContentLoaded", function () {
+    const bonfireContainer = document.getElementById("bonfires");
+    bonfires.forEach((b) => {
+        const card = document.createElement("div");
+        card.classList.add("md-card");
+        card.dataset.mdType = "outlined";
+        const header = document.createElement("span");
+        header.dataset.mdTypescale = "body-large";
+        header.innerText = b.name;
+        card.appendChild(header);
+        b.fires.forEach((f) => {
+            const name = f
+                .replaceAll(/,|'/g, "")
+                .replaceAll(" ", "-")
+                .toLowerCase();
+            const div = document.createElement("div");
+            div.classList.add("md-checkbox");
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.id = name;
+            input.name = name;
+            const label = document.createElement("label");
+            label.htmlFor = name;
+            label.innerText = f;
+            div.appendChild(input);
+            div.appendChild(label);
+            card.appendChild(div);
+        });
+        bonfireContainer?.appendChild(card);
+    });
     load();
 });
-(_a = document.getElementById("change-theme")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", (e) => {
+document.getElementById("change-theme")?.addEventListener("click", (e) => {
     changeTheme(e.currentTarget);
 });
-(_b = document
-    .getElementById("accept-cookies")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function (e) {
+document
+    .getElementById("accept-cookies")
+    ?.addEventListener("click", function (e) {
     cookies.set(cookieNames.allowed, "true");
-    cookieBanner === null || cookieBanner === void 0 ? void 0 : cookieBanner.classList.remove("md-banner--visible");
+    cookieBanner?.classList.remove("md-banner--visible");
     save();
 });
-(_c = document
-    .getElementById("decline-cookies")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", function (e) {
+document
+    .getElementById("decline-cookies")
+    ?.addEventListener("click", function (e) {
     cookies.set(cookieNames.allowed, "false");
-    cookieBanner === null || cookieBanner === void 0 ? void 0 : cookieBanner.classList.remove("md-banner--visible");
+    cookieBanner?.classList.remove("md-banner--visible");
 });
 // form.addEventListener("reset", (e) => {
 //     // setTimeout waits for reset to finish
