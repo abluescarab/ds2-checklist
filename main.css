@@ -1,6 +1,31 @@
 /* vendors */
 /* base */
 /* layout */
+#bonfires {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 600px) {
+  #bonfires {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 800px) {
+  #bonfires {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1000px) {
+  #bonfires {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1200px) {
+  #bonfires {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
 /* components */
 /* pages */
 /* themes */
