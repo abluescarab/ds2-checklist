@@ -3,13 +3,16 @@
 
 .md-card {
     $parent: &;
+    $padding: 16px;
 
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 16px;
+    box-sizing: border-box;
+    gap: $padding;
+    padding: $padding;
+    flex: 1 1 200px;
     border-radius: sys("shape", "corner", "medium");
-    @include props(16px, padding, margin);
 
     @include themes.themify() {
         color: themes.color("on-surface");
