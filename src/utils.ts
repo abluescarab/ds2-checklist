@@ -19,62 +19,60 @@ export function changeTheme(
     }
 }
 
+function populateR() {}
+
+// TODO
 export function populate(
     parent: HTMLElement | null,
-    map,
+    elementList,
     sortKeys = false,
     sortValues = false
 ) {
-    const keys = Object.keys(map);
-
-    if (sortKeys) {
-        keys.sort();
-    }
-
-    for (let i = 0; i < keys.length; i++) {
+    for (let i = 0; i < elementList.length; i++) {
         const card = document.createElement("div");
         card.classList.add("md-card");
         card.dataset.mdType = "outlined";
 
         const header = document.createElement("span");
         header.dataset.mdTypescale = "title-medium";
-        header.innerText = keys[i];
+        header.innerText = elementList[i];
+
         card.appendChild(header);
 
-        const values = map[keys[i]];
+        //     const values = elementList[keys[i]];
 
-        if (sortValues) {
-            values.sort();
-        }
+        //     if (sortValues) {
+        //         values.sort();
+        //     }
 
-        for (let j = 0; j < values.length; j++) {
-            const name = values[j]
-                .replaceAll(/,|'/g, "")
-                .replaceAll(" ", "-")
-                .toLowerCase();
+        //     for (let j = 0; j < values.length; j++) {
+        //         const name = values[j]
+        //             .replaceAll(/,|'/g, "")
+        //             .replaceAll(" ", "-")
+        //             .toLowerCase();
 
-            const div = document.createElement("div");
-            div.classList.add("md-checkbox");
+        //         const div = document.createElement("div");
+        //         div.classList.add("md-checkbox");
 
-            const input = document.createElement("input");
-            input.type = "checkbox";
-            input.id = name;
-            input.name = name;
+        //         const input = document.createElement("input");
+        //         input.type = "checkbox";
+        //         input.id = name;
+        //         input.name = name;
 
-            const label = document.createElement("label");
-            label.htmlFor = name;
-            label.innerText = values[j] as string;
+        //         const label = document.createElement("label");
+        //         label.htmlFor = name;
+        //         label.innerText = values[j] as string;
 
-            div.appendChild(input);
-            div.appendChild(label);
-            card.appendChild(div);
-        }
+        //         div.appendChild(input);
+        //         div.appendChild(label);
+        //         card.appendChild(div);
+        //     }
 
-        if (!parent) {
-            parent = document.body;
-        }
+        //     if (!parent) {
+        //         parent = document.body;
+        //     }
 
-        parent.appendChild(card);
+        //     parent.appendChild(card);
     }
 }
 
