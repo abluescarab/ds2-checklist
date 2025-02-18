@@ -49,6 +49,13 @@ document
     cookies.set(cookieNames.allowed, "false");
     cookieBanner?.classList.remove("md-banner--visible");
 });
+document.getElementById("fab-top")?.addEventListener("click", (e) => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+    });
+});
 // form.addEventListener("reset", (e) => {
 //     // setTimeout waits for reset to finish
 //     setTimeout(() => {
