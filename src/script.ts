@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         card.dataset.mdType = "outlined";
 
         const header = document.createElement("span");
-        header.dataset.mdTypescale = "body-large";
+        header.dataset.mdTypescale = "title-medium";
         header.innerText = b.name;
 
         card.appendChild(header);
