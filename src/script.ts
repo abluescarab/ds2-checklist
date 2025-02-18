@@ -1,47 +1,11 @@
-import { save, load, changeTheme } from "./utils.js";
-import { cookieNames, cookies, bonfires } from "./constants.js";
+import { save, load, changeTheme, populate } from "./utils.js";
+import { cookieNames, cookies, bonfires, npcs } from "./constants.js";
 
 const cookieBanner = document.getElementById("cookie-banner");
 
 document.addEventListener("DOMContentLoaded", function () {
-    const bonfireContainer = document.getElementById("bonfires");
-
-    bonfires.forEach((b) => {
-        const card = document.createElement("div");
-        card.classList.add("md-card");
-        card.dataset.mdType = "outlined";
-
-        const header = document.createElement("span");
-        header.dataset.mdTypescale = "title-medium";
-        header.innerText = b.name;
-
-        card.appendChild(header);
-
-        b.fires.forEach((f) => {
-            const name = (f as string)
-                .replaceAll(/,|'/g, "")
-                .replaceAll(" ", "-")
-                .toLowerCase();
-
-            const div = document.createElement("div");
-            div.classList.add("md-checkbox");
-
-            const input = document.createElement("input");
-            input.type = "checkbox";
-            input.id = name;
-            input.name = name;
-
-            const label = document.createElement("label");
-            label.htmlFor = name;
-            label.innerText = f as string;
-
-            div.appendChild(input);
-            div.appendChild(label);
-            card.appendChild(div);
-        });
-
-        bonfireContainer?.appendChild(card);
-    });
+    populate(document.getElementById("bonfires"), bonfires);
+    populate(document.getElementById("npcs"), npcs);
 
     load();
 });
