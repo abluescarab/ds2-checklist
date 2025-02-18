@@ -225,6 +225,7 @@
   flex-wrap: wrap;
   flex: 1;
   padding: 24px;
+  gap: 8px;
 }
 .md-pane__content--fill {
   padding: 0;
@@ -311,6 +312,7 @@
   grid-column: 3;
   display: flex;
   flex-direction: row;
+  justify-content: end;
   gap: 4px;
 }
 [data-md-theme=light] .md-app-bar__trailing .md-app-bar__icon {
@@ -681,10 +683,11 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  box-sizing: border-box;
   gap: 16px;
-  border-radius: 12px;
   padding: 16px;
-  margin: 16px;
+  flex: 1 1 200px;
+  border-radius: 12px;
 }
 [data-md-theme=light] .md-card {
   color: rgb(29, 27, 32);
