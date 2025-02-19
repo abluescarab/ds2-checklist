@@ -116,13 +116,7 @@
     }
 }
 
-@mixin mix-states(
-    $background,
-    $mix,
-    $set-color: false,
-    $set-state-color: true,
-    $states...
-) {
+@mixin mix-states($background, $mix, $set-color, $set-state-color, $states...) {
     @if (length($states) == 0) {
         $states: "hover", "focus", "active";
     }
@@ -166,7 +160,7 @@
     line-height: $size;
 }
 
-@mixin toggle-styling($disabled-overrides: ()) {
+@mixin enabled-styling($disabled-overrides: ()) {
     &:disabled {
         @if (not map-has-key($disabled-overrides, "background-color")) {
             background-color: rgba(
