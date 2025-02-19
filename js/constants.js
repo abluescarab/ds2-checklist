@@ -5,11 +5,11 @@ export const cookieNames = Object.freeze({
 });
 export const cookies = new Cookies("ds2Checklist_");
 export const bonfires = Object.freeze([
-    { name: "Things Betwixt", values: [{ name: "Fire Keepers' Dwelling" }] },
-    { name: "Majula", values: [{ name: "The Far Fire" }] },
+    { name: "Things Betwixt", items: [{ name: "Fire Keepers' Dwelling" }] },
+    { name: "Majula", items: [{ name: "The Far Fire" }] },
     {
         name: "Forest of Fallen Giants",
-        values: [
+        items: [
             { name: "The Crestfallen's Retreat" },
             { name: "Cardinal Tower" },
             { name: "Soldier's Rest" },
@@ -18,13 +18,13 @@ export const bonfires = Object.freeze([
     },
     {
         name: "Heide's Tower of Flame",
-        values: [{ name: "Heide's Ruin" }, { name: "Tower of Flame" }],
+        items: [{ name: "Heide's Ruin" }, { name: "Tower of Flame" }],
     },
-    { name: "Cathedral of Blue", values: [{ name: "The Blue Cathedral" }] },
-    { name: "No Man's Wharf", values: [{ name: "Unseen Path to Heide" }] },
+    { name: "Cathedral of Blue", items: [{ name: "The Blue Cathedral" }] },
+    { name: "No Man's Wharf", items: [{ name: "Unseen Path to Heide" }] },
     {
         name: "The Lost Bastille",
-        values: [
+        items: [
             { name: "Exile Holding Cells" },
             { name: "McDuff's Workshop" },
             { name: "Servants' Quarters" },
@@ -32,24 +32,24 @@ export const bonfires = Object.freeze([
             { name: "The Tower Apart" },
         ],
     },
-    { name: "Belfry Luna", values: [{ name: "Upper Ramparts" }] },
-    { name: "Sinner's Rise", values: [{ name: "The Saltfort" }] },
+    { name: "Belfry Luna", items: [{ name: "Upper Ramparts" }] },
+    { name: "Sinner's Rise", items: [{ name: "The Saltfort" }] },
     {
         name: "Huntsman's Copse",
-        values: [
+        items: [
             { name: "Undead Refuge" },
             { name: "Bridge Approach" },
             { name: "Undead Lockaway" },
         ],
     },
-    { name: "Undead Purgatory", values: [{ name: "Undead Purgatory" }] },
+    { name: "Undead Purgatory", items: [{ name: "Undead Purgatory" }] },
     {
         name: "Harvest Valley",
-        values: [{ name: "Poison Pool" }, { name: "The Mines" }],
+        items: [{ name: "Poison Pool" }, { name: "The Mines" }],
     },
     {
         name: "Earthen Peak",
-        values: [
+        items: [
             { name: "Lower Earthen Peak" },
             { name: "Central Earthen Peak" },
             { name: "Upper Earthen Peak" },
@@ -57,16 +57,16 @@ export const bonfires = Object.freeze([
     },
     {
         name: "Iron Keep",
-        values: [
+        items: [
             { name: "Threshold Bridge" },
             { name: "Ironheart Hall" },
             { name: "Eygil's Idol" },
         ],
     },
-    { name: "Belfry Sol", values: [{ name: "Belfry Sol" }] },
+    { name: "Belfry Sol", items: [{ name: "Belfry Sol" }] },
     {
         name: "Shaded Woods",
-        values: [
+        items: [
             { name: "Old Akelarre" },
             { name: "Ruined Fork Road" },
             { name: "Shaded Ruins" },
@@ -74,11 +74,11 @@ export const bonfires = Object.freeze([
     },
     {
         name: "Doors of Pharros",
-        values: [{ name: "Gyrm's Respite" }, { name: "Ordeal's End" }],
+        items: [{ name: "Gyrm's Respite" }, { name: "Ordeal's End" }],
     },
     {
         name: "Brightstone Cove Tseldora",
-        values: [
+        items: [
             { name: "Royal Army Campsite" },
             { name: "Chapel Threshold" },
             { name: "Lower Brightstone Cove" },
@@ -86,19 +86,19 @@ export const bonfires = Object.freeze([
     },
     {
         name: "Grave of Saints",
-        values: [{ name: "Harval's Resting Place" }, "Grave Entrance"],
+        items: [{ name: "Harval's Resting Place" }, "Grave Entrance"],
     },
     {
         name: "The Gutter",
-        values: [{ name: "Upper Gutter" }, "Central Gutter"],
+        items: [{ name: "Upper Gutter" }, "Central Gutter"],
     },
     {
         name: "Black Gulch",
-        values: [{ name: "Black Gulch Mouth" }, "Hidden Chamber"],
+        items: [{ name: "Black Gulch Mouth" }, "Hidden Chamber"],
     },
     {
         name: "Drangleic Castle",
-        values: [
+        items: [
             { name: "King's Gate" },
             { name: "Under Castle Drangleic" },
             { name: "Forgotten Chamber" },
@@ -107,7 +107,7 @@ export const bonfires = Object.freeze([
     },
     {
         name: "Shrine of Amana",
-        values: [
+        items: [
             { name: "Tower of Prayer" },
             { name: "Crumbled Ruins" },
             { name: "Rhoy's Resting Place" },
@@ -116,14 +116,14 @@ export const bonfires = Object.freeze([
     },
     {
         name: "Undead Crypt",
-        values: [{ name: "Undead Crypt Entrance" }, "Undead Ditch"],
+        items: [{ name: "Undead Crypt Entrance" }, "Undead Ditch"],
     },
-    { name: "Aldia's Keep", values: [{ name: "Foregarden" }, "Ritual Site"] },
-    { name: "Dragon Aerie", values: [{ name: "Dragon Aerie" }] },
-    { name: "Dragon Shrine", values: [{ name: "Shrine Entrance" }] },
+    { name: "Aldia's Keep", items: [{ name: "Foregarden" }, "Ritual Site"] },
+    { name: "Dragon Aerie", items: [{ name: "Dragon Aerie" }] },
+    { name: "Dragon Shrine", items: [{ name: "Shrine Entrance" }] },
     {
         name: "Shulva, Sanctum City",
-        values: [
+        items: [
             { name: "Sanctum Walk" },
             "Tower of Prayer",
             "Priestess' Chamber",
@@ -131,16 +131,16 @@ export const bonfires = Object.freeze([
     },
     {
         name: "Dragon's Sanctum",
-        values: [
+        items: [
             { name: "Hidden Sanctum Chamber" },
             { name: "Lair of the Imperfect" },
             { name: "Sanctum Interior" },
         ],
     },
-    { name: "Dragon's Rest", values: [{ name: "Sanctum Nadir" }] },
+    { name: "Dragon's Rest", items: [{ name: "Sanctum Nadir" }] },
     {
         name: "Brume Tower",
-        values: [
+        items: [
             { name: "Throne Floor" },
             { name: "Upper Floor" },
             { name: "Foyer" },
@@ -148,10 +148,10 @@ export const bonfires = Object.freeze([
             { name: "The Smelter Throne" },
         ],
     },
-    { name: "Iron Passage", values: [{ name: "Iron Hallway Entrance" }] },
+    { name: "Iron Passage", items: [{ name: "Iron Hallway Entrance" }] },
     {
         name: "Frozen Eleum Loyce",
-        values: [
+        items: [
             { name: "Outer Wall" },
             { name: "Abandoned Dwelling" },
             { name: "Inner Wall" },
@@ -159,12 +159,12 @@ export const bonfires = Object.freeze([
             { name: "Expulsion Chamber" },
         ],
     },
-    { name: "Grand Cathedral", values: [{ name: "Grand Cathedral" }] },
+    { name: "Grand Cathedral", items: [{ name: "Grand Cathedral" }] },
 ]);
 export const bosses = Object.freeze([
     {
         name: "Base game",
-        values: [
+        items: [
             { name: "The Last Giant" },
             { name: "The Pursuer" },
             { name: "Dragonrider" },
@@ -201,7 +201,7 @@ export const bosses = Object.freeze([
     },
     {
         name: "DLC",
-        values: [
+        items: [
             { name: "Elana, the Squalid Queen" },
             { name: "Sinh, the Slumbering Dragon" },
             {
@@ -219,7 +219,7 @@ export const bosses = Object.freeze([
 export const npcs = Object.freeze([
     {
         name: "Majula",
-        values: [
+        items: [
             { name: "Blacksmith Lenigrast" },
             { name: "Carhillion of the Fold" },
             { name: "Laddersmith Gilligan" },
@@ -234,7 +234,7 @@ export const npcs = Object.freeze([
     },
     {
         name: "Elsewhere",
-        values: [
+        items: [
             { name: "Aldia, Scholar of the First Sin" },
             { name: "Alsanna, Silent Oracle" },
             { name: "Belfry Guard" },
