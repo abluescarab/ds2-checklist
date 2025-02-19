@@ -19,60 +19,57 @@ export function changeTheme(
     }
 }
 
-function populateR() {}
+function createCheckbox(name: string, level: number) {
+    const id = name.replaceAll(/,|'/g, "").replaceAll(" ", "-").toLowerCase();
 
-// TODO
-export function populate(
-    parent: HTMLElement | null,
-    elementList,
-    sortKeys = false,
-    sortValues = false
-) {
-    for (let i = 0; i < elementList.length; i++) {
+    const div = document.createElement("div");
+    div.classList.add("md-checkbox");
+    div.style.marginLeft = `${level * 32}px`;
+
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.id = id;
+    input.name = id;
+
+    const label = document.createElement("label");
+    label.htmlFor = id;
+    label.innerText = name;
+
+    div.appendChild(input);
+    div.appendChild(label);
+
+    return div;
+}
+
+function populateR(map, level = 0) {
+    const checkboxes: HTMLElement[] = [];
+
+    for (const [key, value] of Object.entries(map)) {
+        checkboxes.push(createCheckbox(key, level));
+        checkboxes.push(...populateR(value, level + 1));
+    }
+
+    return checkboxes;
+}
+
+export function populate(parent: HTMLElement | null, map) {
+    for (const [key, value] of Object.entries(map)) {
         const card = document.createElement("div");
         card.classList.add("md-card");
         card.dataset.mdType = "outlined";
 
         const header = document.createElement("span");
         header.dataset.mdTypescale = "title-medium";
-        header.innerText = elementList[i];
+        header.innerText = key;
 
         card.appendChild(header);
+        card.append(...populateR(value));
 
-        //     const values = elementList[keys[i]];
+        if (!parent) {
+            parent = document.body;
+        }
 
-        //     if (sortValues) {
-        //         values.sort();
-        //     }
-
-        //     for (let j = 0; j < values.length; j++) {
-        //         const name = values[j]
-        //             .replaceAll(/,|'/g, "")
-        //             .replaceAll(" ", "-")
-        //             .toLowerCase();
-
-        //         const div = document.createElement("div");
-        //         div.classList.add("md-checkbox");
-
-        //         const input = document.createElement("input");
-        //         input.type = "checkbox";
-        //         input.id = name;
-        //         input.name = name;
-
-        //         const label = document.createElement("label");
-        //         label.htmlFor = name;
-        //         label.innerText = values[j] as string;
-
-        //         div.appendChild(input);
-        //         div.appendChild(label);
-        //         card.appendChild(div);
-        //     }
-
-        //     if (!parent) {
-        //         parent = document.body;
-        //     }
-
-        //     parent.appendChild(card);
+        parent.appendChild(card);
     }
 }
 

@@ -1,5 +1,12 @@
 import { save, load, changeTheme, populate } from "./utils.js";
-import { cookieNames, cookies, bonfires, bosses, npcs } from "./constants.js";
+import {
+    cookieNames,
+    cookies,
+    bonfires,
+    bosses,
+    npcs,
+    dynaAndTillo,
+} from "./constants.js";
 
 const cookieBanner = document.getElementById("cookie-banner");
 
@@ -7,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("bonfires"), bonfires);
     populate(document.getElementById("npcs"), npcs);
     populate(document.getElementById("bosses"), bosses);
+    populate(document.getElementById("dyna-and-tillo"), dynaAndTillo);
 
     load();
 });
