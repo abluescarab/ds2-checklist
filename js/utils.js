@@ -13,11 +13,30 @@ export function changeTheme(themeButton, theme = null) {
         cookies.set(cookieNames.theme, theme);
     }
 }
+function toggleSection(target, expand) {
+    const checkbox = target.previousElementSibling;
+    if (!checkbox || !checkbox.dataset.level) {
+        return;
+    }
+    const checkboxLevel = parseInt(checkbox.dataset.level);
+    let next = checkbox.parentElement?.nextElementSibling;
+    while (next) {
+        const level = next.dataset.level
+            ? parseInt(next.dataset.level)
+            : -1;
+        if (level <= checkboxLevel) {
+            break;
+        }
+        next.style.display = expand ? "flex" : "none";
+        next = next.nextElementSibling;
+    }
+    target.innerText = expand ? "remove" : "add";
+}
 function createCheckbox(name, level) {
     const id = name.replaceAll(/,|'/g, "").replaceAll(" ", "-").toLowerCase();
     const div = document.createElement("div");
     div.classList.add("md-checkbox");
-    div.style.marginLeft = `${level * 32}px`;
+    div.dataset.level = level.toString();
     const input = document.createElement("input");
     input.type = "checkbox";
     input.id = id;
@@ -32,18 +51,32 @@ function createCheckbox(name, level) {
 function populateR(map, level = 0) {
     const checkboxes = [];
     for (const [key, value] of Object.entries(map)) {
-        const checkbox = createCheckbox(key, level);
+        let element = null;
         if (Object.keys(value).length > 0) {
             const button = document.createElement("button");
-            button.classList.add("md-button");
-            button.dataset.mdType = "text";
-            const span = document.createElement("span");
-            span.classList.add("md-button__icon", "material-symbols-outlined");
-            span.innerText = "add";
-            button.appendChild(span);
-            checkbox.appendChild(button);
+            button.classList.add("md-icon-button", "md-icon-button--small", "md-symbol");
+            button.innerText = "add";
+            button.addEventListener("click", (e) => {
+                const el = e.currentTarget;
+                el.classList.toggle("expanded");
+                toggleSection(el, el.classList.contains("expanded"));
+            });
+            element = document.createElement("div");
+            element.style.display = "flex";
+            element.style.flexDirection = "row";
+            element.style.alignItems = "center";
+            element.style.gap = "8px";
+            element.dataset.level = level.toString();
+            element.appendChild(createCheckbox(key, level));
+            element.appendChild(button);
         }
-        checkboxes.push(checkbox);
+        else {
+            element = createCheckbox(key, level);
+        }
+        if (level > 0) {
+            element.style.display = "none";
+        }
+        checkboxes.push(element);
         checkboxes.push(...populateR(value, level + 1));
     }
     return checkboxes;

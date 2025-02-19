@@ -8,7 +8,20 @@
   justify-content: center;
 }
 .cards .md-card {
-  flex: 0 1 300px;
+  flex: 1 1 300px;
+}
+
+.md-checkbox[data-level="1"] {
+  margin-left: 32px;
+}
+.md-checkbox[data-level="2"] {
+  margin-left: 64px;
+}
+.md-checkbox[data-level="3"] {
+  margin-left: 96px;
+}
+.md-checkbox[data-level="4"] {
+  margin-left: 128px;
 }
 
 /* pages */
