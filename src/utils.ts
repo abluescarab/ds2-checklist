@@ -45,7 +45,22 @@ function populateR(map, level = 0) {
     const checkboxes: HTMLElement[] = [];
 
     for (const [key, value] of Object.entries(map)) {
-        checkboxes.push(createCheckbox(key, level));
+        const checkbox = createCheckbox(key, level);
+
+        if (Object.keys(value as Object).length > 0) {
+            const button = document.createElement("button");
+            button.classList.add("md-button");
+            button.dataset.mdType = "text";
+
+            const span = document.createElement("span");
+            span.classList.add("md-button__icon", "material-symbols-outlined");
+            span.innerText = "add";
+
+            button.appendChild(span);
+            checkbox.appendChild(button);
+        }
+
+        checkboxes.push(checkbox);
         checkboxes.push(...populateR(value, level + 1));
     }
 
