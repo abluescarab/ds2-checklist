@@ -5,9 +5,10 @@
 .cards {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 .cards .md-card {
-  flex: 1 1 100px;
+  flex: 0 1 300px;
 }
 
 /* pages */

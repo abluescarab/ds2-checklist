@@ -4,22 +4,9 @@
 .cards {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 
     .md-card {
-        // min-width: max-content;
-        flex: 1 1 100px;
+        flex: 0 1 300px;
     }
-
-    // $breakpoints: create-list(600, 1200, 200, $suffix: "px");
-
-    // display: grid;
-    // grid-template-columns: 1fr;
-
-    // @for $i from 1 through length($breakpoints) {
-    //     $width: nth($breakpoints, $i);
-
-    //     @media screen and (min-width: $width) {
-    //         grid-template-columns: repeat($i + 1, 1fr);
-    //     }
-    // }
 }
