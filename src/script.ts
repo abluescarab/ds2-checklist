@@ -1,6 +1,6 @@
 // material imports
 import { populate, toggleAll } from "../material/modules/components/tree.js";
-import { initialize } from "../material/material.js";
+import { initialize, getChildByClassName } from "../material/material.js";
 
 // local imports
 import { save, load, changeTheme } from "./utils.js";
@@ -52,10 +52,7 @@ document
     });
 
 document.getElementById("fab-expand")?.addEventListener("click", (e) => {
-    const fab = (e.currentTarget as HTMLElement).getElementsByClassName(
-        "md-fab__icon"
-    )[0] as HTMLElement;
-
+    const fab = getChildByClassName(e.currentTarget, "md-fab__icon");
     const expand = fab?.innerText == "add";
     const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
 

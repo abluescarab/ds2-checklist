@@ -1,6 +1,6 @@
 // material imports
 import { populate, toggleAll } from "../material/modules/components/tree.js";
-import { initialize } from "../material/material.js";
+import { initialize, getChildByClassName } from "../material/material.js";
 // local imports
 import { save, load, changeTheme } from "./utils.js";
 import { cookieNames, cookies, bonfires, bosses, npcs, dynaAndTillo, } from "./constants.js";
@@ -34,7 +34,7 @@ document
     cookieBanner?.classList.remove("md-banner--visible");
 });
 document.getElementById("fab-expand")?.addEventListener("click", (e) => {
-    const fab = e.currentTarget.getElementsByClassName("md-fab__icon")[0];
+    const fab = getChildByClassName(e.currentTarget, "md-fab__icon");
     const expand = fab?.innerText == "add";
     const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
     if (tabName) {
