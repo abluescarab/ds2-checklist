@@ -1,3 +1,6 @@
+// TODO: add option to check children when checked
+// TODO: add option to have checkmarks only for subtree elements (no top level, no parents of subtrees)
+
 function createButton(buttonStyle: string | undefined) {
     const button = document.createElement("button");
     button.classList.add(
@@ -59,6 +62,10 @@ function initializeTree(
 }
 
 function populateTree(tree: HTMLElement, map: Map<string, any>) {
+    if (!tree) {
+        return;
+    }
+
     for (const [key, value] of Object.entries(map)) {
         const label = document.createElement("label");
         label.classList.add("md-tree__label");
