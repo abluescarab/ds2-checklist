@@ -1,7 +1,0 @@
-.md-checkbox {
-    @for $level from 1 through 4 {
-        &[data-level="#{$level}"] {
-            margin-left: $level * 32px;
-        }
-    }
-}
