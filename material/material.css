@@ -519,14 +519,62 @@ label:has(input:not(:disabled)) {
   font-weight: 500;
 }
 [data-md-theme=light] .md-banner {
-  border-bottom: 1px solid rgb(216, 194, 191);
   color: rgb(35, 25, 24);
   background-color: rgb(252, 234, 232);
+  border-bottom: 1px solid rgb(216, 194, 191);
+}
+[data-md-theme=light] .md-banner[data-md-background=primary] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(59, 9, 8);
+}
+[data-md-theme=light] .md-banner[data-md-background=secondary] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(44, 21, 19);
+}
+[data-md-theme=light] .md-banner[data-md-background=tertiary] {
+  background-color: rgb(254, 222, 166);
+  color: rgb(38, 25, 0);
+}
+[data-md-theme=light] .md-banner[data-md-background=error] {
+  background-color: rgb(255, 218, 214);
+  color: rgb(65, 0, 2);
+}
+[data-md-theme=light] .md-banner[data-md-background=surface] {
+  background-color: rgb(255, 248, 247);
+  color: rgb(35, 25, 24);
+}
+[data-md-theme=light] .md-banner[data-md-background=surface-container] {
+  background-color: rgb(252, 234, 232);
+  color: rgb(35, 25, 24);
 }
 [data-md-theme=dark] .md-banner {
-  border-bottom: 1px solid rgb(83, 67, 66);
   color: rgb(241, 222, 220);
   background-color: rgb(39, 29, 28);
+  border-bottom: 1px solid rgb(83, 67, 66);
+}
+[data-md-theme=dark] .md-banner[data-md-background=primary] {
+  background-color: rgb(115, 51, 47);
+  color: rgb(255, 218, 214);
+}
+[data-md-theme=dark] .md-banner[data-md-background=secondary] {
+  background-color: rgb(93, 63, 60);
+  color: rgb(255, 218, 214);
+}
+[data-md-theme=dark] .md-banner[data-md-background=tertiary] {
+  background-color: rgb(88, 68, 25);
+  color: rgb(254, 222, 166);
+}
+[data-md-theme=dark] .md-banner[data-md-background=error] {
+  background-color: rgb(147, 0, 10);
+  color: rgb(255, 218, 214);
+}
+[data-md-theme=dark] .md-banner[data-md-background=surface] {
+  background-color: rgb(26, 17, 16);
+  color: rgb(241, 222, 220);
+}
+[data-md-theme=dark] .md-banner[data-md-background=surface-container] {
+  background-color: rgb(39, 29, 28);
+  color: rgb(241, 222, 220);
 }
 .md-banner--visible {
   display: grid;
