@@ -1,3 +1,4 @@
+import { initialize } from "../material/material.js";
 import { save, load, changeTheme, populate } from "./utils.js";
 import { cookieNames, cookies, bonfires, bosses, npcs, dynaAndTillo, } from "./constants.js";
 const cookieBanner = document.getElementById("cookie-banner");
@@ -6,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("npcs"), npcs);
     populate(document.getElementById("bosses"), bosses);
     populate(document.getElementById("dyna-and-tillo"), dynaAndTillo);
+    initialize();
     load();
 });
 document.getElementById("change-theme")?.addEventListener("click", (e) => {
