@@ -36,8 +36,7 @@ document
 document.getElementById("fab-expand")?.addEventListener("click", (e) => {
     const fab = e.currentTarget.getElementsByClassName("md-fab__icon")[0];
     const expand = fab?.innerText == "add";
-    const tabName = document.getElementById("tabs")?.dataset.mdTab;
-    console.log(tabName);
+    const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
     if (tabName) {
         const tree = document.getElementById(tabName);
         toggleAll(tree, expand, true);
