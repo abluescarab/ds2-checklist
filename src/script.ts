@@ -1,5 +1,9 @@
+// material imports
+import { populate, toggleAll } from "../material/modules/components/tree.js";
 import { initialize } from "../material/material.js";
-import { save, load, changeTheme, populate } from "./utils.js";
+
+// local imports
+import { save, load, changeTheme } from "./utils.js";
 import {
     cookieNames,
     cookies,
