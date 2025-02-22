@@ -51,6 +51,23 @@ document
         cookieBanner?.classList.remove("md-banner--visible");
     });
 
+document.getElementById("fab-expand")?.addEventListener("click", (e) => {
+    const fab = (e.currentTarget as HTMLElement).getElementsByClassName(
+        "md-fab__icon"
+    )[0] as HTMLElement;
+
+    const expand = fab?.innerText == "add";
+    const tabName = document.getElementById("tabs")?.dataset.mdTab;
+
+    console.log(tabName);
+
+    if (tabName) {
+        const tree = document.getElementById(tabName);
+        toggleAll(tree, expand, true);
+        fab.innerText = expand ? "remove" : "add";
+    }
+});
+
 document.getElementById("fab-top")?.addEventListener("click", (e) => {
     window.scrollTo({
         top: 0,
