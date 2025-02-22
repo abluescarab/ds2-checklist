@@ -17,17 +17,13 @@
         @include themes.themify() {
             color: themes.color("on-surface-variant");
         }
-
-        &:not(:disabled) {
-            cursor: pointer;
-        }
     }
 
     &__icon {
-        font-size: 24px;
+        font-size: $icon__font-size;
     }
 
-    &__text {
+    &__label {
         @include font-styling("title-small");
         align-content: center;
     }
@@ -98,7 +94,7 @@
                     align-content: end;
                 }
 
-                #{$parent}__text {
+                #{$parent}__label {
                     align-content: start;
                 }
             }

@@ -2,8 +2,6 @@
 @use "../themes";
 
 .md-snackbar {
-    $parent: &;
-
     display: none;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto;
@@ -41,10 +39,6 @@
 
         @include themes.themify() {
             color: themes.color("inverse-primary");
-        }
-
-        &:hover {
-            cursor: pointer;
         }
 
         &--long {
