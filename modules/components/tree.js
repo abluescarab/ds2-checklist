@@ -2,11 +2,8 @@
  * @file           modules/components/tree.ts
  * @description    Implementation file for tree components.
  *******************************************************************************/
-// TODO: add option to check children when checked
-// TODO: add option to not collapse children with parent
-// TODO: add option to have checkmarks only for subtrees & subtree elements (no top level)
 import { ToggleState, triggerEvent } from "../events.js";
-import { getChildByClassName } from "../utils.js";
+import { getChildByClassName, getParentWithClass } from "../utils.js";
 /**
  * Creates a button to insert in the tree.
  * @param buttonType icon button type
@@ -20,12 +17,33 @@ function createButton(buttonType) {
     return button;
 }
 /**
+ * Toggles child checkboxes.
+ * @param element parent element
+ * @param checked whether to check or uncheck children
+ */
+function toggleCheckboxes(element, checked) {
+    const subtree = element?.nextElementSibling;
+    if (!element ||
+        !subtree?.classList.contains("md-tree__subtree") ||
+        !subtree?.firstElementChild?.classList.contains("md-checkbox")) {
+        return;
+    }
+    for (const child of subtree.children) {
+        if (child.classList.contains("md-checkbox")) {
+            child.querySelectorAll("input[type='checkbox']").forEach((c) => {
+                c.checked = checked;
+            });
+        }
+        toggleCheckboxes(child, checked);
+    }
+}
+/**
  * Initializes a tree recursively.
  * @param tree tree to initialize
  * @param buttonType icon button type
  * @param where to include checkboxes
  */
-function initializeTree(tree, buttonType, checkboxes) {
+function initializeTree(tree, buttonType, checkboxes, cascadeChecked) {
     if (!tree) {
         return;
     }
@@ -42,6 +60,18 @@ function initializeTree(tree, buttonType, checkboxes) {
                 node.classList.add("md-checkbox");
                 const input = document.createElement("input");
                 input.type = "checkbox";
+                if ((checkboxes == "all" || checkboxes == "subtrees") &&
+                    cascadeChecked != undefined) {
+                    input.addEventListener("change", (e) => {
+                        const checked = e.currentTarget
+                            .checked;
+                        if (cascadeChecked == "both" ||
+                            (cascadeChecked == "checked" && checked) ||
+                            (cascadeChecked == "unchecked" && !checked)) {
+                            toggleCheckboxes(getParentWithClass(e.currentTarget, "md-checkbox"), checked);
+                        }
+                    });
+                }
                 child.insertAdjacentElement("afterbegin", input);
                 child.insertAdjacentElement("beforebegin", node);
                 node.appendChild(child);
@@ -59,7 +89,7 @@ function initializeTree(tree, buttonType, checkboxes) {
         if (child.classList.contains("md-tree__subtree")) {
             const label = child.previousElementSibling;
             label.insertAdjacentElement("afterbegin", createButton(buttonType));
-            initializeTree(child, buttonType, checkboxes);
+            initializeTree(child, buttonType, checkboxes, cascadeChecked);
         }
     }
 }
@@ -117,13 +147,19 @@ export function initialize(tree) {
     if (!(tree instanceof HTMLElement)) {
         return;
     }
-    initializeTree(tree, tree.dataset.mdButtonStyle, tree.dataset.mdCheckboxes);
+    initializeTree(tree, tree.dataset.mdButtonStyle, tree.dataset.mdCheckboxes, tree.dataset.mdCascadeChecked);
     toggleAll(tree, tree.dataset.mdExpandOnLoad != undefined, true);
     tree.addEventListener("click", (e) => {
         const el = e.target;
         if (el.classList.contains("md-icon-button")) {
             const expand = el.innerText == "add";
-            toggleAll(el.parentElement?.nextElementSibling, expand, false);
+            const nextTree = el.parentElement?.nextElementSibling;
+            if (tree.dataset.mdCascadeCollapse != undefined) {
+                toggleAll(nextTree, expand, false);
+            }
+            else {
+                toggle(nextTree, expand);
+            }
             triggerEvent(tree, "toggled", {
                 state: expand ? ToggleState.Expanded : ToggleState.Collapsed,
             });
