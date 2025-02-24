@@ -1,12 +1,24 @@
+/// ============================================================================
+/// @file           abstracts/_ref.scss
+/// @description    Material Design's md.ref token map.
+/// ============================================================================
+
+@use "sass:map";
+
 $ref: (
     typeface: (
         brand: "Roboto",
+        plain: "Roboto",
+        mono: "Roboto Mono",
         weight-regular: 400,
         weight-medium: 500,
         weight-bold: 700,
     ),
 );
 
+/// Gets the value of a property in ref.
+/// @param {strings} $properties sequential properties
+/// @return {any} property value
 @function ref($properties...) {
-    @return map-get($ref, $properties...);
+    @return map.get($ref, $properties...);
 }

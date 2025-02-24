@@ -1,6 +1,11 @@
+/// ============================================================================
+/// @file           base/_fonts.scss
+/// @description    Font face declarations.
+/// ============================================================================
+
 /* Roboto */
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     font-style: normal;
     font-weight: 100 900;
     font-stretch: 0% 200%;
@@ -8,11 +13,27 @@
 }
 
 @font-face {
-    font-family: "Roboto";
+    font-family: Roboto;
     font-style: italic;
     font-weight: 100 900;
     font-stretch: 0% 200%;
     src: url("assets/fonts/roboto-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 100 900;
+    font-stretch: 0% 200%;
+    src: url("assets/fonts/roboto-mono.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    font-style: italic;
+    font-weight: 100 900;
+    font-stretch: 0% 200%;
+    src: url("assets/fonts/roboto-mono-italic.ttf") format("truetype");
 }
 
 /* Material Symbols */

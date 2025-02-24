@@ -1,41 +1,97 @@
+/*******************************************************************************
+ * @file           modules/components/tree.ts
+ * @description    Implementation file for tree components.
+ *******************************************************************************/
 // TODO: add option to check children when checked
-// TODO: add option to have checkmarks only for subtree elements (no top level, no parents of subtrees)
+// TODO: add option to not collapse children with parent
+// TODO: add option to have checkmarks only for subtrees & subtree elements (no top level)
+import { ToggleState, triggerEvent } from "../events.js";
 import { getChildByClassName } from "../utils.js";
-function createButton(buttonStyle) {
+/**
+ * Creates a button to insert in the tree.
+ * @param buttonType icon button type
+ * @returns new button
+ */
+function createButton(buttonType) {
     const button = document.createElement("button");
     button.classList.add("md-icon-button", "md-icon-button--small", "md-symbol");
-    button.dataset.mdType = buttonStyle;
+    button.dataset.mdType = buttonType;
     button.innerText = "add";
-    button.addEventListener("click", (e) => {
-        const el = e.currentTarget;
-        const expand = el.innerText == "add";
-        toggleAll(el.parentElement?.nextElementSibling, expand, false);
-    });
     return button;
 }
-function initializeTree(element, buttonStyle, checkboxes = false) {
-    if (!element) {
+/**
+ * Initializes a tree recursively.
+ * @param tree tree to initialize
+ * @param buttonType icon button type
+ * @param where to include checkboxes
+ */
+function initializeTree(tree, buttonType, checkboxes) {
+    if (!tree) {
         return;
     }
-    for (const child of element.children) {
-        const el = child;
-        if (checkboxes && el.classList.contains("md-tree__label")) {
-            const wrapper = document.createElement("div");
-            wrapper.classList.add("md-checkbox");
-            const input = document.createElement("input");
-            input.type = "checkbox";
-            el.insertAdjacentElement("afterbegin", input);
-            el.insertAdjacentElement("beforebegin", wrapper);
-            wrapper.appendChild(el);
+    for (const child of tree.children) {
+        if (child.classList.contains("md-tree__label")) {
+            const root = isRoot(child);
+            const leaf = isLeaf(child);
+            let node = child;
+            if (checkboxes == "all" ||
+                (checkboxes == "leaves" && leaf) ||
+                (checkboxes == "roots" && root) ||
+                (checkboxes == "subtrees" && isChild(child))) {
+                node = document.createElement("div");
+                node.classList.add("md-checkbox");
+                const input = document.createElement("input");
+                input.type = "checkbox";
+                child.insertAdjacentElement("afterbegin", input);
+                child.insertAdjacentElement("beforebegin", node);
+                node.appendChild(child);
+            }
+            if (root) {
+                node.classList.add("md-tree__root");
+            }
+            if (leaf) {
+                node.classList.add("md-tree__leaf");
+            }
+            else {
+                node.classList.add("md-tree__branch");
+            }
         }
-        if (el.classList.contains("md-tree__subtree")) {
-            const label = el.previousElementSibling;
-            el.style.display = "none";
-            label.insertAdjacentElement("afterbegin", createButton(buttonStyle));
-            initializeTree(el, buttonStyle, checkboxes);
+        if (child.classList.contains("md-tree__subtree")) {
+            const label = child.previousElementSibling;
+            label.insertAdjacentElement("afterbegin", createButton(buttonType));
+            initializeTree(child, buttonType, checkboxes);
         }
     }
 }
+/**
+ * Checks if the given element is in a subtree.
+ * @param element element to check
+ * @returns whether the given element is in a subtree
+ */
+function isChild(element) {
+    return element.parentElement?.classList.contains("md-tree__subtree");
+}
+/**
+ * Checks if the given element is a leaf node in the tree.
+ * @param element element to check
+ * @returns whether the given element is a leaf node
+ */
+function isLeaf(element) {
+    return !element.nextElementSibling?.classList.contains("md-tree__subtree");
+}
+/**
+ * Checks if the given element is a root node in the tree.
+ * @param element element to check
+ * @returns whether the given element is a root node
+ */
+function isRoot(element) {
+    return element.parentElement?.classList.contains("md-tree");
+}
+/**
+ * Populates a tree recursively from a map.
+ * @param tree tree to populate
+ * @param map map to populate from
+ */
 function populateTree(tree, map) {
     if (!tree) {
         return;
@@ -53,16 +109,40 @@ function populateTree(tree, map) {
         }
     }
 }
+/**
+ * Initializes a given tree.
+ * @param tree tree to initialize
+ */
 export function initialize(tree) {
     if (!(tree instanceof HTMLElement)) {
         return;
     }
-    initializeTree(tree, tree.dataset.mdButtonStyle, tree.dataset.mdCheckboxes == "true");
-    toggleAll(tree, tree.dataset.mdExpandOnLoad == "true", true);
+    initializeTree(tree, tree.dataset.mdButtonStyle, tree.dataset.mdCheckboxes);
+    toggleAll(tree, tree.dataset.mdExpandOnLoad != undefined, true);
+    tree.addEventListener("click", (e) => {
+        const el = e.target;
+        if (el.classList.contains("md-icon-button")) {
+            const expand = el.innerText == "add";
+            toggleAll(el.parentElement?.nextElementSibling, expand, false);
+            triggerEvent(tree, "toggled", {
+                state: expand ? ToggleState.Expanded : ToggleState.Collapsed,
+            });
+        }
+    });
 }
+/**
+ * Populates a tree from a map.
+ * @param tree tree to populate
+ * @param map map to populate from
+ */
 export function populate(tree, map) {
     populateTree(tree, map);
 }
+/**
+ * Expands or collapses a tree.
+ * @param tree element to toggle
+ * @param expand whether to expand or collapse
+ */
 export function toggle(tree, expand) {
     if (!tree ||
         !(tree instanceof HTMLElement) ||
@@ -73,17 +153,18 @@ export function toggle(tree, expand) {
     if (!button) {
         return;
     }
-    tree.style.display = expand ? "flex" : "none";
     button.innerText = expand ? "remove" : "add";
-    if (expand) {
-        button.classList.add("md-icon-button--selected");
-    }
-    else {
-        button.classList.remove("md-icon-button--selected");
-    }
+    tree.classList.toggle("md-tree__subtree--expanded", expand);
+    button.classList.toggle("md-icon-button--selected", expand);
 }
+/**
+ * Expands or collapses all elements in a tree.
+ * @param tree element to toggle
+ * @param expand whether to expand or collapse
+ * @param cascadeExpand whether to cascade expansion to children
+ */
 export function toggleAll(tree, expand, cascadeExpand) {
-    if (!tree) {
+    if (!tree || !(tree instanceof HTMLElement)) {
         return;
     }
     if (tree.classList.contains("md-tree__subtree")) {

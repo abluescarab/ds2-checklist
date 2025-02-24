@@ -1,3 +1,16 @@
+/// ============================================================================
+/// @file           components/_fab.scss
+/// @description    Material Design floating action button component.
+/// @data           size: button size
+///                     options: small, large, extended
+///                 color: button background color
+///                     options: primary, secondary, tertiary
+/// @modifiers      branded: branded font size
+///                 low: reduce elevation
+/// @elements       icon: icon before text
+///                 label: text when size is "extended"
+/// ============================================================================
+
 @use "../abstracts" as *;
 @use "../themes";
 
@@ -5,17 +18,17 @@
 .md-fab {
     $parent: &;
 
+    @include square(56px);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    @include square(56px);
     gap: 8px;
     border: 0;
     border-radius: sys("shape", "corner", "large");
 
-    @include themes.themify() {
+    @include themes.themify {
         @include elevation(3);
-
         @include mix-states(
             themes.color("surface-container-high"),
             themes.color("primary"),
@@ -35,18 +48,17 @@
 
     &__icon {
         @include square($icon__font-size);
+
         font-size: $icon__font-size;
     }
 
     &__label {
-        display: none;
         @include font-styling("label-large");
     }
 
     &--low {
-        @include themes.themify() {
+        @include themes.themify {
             @include elevation(1);
-
             @include mix-states(
                 themes.color("surface-container-low"),
                 themes.color("primary"),
@@ -65,25 +77,32 @@
         }
     }
 
-    @include data("size", "small") {
-        &:not(#{$parent}--branded) {
-            @include square(40px);
-            border-radius: sys("shape", "corner", "medium");
-        }
-    }
-
     &--branded {
         #{$parent}__icon {
             $icon-size: 36px;
 
             @include square($icon-size);
+
             font-size: $icon-size;
         }
     }
 
-    @include data("size", "large") {
+    &:not([data-md-size="extended"]) #{$parent}__label {
+        @include hidden;
+    }
+
+    &[data-md-size="small"] {
+        &:not(#{$parent}--branded) {
+            @include square(40px);
+
+            border-radius: sys("shape", "corner", "medium");
+        }
+    }
+
+    &[data-md-size="large"] {
         @extend #{$parent}--branded;
         @include square(96px);
+
         border-radius: sys("shape", "corner", "extra-large");
 
         #{$parent}--branded {
@@ -91,24 +110,21 @@
                 $icon-size: 48px;
 
                 @include square($icon-size);
+
                 font-size: $icon-size;
             }
         }
     }
 
-    @include data("size", "extended") {
+    &[data-md-size="extended"] {
         min-width: 80px;
         width: auto;
         padding: 0 16px;
-
-        #{$parent}__label {
-            display: initial;
-        }
     }
 
-    @include themes.themify() {
+    @include themes.themify {
         @each $color in "primary", "secondary", "tertiary" {
-            @include data("color", $color) {
+            &[data-md-color="#{$color}"] {
                 @include mix-states(
                     themes.color("#{$color}-container"),
                     themes.color("on-#{$color}-container"),
