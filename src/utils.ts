@@ -43,4 +43,7 @@ export function save() {
     }
 
     // TODO: save cookies
+    // TODO: save selected tab
+    // TODO: save checked boxes (localStorage)
+    // TODO: save expanded sections (localStorage)
 }
