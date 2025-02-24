@@ -1,3 +1,11 @@
+/// ============================================================================
+/// @file           components/_button.scss
+/// @description    Material Design button component.
+/// @data           type    button style
+///                     options: elevated, filled, tonal, outlined, text
+/// @elements       icon    icon before text
+/// ============================================================================
+
 @use "../abstracts" as *;
 @use "../themes";
 
@@ -26,24 +34,25 @@
         $icon-size: 18px;
 
         @include square($icon-size);
+
         font-size: $icon-size;
     }
 
-    @include themes.themify() {
-        @include data("type", "elevated") {
-            @include enabled-styling() {
+    @include themes.themify {
+        &[data-md-type="elevated"] {
+            @include enabled-styling {
+                @include elevation(1);
                 @include mix-states(
                     themes.color("surface-container-low"),
                     themes.color("primary"),
                     true,
                     true
                 );
-                @include elevation(1);
             }
         }
 
-        @include data("type", "filled") {
-            @include enabled-styling() {
+        &[data-md-type="filled"] {
+            @include enabled-styling {
                 @include mix-states(
                     themes.color("primary"),
                     themes.color("on-primary"),
@@ -57,8 +66,8 @@
             }
         }
 
-        @include data("type", "tonal") {
-            @include enabled-styling() {
+        &[data-md-type="tonal"] {
+            @include enabled-styling {
                 @include mix-states(
                     themes.color("secondary-container"),
                     themes.color("on-secondary-container"),
@@ -72,7 +81,7 @@
             }
         }
 
-        @include data("type", "outlined") {
+        &[data-md-type="outlined"] {
             @include enabled-styling(
                 (
                     background-color: transparent,
@@ -94,7 +103,7 @@
             }
         }
 
-        @include data("type", "text") {
+        &[data-md-type="text"] {
             padding: 12px;
 
             &:has(#{$parent}__icon) {

@@ -1,3 +1,10 @@
+/// ============================================================================
+/// @file           components/_checkbox.scss
+/// @description    Material Design checkbox component.
+///                 Note: Due to rendering limitations in most modern browsers,
+///                 there are no modifiers or subelement classes.
+/// ============================================================================
+
 @use "../abstracts" as *;
 @use "../themes";
 
@@ -6,31 +13,19 @@
     &,
     label {
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        flex-flow: row nowrap;
         align-items: center;
     }
 
-    @include themes.themify() {
+    @include themes.themify {
         color: themes.color("on-surface");
-    }
-
-    // restrict to only labels
-    label {
-        &:not(:has(input)) {
-            padding-left: 16px;
-        }
-
-        input[type="checkbox"] {
-            margin-right: 16px;
-        }
     }
 
     // restrict to only checkboxes
     input[type="checkbox"] {
-        @include square(18px);
+        @include square($checkbox__width);
 
-        @include themes.themify() {
+        @include themes.themify {
             accent-color: themes.color("primary");
 
             &:disabled {
@@ -39,6 +34,17 @@
                     sys("state", "disabled", "label-opacity")
                 );
             }
+        }
+    }
+
+    // restrict to only labels
+    label {
+        &:not(:has(input)) {
+            padding-left: $checkbox__margin;
+        }
+
+        input[type="checkbox"] {
+            margin-right: $checkbox__margin;
         }
     }
 }

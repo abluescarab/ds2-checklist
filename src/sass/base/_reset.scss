@@ -1,3 +1,8 @@
+/// ============================================================================
+/// @file           base/_reset.scss
+/// @description    Reset styles for default elements.
+/// ============================================================================
+
 * {
     margin: 0;
     padding: 0;
@@ -24,4 +29,8 @@ input {
 
 label:has(input:not(:disabled), button:not(:disabled)) {
     cursor: pointer;
+}
+
+pre code {
+    white-space: pre-line;
 }

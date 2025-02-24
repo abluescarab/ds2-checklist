@@ -1,3 +1,15 @@
+/// ============================================================================
+/// @file           components/_tabs.scss
+/// @description    Material Design tab container component.
+/// @data           type: navigation style
+///                     options: primary, secondary
+/// @elements       nav: navigation container
+///                 button: navigation button
+///                 icon: navigation button icon
+///                 label: navigation button label
+///                 page: tab page container
+/// ============================================================================
+
 @use "../abstracts" as *;
 @use "../themes";
 
@@ -8,13 +20,25 @@
     flex-direction: column;
     flex: 1;
 
+    &__nav {
+        display: flex;
+        flex-direction: row;
+        height: 48px;
+
+        @include themes.themify {
+            @include divider;
+
+            background-color: themes.color("surface");
+        }
+    }
+
     &__button {
         box-sizing: border-box;
         flex: 1;
         border: 0;
         background-color: transparent;
 
-        @include themes.themify() {
+        @include themes.themify {
             color: themes.color("on-surface-variant");
         }
     }
@@ -25,117 +49,109 @@
 
     &__label {
         @include font-styling("title-small");
+
         align-content: center;
     }
 
-    &__nav {
-        display: flex;
-        flex-direction: row;
-        height: 48px;
+    &__page {
+        display: block;
+        padding: 16px;
 
-        @include themes.themify() {
-            @include divider;
-            background-color: themes.color("surface");
+        &:not(&--selected) {
+            @include hidden;
         }
+    }
 
-        @include data("type", "primary") {
-            #{$parent}__button {
-                display: grid;
-                grid-template-rows: 1fr;
-                justify-content: center;
+    &[data-md-type="primary"] {
+        #{$parent}__button {
+            display: grid;
+            grid-template-rows: 1fr;
+            justify-content: center;
 
-                @include indicator(transparent, true);
+            @include indicator(transparent, true);
 
-                @include themes.themify() {
-                    @include mix-states(
+            @include themes.themify {
+                @include mix-states(
+                    transparent,
+                    themes.color("on-surface"),
+                    false,
+                    false,
+                    "hover",
+                    "focus"
+                );
+
+                &:active {
+                    color: themes.color("on-surface");
+                    background-color: mix-color(
                         transparent,
-                        themes.color("on-surface"),
-                        false,
-                        false,
-                        "hover",
-                        "focus"
+                        themes.color("primary"),
+                        "pressed"
                     );
-
-                    &:active {
-                        color: themes.color("on-surface");
-                        background-color: mix-color(
-                            transparent,
-                            themes.color("primary"),
-                            "pressed"
-                        );
-                    }
-
-                    &--selected {
-                        @include mix-states(
-                            transparent,
-                            themes.color("primary"),
-                            true,
-                            true
-                        );
-
-                        @include indicator(themes.color("primary"), true);
-
-                        &:focus {
-                            @include indicator(themes.color("secondary"), true);
-                        }
-                    }
-                }
-            }
-
-            &:has(#{$parent}__icon) {
-                height: 64px;
-
-                #{$parent}__button {
-                    display: grid;
-                    grid-template-rows: 1fr 1fr;
                 }
 
-                #{$parent}__icon {
-                    align-content: end;
-                }
-
-                #{$parent}__label {
-                    align-content: start;
-                }
-            }
-        }
-
-        @include data("type", "secondary") {
-            height: 48px;
-
-            #{$parent}__button {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 4px;
-
-                @include themes.themify() {
+                &--selected {
+                    @include indicator(themes.color("primary"), true);
                     @include mix-states(
                         transparent,
-                        themes.color("on-surface"),
-                        false,
+                        themes.color("primary"),
+                        true,
                         true
                     );
 
-                    &--selected {
-                        color: themes.color("on-surface");
-                        @include indicator(themes.color("primary"));
-
-                        &:focus {
-                            @include indicator(themes.color("secondary"));
-                        }
+                    &:focus {
+                        @include indicator(themes.color("secondary"), true);
                     }
                 }
+            }
+        }
+
+        #{$parent}__nav:has(#{$parent}__icon) {
+            height: 64px;
+
+            #{$parent}__button {
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            #{$parent}__icon {
+                align-content: end;
+            }
+
+            #{$parent}__label {
+                align-content: start;
             }
         }
     }
 
-    &__page {
-        padding: 16px;
-        display: none;
+    &[data-md-type="secondary"] {
+        #{$parent}__nav {
+            height: 48px;
+        }
 
-        &--selected {
-            display: block;
+        #{$parent}__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+
+            @include themes.themify {
+                @include mix-states(
+                    transparent,
+                    themes.color("on-surface"),
+                    false,
+                    true
+                );
+
+                &--selected {
+                    @include indicator(themes.color("primary"));
+
+                    color: themes.color("on-surface");
+
+                    &:focus {
+                        @include indicator(themes.color("secondary"));
+                    }
+                }
+            }
         }
     }
 }

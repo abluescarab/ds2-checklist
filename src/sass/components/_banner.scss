@@ -1,8 +1,18 @@
+/// ============================================================================
+/// @file           components/_banner.scss
+/// @description    Material Design banner component.
+/// @modifiers      visible: display the banner
+/// @elements       icon: large left icon
+///                 text: center text
+///                 actions: container for action buttons
+///                 action: action button
+/// ============================================================================
+
 @use "../abstracts" as *;
 @use "../themes";
 
 .md-banner {
-    display: none;
+    display: grid;
     grid-template-rows: 2;
     grid-template-columns: auto 1fr;
     padding: 16px;
@@ -11,7 +21,7 @@
 
     @include font-styling("title-small");
 
-    @include themes.themify() {
+    @include themes.themify {
         color: themes.color("on-surface");
         background-color: themes.color("surface-container");
 
@@ -19,16 +29,17 @@
         @include divider;
     }
 
-    &--visible {
-        display: grid;
+    &:not(&--visible) {
+        @include hidden;
     }
 
     &__icon {
         $icon-size: 56px;
 
-        user-select: none;
-        font-size: $icon-size;
         @include square($icon-size);
+
+        font-size: $icon-size;
+        user-select: none;
         grid-column: 1;
         grid-row: span 2;
     }
@@ -41,8 +52,7 @@
 
     &__actions {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         justify-content: flex-end;
         gap: 32px;
         grid-column: 2;
@@ -50,11 +60,12 @@
     }
 
     &__action {
-        background-color: transparent;
-        border: 0;
         @include font-styling("label-large");
 
-        @include themes.themify() {
+        background-color: transparent;
+        border: 0;
+
+        @include themes.themify {
             color: themes.color("primary");
         }
     }

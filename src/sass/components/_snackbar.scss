@@ -1,8 +1,18 @@
+/// ============================================================================
+/// @file           components/_snackbar.scss
+/// @description    Material Design snackbar component.
+/// @modifiers      long-action: put the action button on its own line
+///                 visible: display the snackbar
+/// @elements       action: action button
+/// ============================================================================
+
 @use "../abstracts" as *;
 @use "../themes";
 
 .md-snackbar {
-    display: none;
+    $parent: &;
+
+    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto;
     border-radius: sys("shape", "corner", "extra-small");
@@ -14,16 +24,18 @@
     bottom: 0;
     left: 0;
     right: 0;
+
     @include font-styling("body-medium");
 
-    @include themes.themify() {
+    @include themes.themify {
         @include elevation(3);
+
         background-color: themes.color("inverse-surface");
         color: themes.color("inverse-on-surface");
     }
 
-    &--visible {
-        display: grid;
+    &:not(&--visible) {
+        @include hidden;
     }
 
     &__action {
@@ -37,11 +49,13 @@
         box-sizing: border-box;
         border: 0;
 
-        @include themes.themify() {
+        @include themes.themify {
             color: themes.color("inverse-primary");
         }
+    }
 
-        &--long {
+    &--long-action {
+        #{$parent}__action {
             grid-row: 2;
             grid-column: span 2;
         }

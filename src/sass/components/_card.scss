@@ -1,20 +1,28 @@
+/// ============================================================================
+/// @file           components/_card.scss
+/// @description    Material Design card component.
+/// @data           type: card style
+///                     options: elevated, filled, outlined
+/// @modifiers      disabled: disable the card
+/// ============================================================================
+
 @use "../abstracts" as *;
 @use "../themes";
 
 .md-card {
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     box-sizing: border-box;
     gap: 8px;
     padding: 16px;
     min-width: 200px;
     border-radius: sys("shape", "corner", "medium");
 
-    @include themes.themify() {
+    @include themes.themify {
         color: themes.color("on-surface");
 
-        @include data("type", "elevated") {
+        &[data-md-type="elevated"] {
+            @include elevation(1);
             @include mix-states(
                 themes.color("surface-container-low"),
                 themes.color("on-surface"),
@@ -22,20 +30,19 @@
                 false
             );
 
-            @include elevation(1);
-
             &:hover {
                 @include elevation(2);
             }
         }
 
-        @include data("type", "filled", "outlined") {
+        &[data-md-type="filled"],
+        &[data-md-type="outlined"] {
             &:hover {
                 @include elevation(1);
             }
         }
 
-        @include data("type", "filled") {
+        &[data-md-type="filled"] {
             @include mix-states(
                 themes.color("surface-container-highest"),
                 themes.color("on-surface"),
@@ -44,7 +51,7 @@
             );
         }
 
-        @include data("type", "outlined") {
+        &[data-md-type="outlined"] {
             border: 1px solid themes.color("outline-variant");
 
             @include mix-states(

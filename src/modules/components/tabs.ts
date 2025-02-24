@@ -1,6 +1,16 @@
+/*******************************************************************************
+ * @file           modules/components/tabs.ts
+ * @description    Implementation file for tab container components.
+ *******************************************************************************/
+
+import { MaterialChangeEvent, triggerEvent } from "../events.js";
 import { getChildByClassName, getParentWithClass } from "../utils.js";
 
-export function initialize(tabs: Element) {
+/**
+ * Initializes the given tab container by adding buttons, checkboxes, etc.
+ * @param tabs tab container
+ */
+export function initialize(tabs: Element): void {
     if (!(tabs instanceof HTMLElement)) {
         return;
     }
@@ -30,11 +40,17 @@ export function initialize(tabs: Element) {
     });
 }
 
+/**
+ * Changes the current tab on the given tab container.
+ * @param tabs tab container
+ * @param oldTab name of old tab
+ * @param newTab name of new tab
+ */
 function changeTab(
     tabs: Element,
     oldTab: string | undefined,
     newTab: string | undefined
-) {
+): void {
     if (!(tabs instanceof HTMLElement)) {
         return;
     }
@@ -47,20 +63,23 @@ function changeTab(
     newButton?.classList.add("md-tabs__button--selected");
     newContent?.classList.add("md-tabs__page--selected");
 
-    const event = new CustomEvent("change", {
-        detail: {
-            oldTab: oldTab,
-            newTab: newTab,
-        },
-    });
-
     tabs.dataset.mdTab = newTab;
-    tabs.dispatchEvent(event);
+
+    triggerEvent<MaterialChangeEvent>(tabs, "tabchanged", {
+        oldValue: oldTab,
+        newValue: newTab,
+    });
 }
 
-function getTab(tabs: Element, tab: string | undefined) {
+/**
+ * Gets a tab by name.
+ * @param tabs tab container
+ * @param name tab name
+ * @returns tab button and page
+ */
+function getTab(tabs: Element, name: string | undefined): (Element | null)[] {
     return [
-        tabs.querySelector('.md-tabs__button[data-md-tab="' + tab + '"]'),
-        tabs.querySelector('.md-tabs__page[data-md-tab="' + tab + '"]'),
+        tabs.querySelector('.md-tabs__button[data-md-tab="' + name + '"]'),
+        tabs.querySelector('.md-tabs__page[data-md-tab="' + name + '"]'),
     ];
 }

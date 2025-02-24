@@ -1,7 +1,17 @@
+/// ============================================================================
+/// @file           abstracts/_mixins.scss
+/// @description    Project wide mixin declarations.
+/// ============================================================================
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
 @use "functions" as *;
 @use "sys" as *;
+@use "ref" as *;
 @use "../themes";
 
+/// Adds background data attributes for container colors.
 @mixin container-backgrounds {
     $backgrounds: (
         "primary": "primary-container",
@@ -13,69 +23,87 @@
     );
 
     @each $name, $value in $backgrounds {
-        @include data("background", $name) {
+        &[data-md-background="#{$name}"] {
             @include themes.colorify($value);
         }
     }
 }
 
-// ensures prefix on all data attributes
-@mixin data($name, $values...) {
-    $selector: "";
-
-    @each $value in $values {
-        $selector: $selector + "&[data-md-#{$name}='#{$value}'],";
-    }
-
-    #{$selector} {
-        @content;
-    }
-}
-
+/// Adds a divider from the Material Design specs.
 @mixin divider {
     border-bottom: 1px solid themes.color("outline-variant");
 }
 
-@mixin elevation($elevation, $negative-offset: false) {
+/// Adds a box shadow to an element to indicate elevation.
+/// @param {number} $elevation elevation level
+@mixin elevation($elevation) {
     $offset: sys("elevation", "level#{$elevation}");
-    box-shadow: rgba(themes.color("shadow"), 0.2) 0
-        if($negative-offset, -$offset, $offset) floor($offset * 1.5) 0;
+
+    box-shadow: rgba(themes.color("shadow"), 0.2) 0 $offset
+        math.floor($offset * 1.5) 0;
 }
 
-// TODO: change to data type?
-@mixin font($type) {
-    &--large {
-        @include font-styling("#{$type}-large");
-    }
-
-    &--medium {
-        @include font-styling("#{$type}-medium");
-    }
-
-    &--small {
-        @include font-styling("#{$type}-small");
-    }
-}
-
-@mixin font-styling($typescale, $prominent: false) {
+/// Adds a font style from the sys map.
+/// @param {string} $typescale typescale from sys
+/// @param {Boolean} $prominent [false] whether to use the "prominent" style
+/// @param {Boolean} $mono [false] whether to use a monospace font
+/// @param {map} $overrides [()] properties to override in each font
+@mixin font-styling(
+    $typescale,
+    $prominent: false,
+    $mono: false,
+    $overrides: ()
+) {
     $font: sys("typescale", $typescale);
 
-    font-family: map-get($font, "font");
-    line-height: map-get($font, "line-height");
-    font-size: map-get($font, "size");
-    letter-spacing: map-get($font, "tracking");
+    @if not map.has-key($overrides, "font-family") {
+        @if $mono {
+            font-family: "#{ref("typeface", "mono")}";
+        } @else {
+            font-family: map.get($font, "font");
+        }
+    }
 
-    @if ($prominent) {
-        font-weight: map-get($font, "weight-prominent");
+    @if not map.has-key($overrides, "line-height") {
+        line-height: map.get($font, "line-height");
+    }
+
+    @if not map.has-key($overrides, "font-size") {
+        font-size: map.get($font, "size");
+    }
+
+    @if not map.has-key($overrides, "letter-spacing") {
+        letter-spacing: map.get($font, "tracking");
+    }
+
+    @if $overrides {
+        @each $property, $value in $overrides {
+            #{$property}: "#{$value}";
+        }
+    }
+
+    @if $prominent {
+        font-weight: map.get($font, "weight-prominent");
     } @else {
-        font-weight: map-get($font, "weight");
+        font-weight: map.get($font, "weight");
     }
 }
 
+/// Hides an element.
+@mixin hidden {
+    position: absolute !important;
+    inset: 0 auto auto 0;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+
+/// Adds an indicator to the current element.
+/// @param {color} $color indicator color
+/// @param {Boolean} $primary [false] whether indicator has "primary" style
 @mixin indicator($color, $primary: false) {
     $height: sys("state", "focus-indicator", "thickness");
 
-    @if ($primary) {
+    @if $primary {
         $radius: sys("shape", "corner", "full");
 
         &::after {
@@ -88,53 +116,63 @@
             margin: 0 2px;
         }
     } @else {
-        box-shadow: inset 0px $height * -1 0px 0px $color;
+        box-shadow: inset 0 $height * -1 0 0 $color;
     }
 }
 
-@mixin mix-colors($default, $states) {
-    color: $states;
-    background-color: $default;
+/// Mixes background colors for the hover, focus, and active states.
+/// @param {color} $default-background background color when no state is active
+/// @param {color} $state-color color to apply to all states
+@mixin mix-colors($default-background, $state-color) {
+    color: $state-color;
+    background-color: $default-background;
 
     &:hover {
-        background-color: mix(
-            $default,
-            $states,
+        background-color: color.mix(
+            $default-background,
+            $state-color,
             opacity(sys("state", "hover", "state-layer-opacity"))
         );
     }
 
     &:focus {
-        background-color: mix(
-            $default,
-            $states,
+        background-color: color.mix(
+            $default-background,
+            $state-color,
             opacity(sys("state", "focus", "state-layer-opacity"))
         );
     }
 
     &:active {
-        background-color: mix(
-            $default,
-            $states,
+        background-color: color.mix(
+            $default-background,
+            $state-color,
             opacity(sys("state", "pressed", "state-layer-opacity"))
         );
     }
 }
 
+/// Mixes the background color for an element with the hover, focus, or active states.
+/// @param {color} $background background color when no state is active
+/// @param {color} $mix color to mix with the background when a state is active
+/// @param {Boolean} $set-color whether to set the default text color
+/// @param {Boolean} $set-state-color whether to set the text color for all states
+/// @param {strings} $states [hover, focus, active] states to include
+/// @output
 @mixin mix-states($background, $mix, $set-color, $set-state-color, $states...) {
-    @if (length($states) == 0) {
+    @if list.length($states) == 0 {
         $states: "hover", "focus", "active";
     }
 
     background-color: $background;
 
-    @if ($set-color) {
+    @if $set-color {
         color: $mix;
     }
 
     @each $state in $states {
         &:#{$state} {
-            @if ($set-state-color) {
+            @if $set-state-color {
                 color: $mix;
             }
 
@@ -143,45 +181,34 @@
     }
 }
 
-@mixin side-radius($side, $value) {
-    @if ($side == "left") {
-        border-top-left-radius: #{$value};
-        border-bottom-left-radius: #{$value};
-    } @else if($side == "right") {
-        border-top-right-radius: #{$value};
-        border-bottom-right-radius: #{$value};
-    } @else if($side == "top") {
-        border-top-left-radius: #{$value};
-        border-top-right-radius: #{$value};
-    } @else if($side == "bottom") {
-        border-bottom-left-radius: #{$value};
-        border-bottom-right-radius: #{$value};
-    }
-}
-
+/// Makes an element square with width, height, and line-height.
+/// @param {any} $size width and height to apply
 @mixin square($size) {
     width: $size;
     height: $size;
     line-height: $size;
 }
 
+/// Adds separate styles when an element is enabled or disabled.
+/// @param {map} $disabled-overrides [()] styles to override for the :disabled pseudo-class
+/// @content styles to apply when the element is not disabled
 @mixin enabled-styling($disabled-overrides: ()) {
     &:disabled {
-        @if (not map-has-key($disabled-overrides, "background-color")) {
+        @if not map.has-key($disabled-overrides, "background-color") {
             background-color: rgba(
                 themes.color("on-surface"),
                 sys("state", "disabled", "container-opacity")
             );
         }
 
-        @if (not map-has-key($disabled-overrides, "color")) {
+        @if not map.has-key($disabled-overrides, "color") {
             color: rgba(
                 themes.color("on-surface"),
                 sys("state", "disabled", "label-opacity")
             );
         }
 
-        @if ($disabled-overrides) {
+        @if $disabled-overrides {
             @each $property, $value in $disabled-overrides {
                 #{$property}: #{$value};
             }
