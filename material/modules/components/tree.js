@@ -140,7 +140,7 @@ function populateTree(tree, map) {
     }
 }
 /**
- * Initializes a given tree.
+ * Initializes a tree.
  * @param tree tree to initialize
  */
 export function initialize(tree) {
@@ -161,6 +161,7 @@ export function initialize(tree) {
                 toggle(nextTree, expand);
             }
             triggerEvent(tree, "toggled", {
+                element: el,
                 state: expand ? ToggleState.Expanded : ToggleState.Collapsed,
             });
         }

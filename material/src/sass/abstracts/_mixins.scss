@@ -43,6 +43,37 @@
         math.floor($offset * 1.5) 0;
 }
 
+/// Adds separate styles when an element is enabled or disabled.
+/// @param {map} $disabled-overrides [()] styles to override for the :disabled pseudo-class
+/// @content styles to apply when the element is not disabled
+@mixin enabled-styling($disabled-overrides: ()) {
+    &:disabled {
+        @if not map.has-key($disabled-overrides, "background-color") {
+            background-color: rgba(
+                themes.color("on-surface"),
+                sys("state", "disabled", "container-opacity")
+            );
+        }
+
+        @if not map.has-key($disabled-overrides, "color") {
+            color: rgba(
+                themes.color("on-surface"),
+                sys("state", "disabled", "label-opacity")
+            );
+        }
+
+        @if $disabled-overrides {
+            @each $property, $value in $disabled-overrides {
+                #{$property}: #{$value};
+            }
+        }
+    }
+
+    &:not(:disabled) {
+        @content;
+    }
+}
+
 /// Adds a font style from the sys map.
 /// @param {string} $typescale typescale from sys
 /// @param {Boolean} $prominent [false] whether to use the "prominent" style
@@ -89,9 +120,17 @@
     }
 }
 
+/// Changes the appearance of an element based on the number of children it has.
+/// @param {number} $count number of children
+@mixin has-children($count) {
+    &:has(> :last-child:nth-child(#{$count})) {
+        @content;
+    }
+}
+
 /// Hides an element.
-@mixin hidden {
-    position: absolute !important;
+@mixin hidden($relative: false) {
+    position: if($relative, relative, absolute) !important;
     inset: 0 auto auto 0;
     top: -9999px !important;
     left: -9999px !important;
@@ -181,41 +220,29 @@
     }
 }
 
+/// Adds a border radius to one side of an element.
+/// @param {string} $side side to add to (left, right, top, bottom)
+/// @param {unit} $radius radius amount
+@mixin side-radius($side, $radius) {
+    @if $side == "left" {
+        border-radius: $radius 0 0 $radius;
+    } @else if $side == "top" {
+        border-radius: $radius $radius 0 0;
+    } @else if $side == "right" {
+        border-radius: 0 $radius $radius 0;
+    } @else if $side == "bottom" {
+        border-radius: 0 0 $radius $radius;
+    }
+}
+
 /// Makes an element square with width, height, and line-height.
 /// @param {any} $size width and height to apply
-@mixin square($size) {
+@mixin square($size, $set-font-size: false) {
     width: $size;
     height: $size;
     line-height: $size;
-}
 
-/// Adds separate styles when an element is enabled or disabled.
-/// @param {map} $disabled-overrides [()] styles to override for the :disabled pseudo-class
-/// @content styles to apply when the element is not disabled
-@mixin enabled-styling($disabled-overrides: ()) {
-    &:disabled {
-        @if not map.has-key($disabled-overrides, "background-color") {
-            background-color: rgba(
-                themes.color("on-surface"),
-                sys("state", "disabled", "container-opacity")
-            );
-        }
-
-        @if not map.has-key($disabled-overrides, "color") {
-            color: rgba(
-                themes.color("on-surface"),
-                sys("state", "disabled", "label-opacity")
-            );
-        }
-
-        @if $disabled-overrides {
-            @each $property, $value in $disabled-overrides {
-                #{$property}: #{$value};
-            }
-        }
-    }
-
-    &:not(:disabled) {
-        @content;
+    @if $set-font-size {
+        font-size: $size;
     }
 }
