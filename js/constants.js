@@ -5,150 +5,154 @@ export const cookieNames = Object.freeze({
 });
 export const cookies = new Cookies("ds2Checklist_");
 export const bonfires = Object.freeze({
-    "Things Betwixt": {
-        "Fire Keepers' Dwelling": {},
+    "Base game": {
+        "Things Betwixt": {
+            "Fire Keepers' Dwelling": {},
+        },
+        Majula: {
+            "The Far Fire": {},
+        },
+        "Forest of Fallen Giants": {
+            "The Crestfallen's Retreat": {},
+            "Cardinal Tower": {},
+            "Soldier's Rest": {},
+            "The Place Unbeknownst": {},
+        },
+        "Heide's Tower of Flame": {
+            "Heide's Ruin": {},
+            "Tower of Flame": {},
+        },
+        "Cathedral of Blue": {
+            "The Blue Cathedral": {},
+        },
+        "No Man's Wharf": {
+            "Unseen Path to Heide": {},
+        },
+        "The Lost Bastille": {
+            "Exile Holding Cells": {},
+            "McDuff's Workshop": {},
+            "Servants' Quarters": {},
+            "Straid's Cell": {},
+            "The Tower Apart": {},
+        },
+        "Belfry Luna": {
+            "Upper Ramparts": {},
+        },
+        "Sinner's Rise": {
+            "The Saltfort": {},
+        },
+        "Huntsman's Copse": {
+            "Undead Refuge": {},
+            "Bridge Approach": {},
+            "Undead Lockaway": {},
+        },
+        "Undead Purgatory": {
+            "Undead Purgatory": {},
+        },
+        "Harvest Valley": {
+            "Poison Pool": {},
+            "The Mines": {},
+        },
+        "Earthen Peak": {
+            "Lower Earthen Peak": {},
+            "Central Earthen Peak": {},
+            "Upper Earthen Peak": {},
+        },
+        "Iron Keep": {
+            "Threshold Bridge": {},
+            "Ironheart Hall": {},
+            "Eygil's Idol": {},
+        },
+        "Belfry Sol": {
+            "Belfry Sol": {},
+        },
+        "Shaded Woods": {
+            "Old Akelarre": {},
+            "Ruined Fork Road": {},
+            "Shaded Ruins": {},
+        },
+        "Doors of Pharros": {
+            "Gyrm's Respite": {},
+            "Ordeal's End": {},
+        },
+        "Brightstone Cove Tseldora": {
+            "Royal Army Campsite": {},
+            "Chapel Threshold": {},
+            "Lower Brightstone Cove": {},
+        },
+        "Grave of Saints": {
+            "Harval's Resting Place": {},
+            "Grave Entrance": {},
+        },
+        "The Gutter": {
+            "Upper Gutter": {},
+            "Central Gutter": {},
+        },
+        "Black Gulch": {
+            "Black Gulch Mouth": {},
+            "Hidden Chamber": {},
+        },
+        "Drangleic Castle": {
+            "King's Gate": {},
+            "Under Castle Drangleic": {},
+            "Forgotten Chamber": {},
+            "Central Castle Drangleic": {},
+        },
+        "Shrine of Amana": {
+            "Tower of Prayer": {},
+            "Crumbled Ruins": {},
+            "Rhoy's Resting Place": {},
+            "Rise of the Dead": {},
+        },
+        "Undead Crypt": {
+            "Undead Crypt Entrance": {},
+            "Undead Ditch": {},
+        },
+        "Aldia's Keep": {
+            Foregarden: {},
+            "Ritual Site": {},
+        },
+        "Dragon Aerie": {
+            "Dragon Aerie": {},
+        },
+        "Dragon Shrine": {
+            "Shrine Entrance": {},
+        },
     },
-    Majula: {
-        "The Far Fire": {},
-    },
-    "Forest of Fallen Giants": {
-        "The Crestfallen's Retreat": {},
-        "Cardinal Tower": {},
-        "Soldier's Rest": {},
-        "The Place Unbeknownst": {},
-    },
-    "Heide's Tower of Flame": {
-        "Heide's Ruin": {},
-        "Tower of Flame": {},
-    },
-    "Cathedral of Blue": {
-        "The Blue Cathedral": {},
-    },
-    "No Man's Wharf": {
-        "Unseen Path to Heide": {},
-    },
-    "The Lost Bastille": {
-        "Exile Holding Cells": {},
-        "McDuff's Workshop": {},
-        "Servants' Quarters": {},
-        "Straid's Cell": {},
-        "The Tower Apart": {},
-    },
-    "Belfry Luna": {
-        "Upper Ramparts": {},
-    },
-    "Sinner's Rise": {
-        "The Saltfort": {},
-    },
-    "Huntsman's Copse": {
-        "Undead Refuge": {},
-        "Bridge Approach": {},
-        "Undead Lockaway": {},
-    },
-    "Undead Purgatory": {
-        "Undead Purgatory": {},
-    },
-    "Harvest Valley": {
-        "Poison Pool": {},
-        "The Mines": {},
-    },
-    "Earthen Peak": {
-        "Lower Earthen Peak": {},
-        "Central Earthen Peak": {},
-        "Upper Earthen Peak": {},
-    },
-    "Iron Keep": {
-        "Threshold Bridge": {},
-        "Ironheart Hall": {},
-        "Eygil's Idol": {},
-    },
-    "Belfry Sol": {
-        "Belfry Sol": {},
-    },
-    "Shaded Woods": {
-        "Old Akelarre": {},
-        "Ruined Fork Road": {},
-        "Shaded Ruins": {},
-    },
-    "Doors of Pharros": {
-        "Gyrm's Respite": {},
-        "Ordeal's End": {},
-    },
-    "Brightstone Cove Tseldora": {
-        "Royal Army Campsite": {},
-        "Chapel Threshold": {},
-        "Lower Brightstone Cove": {},
-    },
-    "Grave of Saints": {
-        "Harval's Resting Place": {},
-        "Grave Entrance": {},
-    },
-    "The Gutter": {
-        "Upper Gutter": {},
-        "Central Gutter": {},
-    },
-    "Black Gulch": {
-        "Black Gulch Mouth": {},
-        "Hidden Chamber": {},
-    },
-    "Drangleic Castle": {
-        "King's Gate": {},
-        "Under Castle Drangleic": {},
-        "Forgotten Chamber": {},
-        "Central Castle Drangleic": {},
-    },
-    "Shrine of Amana": {
-        "Tower of Prayer": {},
-        "Crumbled Ruins": {},
-        "Rhoy's Resting Place": {},
-        "Rise of the Dead": {},
-    },
-    "Undead Crypt": {
-        "Undead Crypt Entrance": {},
-        "Undead Ditch": {},
-    },
-    "Aldia's Keep": {
-        Foregarden: {},
-        "Ritual Site": {},
-    },
-    "Dragon Aerie": {
-        "Dragon Aerie": {},
-    },
-    "Dragon Shrine": {
-        "Shrine Entrance": {},
-    },
-    "Shulva, Sanctum City": {
-        "Sanctum Walk": {},
-        "Tower of Prayer": {},
-        "Priestess' Chamber": {},
-    },
-    "Dragon's Sanctum": {
-        "Hidden Sanctum Chamber": {},
-        "Lair of the Imperfect": {},
-        "Sanctum Interior": {},
-    },
-    "Dragon's Rest": {
-        "Sanctum Nadir": {},
-    },
-    "Brume Tower": {
-        "Throne Floor": {},
-        "Upper Floor": {},
-        Foyer: {},
-        "Lowermost Floor": {},
-        "The Smelter Throne": {},
-    },
-    "Iron Passage": {
-        "Iron Hallway Entrance": {},
-    },
-    "Frozen Eleum Loyce": {
-        "Outer Wall": {},
-        "Abandoned Dwelling": {},
-        "Inner Wall": {},
-        "Lower Garrison": {},
-        "Expulsion Chamber": {},
-    },
-    "Grand Cathedral": {
-        "Grand Cathedral": {},
+    DLC: {
+        "Shulva, Sanctum City": {
+            "Sanctum Walk": {},
+            "Tower of Prayer": {},
+            "Priestess' Chamber": {},
+        },
+        "Dragon's Sanctum": {
+            "Hidden Sanctum Chamber": {},
+            "Lair of the Imperfect": {},
+            "Sanctum Interior": {},
+        },
+        "Dragon's Rest": {
+            "Sanctum Nadir": {},
+        },
+        "Brume Tower": {
+            "Throne Floor": {},
+            "Upper Floor": {},
+            Foyer: {},
+            "Lowermost Floor": {},
+            "The Smelter Throne": {},
+        },
+        "Iron Passage": {
+            "Iron Hallway Entrance": {},
+        },
+        "Frozen Eleum Loyce": {
+            "Outer Wall": {},
+            "Abandoned Dwelling": {},
+            "Inner Wall": {},
+            "Lower Garrison": {},
+            "Expulsion Chamber": {},
+        },
+        "Grand Cathedral": {
+            "Grand Cathedral": {},
+        },
     },
 });
 export const bosses = Object.freeze({
@@ -659,35 +663,6 @@ export const npcs = Object.freeze({
             "Silvercat Ring": {},
         },
     },
-    "Multiple locations": {
-        "Aldia, Scholar of the First Sin": {},
-        "Belfry Guard": {},
-        "Benhart of Jugo": {},
-        "Captain Drummond": {},
-        "Creighton the Wanderer": {},
-        "Darkdiver Grandahl": {
-            "Bonfire Ascetic x10": {},
-            "Cast Light": {},
-            "Dark Hail": {},
-            "Dark Orb": {},
-            Darkstorm: {},
-            "Human Effigy x3": {},
-            "Profound Still": {},
-        },
-        "Lonesome Gavlan": {
-            "Poison Arrow x20": {},
-            "Poison Moss x20": {},
-            "Poison Throwing Knife x20": {},
-            "Ring of Giants (Doors of Pharros)": {},
-            "Ring of Giants (Harvest Valley)": {},
-            "Ring of Giants (No-Man's Wharf)": {},
-            "Rotten Pine Resin x20": {},
-        },
-        "Lucatiel of Mirrah": {},
-        "Mild Mannered Pate": {},
-        "The Rat King": {},
-        Vendrick: {},
-    },
     "Shaded Woods": {
         "Head of Vengarl": {
             "Magic Barrier": {},
@@ -734,6 +709,35 @@ export const npcs = Object.freeze({
             "Great Combustion": {},
             "Red Sign Soapstone": {},
         },
+    },
+    "Multiple locations": {
+        "Aldia, Scholar of the First Sin": {},
+        "Belfry Guard": {},
+        "Benhart of Jugo": {},
+        "Captain Drummond": {},
+        "Creighton the Wanderer": {},
+        "Darkdiver Grandahl": {
+            "Bonfire Ascetic x10": {},
+            "Cast Light": {},
+            "Dark Hail": {},
+            "Dark Orb": {},
+            Darkstorm: {},
+            "Human Effigy x3": {},
+            "Profound Still": {},
+        },
+        "Lonesome Gavlan": {
+            "Poison Arrow x20": {},
+            "Poison Moss x20": {},
+            "Poison Throwing Knife x20": {},
+            "Ring of Giants (Doors of Pharros)": {},
+            "Ring of Giants (Harvest Valley)": {},
+            "Ring of Giants (No-Man's Wharf)": {},
+            "Rotten Pine Resin x20": {},
+        },
+        "Lucatiel of Mirrah": {},
+        "Mild Mannered Pate": {},
+        "The Rat King": {},
+        Vendrick: {},
     },
 });
 export const dynaAndTillo = Object.freeze({
