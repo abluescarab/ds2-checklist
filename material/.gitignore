@@ -1,9 +1,6 @@
 **/node_modules/
 .vscode/
 *.code-workspace
-example/
-src/example/
-src/modules/
 
 # Logs
 logs
