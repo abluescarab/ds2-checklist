@@ -30,12 +30,6 @@ document.getElementById("change-theme")?.addEventListener("click", (e) => {
     changeTheme(e.currentTarget as HTMLElement);
 });
 
-document.getElementById("source-link")?.addEventListener("click", (e) => {});
-
-document
-    .getElementById("calculator-link")
-    ?.addEventListener("click", (e) => {});
-
 document
     .getElementById("accept-cookies")
     ?.addEventListener("click", function (e) {
