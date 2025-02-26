@@ -2,6 +2,15 @@
 /* base */
 /* layout */
 /* components */
+#settings-dialog .settings-section {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 16px;
+}
+#settings-dialog .settings-section > *:not(h2) {
+  margin-left: 16px;
+}
+
 /* pages */
 /* themes */
 /* material */

@@ -1,0 +1,11 @@
+#settings-dialog {
+    .settings-section {
+        display: flex;
+        flex-flow: column wrap;
+        gap: 16px;
+
+        & > *:not(h2) {
+            margin-left: 16px;
+        }
+    }
+}

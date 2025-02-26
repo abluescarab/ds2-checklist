@@ -45,6 +45,9 @@
                         target="_blank">
                         calculate
                     </a>
+                    <button id="settings" class="md-app-bar__icon md-symbol">
+                        settings
+                    </button>
                 </div>
             </div>
         </header>
@@ -161,6 +164,73 @@
                 data-md-color="secondary">
                 <span class="md-fab__icon md-symbol"> arrow_upward </span>
             </button>
+        </div>
+
+        <div id="settings-dialog" class="md-dialog md-dialog--visible">
+            <div class="md-dialog__wrapper">
+                <div class="md-dialog__header">
+                    <div class="md-dialog__headline">Settings</div>
+                </div>
+                <div class="md-dialog__content">
+                    <section class="settings-section">
+                        <h2 data-md-typescale="title-large">
+                            Checkbox behavior
+                        </h2>
+                        <div class="md-checkbox">
+                            <input
+                                id="cascade-checks"
+                                type="checkbox"
+                                checked />
+                            <label for="cascade-checks"
+                                >Check tree items when their parent is
+                                checked</label
+                            >
+                        </div>
+                        <div class="md-checkbox">
+                            <input id="cascade-unchecks" type="checkbox" />
+                            <label for="cascade-unchecks"
+                                >Uncheck tree items when their parent is
+                                unchecked</label
+                            >
+                        </div>
+                    </section>
+
+                    <section class="settings-section">
+                        <h2 data-md-typescale="title-large">Tree behavior</h2>
+                        <div class="md-checkbox">
+                            <input id="cascade-checks" type="checkbox" />
+                            <label for="cascade-checks"
+                                >Expand tree items when their parent is
+                                expanded</label
+                            >
+                        </div>
+                        <div class="md-checkbox">
+                            <input
+                                id="cascade-unchecks"
+                                type="checkbox"
+                                checked />
+                            <label for="cascade-unchecks"
+                                >Collapse tree items when their parent is
+                                collapsed</label
+                            >
+                        </div>
+                    </section>
+                </div>
+                <div class="md-dialog__actions">
+                    <button
+                        id="settings-cancel"
+                        class="md-button"
+                        data-md-type="text">
+                        Cancel
+                    </button>
+                    <button
+                        id="settings-save"
+                        class="md-button"
+                        data-md-type="text">
+                        Save
+                    </button>
+                </div>
+            </div>
         </div>
 
         <script type="module" src="js/script.js"></script>

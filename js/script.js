@@ -11,10 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("bosses"), bosses);
     populate(document.getElementById("dyna-and-tillo"), dynaAndTillo);
     initialize();
+    initializeDialog();
     load();
 });
 document.getElementById("change-theme")?.addEventListener("click", (e) => {
     changeTheme(e.currentTarget);
+});
+document.getElementById("settings")?.addEventListener("click", (e) => {
+    console.log("Click");
+    document
+        .getElementById("settings-dialog")
+        ?.classList.add("md-dialog--visible");
 });
 document
     .getElementById("accept-cookies")
