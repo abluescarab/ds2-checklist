@@ -1,5 +1,5 @@
+import { cycleThemes, setTheme } from "@material/material.js";
 import { cookieNames, cookies } from "./constants.js";
-import { cycleThemes, setTheme } from "../material/material.js";
 export function changeTheme(themeButton, theme = null) {
     if (theme) {
         setTheme(document.body, theme);
