@@ -9,7 +9,10 @@ export default class Cookies {
     }
 
     // modified from https://stackoverflow.com/a/25490531
-    get(name: string, fallback: any = null) {
+    get(
+        name: string,
+        fallback: string | null = null
+    ): string | undefined | null {
         let result = document.cookie.match(
             `(^|;)\\s*${this.prefix}${name}\\s*=\\s*([^;]*)`
         );
@@ -18,17 +21,17 @@ export default class Cookies {
     }
 
     // modified from https://stackoverflow.com/a/24103596
-    set(name: string, value: any) {
+    set(name: string, value: string | null): void {
         let expires = "";
 
         if (this.expiryDays > -1) {
-            let date = new Date();
+            const date = new Date();
             date.setDate(date.getDate() + this.expiryDays);
             expires = date.toUTCString();
         }
 
         document.cookie =
-            `${this.prefix}${name}=${value || ""}; ` +
+            `${this.prefix}${name}=${value ?? ""}; ` +
             `expires=${expires}; ` +
             `path=${this.path}; ` +
             `SameSite=${this.sameSite}`;

@@ -4,7 +4,7 @@ import { cookieNames, cookies } from "./constants.js";
 export function changeTheme(
     themeButton: HTMLElement,
     theme: string | null | undefined = null
-) {
+): void {
     if (theme) {
         setTheme(document.body, theme);
     } else {
@@ -19,7 +19,7 @@ export function changeTheme(
     }
 }
 
-export function load() {
+export function load(): void {
     const banner = document.getElementById("cookie-banner");
     const cookiesAllowed = cookies.get(cookieNames.allowed);
 
@@ -37,7 +37,7 @@ export function load() {
     );
 }
 
-export function save() {
+export function save(): void {
     if (cookies.get(cookieNames.allowed) != "true") {
         return;
     }

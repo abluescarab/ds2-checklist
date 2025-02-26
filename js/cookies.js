@@ -15,12 +15,12 @@ export default class Cookies {
     set(name, value) {
         let expires = "";
         if (this.expiryDays > -1) {
-            let date = new Date();
+            const date = new Date();
             date.setDate(date.getDate() + this.expiryDays);
             expires = date.toUTCString();
         }
         document.cookie =
-            `${this.prefix}${name}=${value || ""}; ` +
+            `${this.prefix}${name}=${value ?? ""}; ` +
                 `expires=${expires}; ` +
                 `path=${this.path}; ` +
                 `SameSite=${this.sameSite}`;
