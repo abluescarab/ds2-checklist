@@ -1,3 +1,0 @@
-[submodule "lib/material"]
-	path = lib/material
-	url = git@github.com:abluescarab/sass-material-design.git
