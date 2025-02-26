@@ -50,7 +50,7 @@ document.getElementById("fab-expand")?.addEventListener("click", (e) => {
     const expand = fab?.innerText == "add";
     const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
 
-    if (tabName) {
+    if (tabName && fab) {
         const tree = document.getElementById(tabName);
         toggleAll(tree, expand, true);
         fab.innerText = expand ? "remove" : "add";
