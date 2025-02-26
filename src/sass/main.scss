@@ -8,10 +8,23 @@
 // @use "layout/...";
 
 /* components */
-@use "components/cards";
+// @use "components/...";
 
 /* pages */
 // @use "pages/...";
 
 /* themes */
-// @use "themes/...";
+@use "themes/dark";
+@use "themes/light";
+
+/* material */
+@use "../../lib/material/src/sass/abstracts/variables" with (
+    $assets: "lib/material/dist/assets"
+);
+@use "../../lib/material/src/sass/themes" with (
+    $themes: (
+        dark: dark.$theme,
+        light: light.$theme,
+    )
+);
+@use "../../lib/material/src/sass/material.scss";
