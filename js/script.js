@@ -1,6 +1,6 @@
 // material imports
-import { initialize, getChildByClassName } from "@material/material";
-import { populate, toggleAll } from "@material/modules/components/tree";
+import { initialize, getChildByClassName } from "../lib/material/dist/material.js";
+import { populate, toggleAll } from "../lib/material/dist/modules/components/tree.js";
 // local imports
 import { save, load, changeTheme } from "./utils.js";
 import { cookieNames, cookies, bonfires, bosses, npcs, dynaAndTillo, } from "./constants.js";

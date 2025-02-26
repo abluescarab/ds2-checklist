@@ -3,7 +3,7 @@ import { initialize, getChildByClassName } from "@material/material";
 import { populate, toggleAll } from "@material/modules/components/tree";
 
 // local imports
-import { save, load, changeTheme } from "./utils.js";
+import { save, load, changeTheme } from "./utils";
 import {
     cookieNames,
     cookies,
@@ -11,7 +11,7 @@ import {
     bosses,
     npcs,
     dynaAndTillo,
-} from "./constants.js";
+} from "./constants";
 
 const cookieBanner = document.getElementById("cookie-banner");
 
