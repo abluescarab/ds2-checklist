@@ -23,8 +23,3 @@ export function load() {
     }
     loadSettings();
 }
-export function save() {
-    // TODO: save selected tab
-    // TODO: save checked boxes
-    // TODO: save expanded sections
-}

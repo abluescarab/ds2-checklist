@@ -6,39 +6,36 @@ const cascadeCheckedControl = document.getElementById(
 const cascadeUncheckedControl = document.getElementById(
     "cascade-unchecked"
 ) as HTMLInputElement;
-const cascadeCollapseControl = document.getElementById(
-    "cascade-collapse"
+const cascadeCollapsedControl = document.getElementById(
+    "cascade-collapsed"
 ) as HTMLInputElement;
 
-function changeTreeSettings(cascadeChecked: string, cascadeCollapse: boolean) {
+function changeTreeSettings(cascadeChecked: string, cascadeToggled: string) {
     for (const element of document.getElementsByClassName("md-tree")) {
         const tree = element as HTMLElement;
 
         tree.dataset.mdCascadeChecked = cascadeChecked;
-
-        if (cascadeCollapse) {
-            tree.dataset.mdCascadeCollapse = "";
-        } else {
-            delete tree.dataset.mdCascadeCollapse;
-        }
+        tree.dataset.mdCascadeToggled = cascadeToggled;
     }
 }
 
 export function loadSettings() {
     const cascadeChecked =
         localStorage.getItem(storageKeys.cascadeChecked) ?? "";
-    const cascadeCollapse =
-        localStorage.getItem(storageKeys.cascadeCollapse) != null;
+    const cascadeToggled =
+        localStorage.getItem(storageKeys.cascadeToggled) ?? "";
 
     cascadeCheckedControl.checked =
         cascadeChecked == "checked" || cascadeChecked == "both";
     cascadeUncheckedControl.checked =
         cascadeChecked == "unchecked" || cascadeChecked == "both";
-
-    cascadeCollapseControl.checked = cascadeCollapse;
+    cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
 }
 
 export function saveSettings() {
+    const cascadeToggledValue = cascadeCollapsedControl.checked
+        ? "collapsed"
+        : "";
     let cascadeCheckedValue: string = "";
 
     if (cascadeCheckedControl.checked && !cascadeUncheckedControl.checked) {
@@ -55,17 +52,17 @@ export function saveSettings() {
         cascadeCheckedValue = "both";
     }
 
-    if (cascadeCheckedValue != "") {
-        localStorage.setItem(storageKeys.cascadeChecked, cascadeCheckedValue);
-    } else {
+    if (!cascadeCheckedValue) {
         localStorage.removeItem(storageKeys.cascadeChecked);
-    }
-
-    if (cascadeCollapseControl.checked) {
-        localStorage.setItem(storageKeys.cascadeCollapse, "");
     } else {
-        localStorage.removeItem(storageKeys.cascadeCollapse);
+        localStorage.setItem(storageKeys.cascadeChecked, cascadeCheckedValue);
     }
 
-    changeTreeSettings(cascadeCheckedValue, cascadeCollapseControl.checked);
+    if (cascadeCollapsedControl.checked) {
+        localStorage.setItem(storageKeys.cascadeToggled, "collapsed");
+    } else {
+        localStorage.removeItem(storageKeys.cascadeToggled);
+    }
+
+    changeTreeSettings(cascadeCheckedValue, cascadeToggledValue);
 }

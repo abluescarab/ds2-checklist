@@ -35,9 +35,3 @@ export function load(): void {
 
     loadSettings();
 }
-
-export function save(): void {
-    // TODO: save selected tab
-    // TODO: save checked boxes
-    // TODO: save expanded sections
-}
