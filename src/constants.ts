@@ -1,6 +1,8 @@
 export const storageKeys = Object.freeze({
     theme: "theme",
     tab: "tab",
+    cascadeChecked: "cascadeChecked",
+    cascadeCollapse: "cascadeCollapse",
 });
 
 export const bonfires = Object.freeze({

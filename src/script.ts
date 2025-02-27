@@ -2,6 +2,7 @@
 import {
     initialize,
     getChildByClassName,
+    getParentWithClass,
     MaterialChangeEvent,
 } from "@material/material";
 import { populate, toggleAll } from "@material/modules/components/tree";
@@ -9,6 +10,7 @@ import { populate, toggleAll } from "@material/modules/components/tree";
 // local imports
 import { bonfires, bosses, npcs, dynaAndTillo, storageKeys } from "./constants";
 import { load, changeTheme } from "./utils";
+import { saveSettings } from "./settings";
 
 document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("bonfires"), bonfires);
@@ -32,6 +34,26 @@ document
             (e as MaterialChangeEvent<string>).newValue ?? ""
         );
     });
+
+document.getElementById("settings")?.addEventListener("click", (e) => {
+    document
+        .getElementById("settings-dialog")
+        ?.classList.add("md-dialog--visible");
+});
+
+document.getElementById("settings-cancel")?.addEventListener("click", (e) => {
+    getParentWithClass(e.currentTarget, "md-dialog")?.classList.remove(
+        "md-dialog--visible"
+    );
+});
+
+document.getElementById("settings-save")?.addEventListener("click", () => {
+    saveSettings();
+
+    document
+        .getElementById("settings-dialog")
+        ?.classList.remove("md-dialog--visible");
+});
 
 document.getElementById("fab-expand")?.addEventListener("click", (e) => {
     const fab = getChildByClassName(e.currentTarget, "md-fab__icon");

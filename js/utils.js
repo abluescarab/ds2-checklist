@@ -1,5 +1,6 @@
 import { cycleThemes, setTheme } from "../lib/material/dist/material.js";
 import { storageKeys } from "./constants.js";
+import { loadSettings } from "./settings.js";
 export function changeTheme(themeButton, theme = null) {
     if (theme) {
         setTheme(document.body, theme);
@@ -20,6 +21,7 @@ export function load() {
     if (tabs && tab) {
         tabs.dataset.mdTab = tab;
     }
+    loadSettings();
 }
 export function save() {
     // TODO: save selected tab
