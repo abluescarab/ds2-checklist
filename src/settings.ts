@@ -1,5 +1,6 @@
 import { storageKeys } from "./constants";
 
+// tree behavior
 const cascadeCheckedControl = document.getElementById(
     "cascade-checked"
 ) as HTMLInputElement;
@@ -9,6 +10,35 @@ const cascadeUncheckedControl = document.getElementById(
 const cascadeCollapsedControl = document.getElementById(
     "cascade-collapsed"
 ) as HTMLInputElement;
+
+// page settings
+const hideExpandAllControl = document.getElementById(
+    "hide-expand-all-button"
+) as HTMLInputElement;
+const hideScrollToTopControl = document.getElementById(
+    "hide-scroll-to-top-button"
+) as HTMLInputElement;
+
+function toggleStorage(key: string, add: boolean, value: string | null = "") {
+    if (add) {
+        localStorage.setItem(key, value ?? "");
+    } else {
+        localStorage.removeItem(key);
+    }
+}
+
+function changePageSettings(hideExpandAll: boolean, hideScrollToTop: boolean) {
+    const expandAllButton = document.getElementById("fab-expand");
+    const scrollToTopButton = document.getElementById("fab-top");
+
+    if (expandAllButton) {
+        expandAllButton.style.display = hideExpandAll ? "none" : "flex";
+    }
+
+    if (scrollToTopButton) {
+        scrollToTopButton.style.display = hideScrollToTop ? "none" : "flex";
+    }
+}
 
 function changeTreeSettings(cascadeChecked: string, cascadeToggled: string) {
     for (const element of document.getElementsByClassName("md-tree")) {
@@ -20,6 +50,18 @@ function changeTreeSettings(cascadeChecked: string, cascadeToggled: string) {
 }
 
 export function loadSettings() {
+    // page settings
+    const hideExpandAll =
+        localStorage.getItem(storageKeys.hideExpandAll) != null;
+    const hideScrollToTop =
+        localStorage.getItem(storageKeys.hideScrollToTop) != null;
+
+    hideExpandAllControl.checked = hideExpandAll;
+    hideScrollToTopControl.checked = hideScrollToTop;
+
+    changePageSettings(hideExpandAll, hideScrollToTop);
+
+    // tree behavior
     const cascadeChecked =
         localStorage.getItem(storageKeys.cascadeChecked) ?? "";
     const cascadeToggled =
@@ -30,14 +72,27 @@ export function loadSettings() {
     cascadeUncheckedControl.checked =
         cascadeChecked == "unchecked" || cascadeChecked == "both";
     cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
+
+    changeTreeSettings(cascadeChecked, cascadeToggled);
 }
 
 export function saveSettings() {
+    // page settings
+    toggleStorage(storageKeys.hideExpandAll, hideExpandAllControl.checked);
+    toggleStorage(storageKeys.hideScrollToTop, hideScrollToTopControl.checked);
+
+    changePageSettings(
+        hideExpandAllControl.checked,
+        hideScrollToTopControl.checked
+    );
+
+    // tree behavior
     const cascadeToggledValue = cascadeCollapsedControl.checked
         ? "collapsed"
         : "";
     let cascadeCheckedValue: string = "";
 
+    // TODO: replace with dropdown/dialog/etc.
     if (cascadeCheckedControl.checked && !cascadeUncheckedControl.checked) {
         cascadeCheckedValue = "checked";
     } else if (
@@ -52,17 +107,17 @@ export function saveSettings() {
         cascadeCheckedValue = "both";
     }
 
-    if (!cascadeCheckedValue) {
-        localStorage.removeItem(storageKeys.cascadeChecked);
-    } else {
-        localStorage.setItem(storageKeys.cascadeChecked, cascadeCheckedValue);
-    }
+    toggleStorage(
+        storageKeys.cascadeChecked,
+        cascadeCheckedValue != "",
+        cascadeCheckedValue
+    );
 
-    if (cascadeCollapsedControl.checked) {
-        localStorage.setItem(storageKeys.cascadeToggled, "collapsed");
-    } else {
-        localStorage.removeItem(storageKeys.cascadeToggled);
-    }
+    toggleStorage(
+        storageKeys.cascadeToggled,
+        cascadeCollapsedControl.checked,
+        "collapsed"
+    );
 
     changeTreeSettings(cascadeCheckedValue, cascadeToggledValue);
 }

@@ -3,6 +3,8 @@ export const storageKeys = Object.freeze({
     tab: "tab",
     cascadeChecked: "cascadeChecked",
     cascadeToggled: "cascadeToggled",
+    hideExpandAll: "hideExpandAll",
+    hideScrollToTop: "hideScrollToTop",
 });
 
 export const trees = Object.freeze({
