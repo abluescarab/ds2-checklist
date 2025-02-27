@@ -24,6 +24,13 @@ export function load(): void {
         document.getElementById("change-theme") as HTMLElement,
         localStorage.getItem(storageKeys.theme ?? "light")
     );
+
+    const tab = localStorage.getItem(storageKeys.tab) ?? "";
+    const tabs = document.getElementById("main-tabs");
+
+    if (tabs && tab) {
+        tabs.dataset.mdTab = tab;
+    }
 }
 
 export function save(): void {

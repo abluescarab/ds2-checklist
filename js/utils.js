@@ -15,6 +15,11 @@ export function changeTheme(themeButton, theme = null) {
 }
 export function load() {
     changeTheme(document.getElementById("change-theme"), localStorage.getItem(storageKeys.theme ?? "light"));
+    const tab = localStorage.getItem(storageKeys.tab) ?? "";
+    const tabs = document.getElementById("main-tabs");
+    if (tabs && tab) {
+        tabs.dataset.mdTab = tab;
+    }
 }
 export function save() {
     // TODO: save selected tab

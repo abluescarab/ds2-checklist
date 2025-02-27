@@ -2,23 +2,25 @@
 import { initialize, getChildByClassName } from "../lib/material/dist/material.js";
 import { populate, toggleAll } from "../lib/material/dist/modules/components/tree.js";
 // local imports
-import { bonfires, bosses, npcs, dynaAndTillo } from "./constants.js";
+import { bonfires, bosses, npcs, dynaAndTillo, storageKeys } from "./constants.js";
 import { load, changeTheme } from "./utils.js";
-const cookieBanner = document.getElementById("cookie-banner");
 document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("bonfires"), bonfires);
     populate(document.getElementById("npcs"), npcs);
     populate(document.getElementById("bosses"), bosses);
     populate(document.getElementById("dyna-and-tillo"), dynaAndTillo);
-    initialize();
-    initializeDialog();
     load();
+    initialize();
 });
 document.getElementById("change-theme")?.addEventListener("click", (e) => {
     changeTheme(e.currentTarget);
 });
+document
+    .getElementById("main-tabs")
+    ?.addEventListener("material:change", (e) => {
+    localStorage.setItem(storageKeys.tab, e.newValue ?? "");
+});
 document.getElementById("settings")?.addEventListener("click", (e) => {
-    console.log("Click");
     document
         .getElementById("settings-dialog")
         ?.classList.add("md-dialog--visible");

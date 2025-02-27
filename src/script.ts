@@ -1,12 +1,14 @@
 // material imports
-import { initialize, getChildByClassName } from "@material/material";
+import {
+    initialize,
+    getChildByClassName,
+    MaterialChangeEvent,
+} from "@material/material";
 import { populate, toggleAll } from "@material/modules/components/tree";
 
 // local imports
-import { bonfires, bosses, npcs, dynaAndTillo } from "./constants";
-import { save, load, changeTheme } from "./utils";
-
-const cookieBanner = document.getElementById("cookie-banner");
+import { bonfires, bosses, npcs, dynaAndTillo, storageKeys } from "./constants";
+import { load, changeTheme } from "./utils";
 
 document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("bonfires"), bonfires);
@@ -14,15 +16,22 @@ document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("bosses"), bosses);
     populate(document.getElementById("dyna-and-tillo"), dynaAndTillo);
 
-    initialize();
-
     load();
+    initialize();
 });
 
 document.getElementById("change-theme")?.addEventListener("click", (e) => {
     changeTheme(e.currentTarget as HTMLElement);
 });
 
+document
+    .getElementById("main-tabs")
+    ?.addEventListener("material:change", (e) => {
+        localStorage.setItem(
+            storageKeys.tab,
+            (e as MaterialChangeEvent<string>).newValue ?? ""
+        );
+    });
 
 document.getElementById("fab-expand")?.addEventListener("click", (e) => {
     const fab = getChildByClassName(e.currentTarget, "md-fab__icon");
