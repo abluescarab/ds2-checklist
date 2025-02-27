@@ -152,50 +152,37 @@
             </button>
         </div>
 
-        <div id="settings-dialog" class="md-dialog md-dialog--visible">
+        <div id="settings-dialog" class="md-dialog">
             <div class="md-dialog__wrapper">
                 <div class="md-dialog__header">
                     <div class="md-dialog__headline">Settings</div>
                 </div>
                 <div class="md-dialog__content">
                     <section class="settings-section">
-                        <h2 data-md-typescale="title-large">
-                            Checkbox behavior
-                        </h2>
+                        <h2 data-md-typescale="title-large">Tree behavior</h2>
                         <div class="md-checkbox">
                             <input
-                                id="cascade-checks"
+                                id="cascade-checked"
                                 type="checkbox"
                                 checked />
-                            <label for="cascade-checks"
+                            <label for="cascade-checked"
                                 >Check tree items when their parent is
                                 checked</label
                             >
                         </div>
                         <div class="md-checkbox">
-                            <input id="cascade-unchecks" type="checkbox" />
-                            <label for="cascade-unchecks"
+                            <input id="cascade-unchecked" type="checkbox" />
+                            <label for="cascade-unchecked"
                                 >Uncheck tree items when their parent is
                                 unchecked</label
                             >
                         </div>
-                    </section>
-
-                    <section class="settings-section">
-                        <h2 data-md-typescale="title-large">Tree behavior</h2>
-                        <div class="md-checkbox">
-                            <input id="cascade-checks" type="checkbox" />
-                            <label for="cascade-checks"
-                                >Expand tree items when their parent is
-                                expanded</label
-                            >
-                        </div>
                         <div class="md-checkbox">
                             <input
-                                id="cascade-unchecks"
+                                id="cascade-collapse"
                                 type="checkbox"
                                 checked />
-                            <label for="cascade-unchecks"
+                            <label for="cascade-collapse"
                                 >Collapse tree items when their parent is
                                 collapsed</label
                             >
