@@ -2,8 +2,8 @@
 import { initialize, getChildByClassName } from "../lib/material/dist/material.js";
 import { populate, toggleAll } from "../lib/material/dist/modules/components/tree.js";
 // local imports
-import { save, load, changeTheme } from "./utils.js";
-import { cookieNames, cookies, bonfires, bosses, npcs, dynaAndTillo, } from "./constants.js";
+import { bonfires, bosses, npcs, dynaAndTillo } from "./constants.js";
+import { load, changeTheme } from "./utils.js";
 const cookieBanner = document.getElementById("cookie-banner");
 document.addEventListener("DOMContentLoaded", function () {
     populate(document.getElementById("bonfires"), bonfires);
@@ -22,19 +22,6 @@ document.getElementById("settings")?.addEventListener("click", (e) => {
     document
         .getElementById("settings-dialog")
         ?.classList.add("md-dialog--visible");
-});
-document
-    .getElementById("accept-cookies")
-    ?.addEventListener("click", function (e) {
-    cookies.set(cookieNames.allowed, "true");
-    cookieBanner?.classList.remove("md-banner--visible");
-    save();
-});
-document
-    .getElementById("decline-cookies")
-    ?.addEventListener("click", function (e) {
-    cookies.set(cookieNames.allowed, "false");
-    cookieBanner?.classList.remove("md-banner--visible");
 });
 document.getElementById("fab-expand")?.addEventListener("click", (e) => {
     const fab = getChildByClassName(e.currentTarget, "md-fab__icon");

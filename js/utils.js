@@ -1,5 +1,5 @@
 import { cycleThemes, setTheme } from "../lib/material/dist/material.js";
-import { cookieNames, cookies } from "./constants.js";
+import { storageKeys } from "./constants.js";
 export function changeTheme(themeButton, theme = null) {
     if (theme) {
         setTheme(document.body, theme);
@@ -9,27 +9,15 @@ export function changeTheme(themeButton, theme = null) {
     }
     const buttonText = theme == "light" ? "dark" : "light";
     themeButton.innerText = `${buttonText}_mode`;
-    if (cookies.get(cookieNames.allowed) == "true") {
-        cookies.set(cookieNames.theme, theme);
+    if (theme) {
+        localStorage.setItem(storageKeys.theme, theme);
     }
 }
 export function load() {
-    const banner = document.getElementById("cookie-banner");
-    const cookiesAllowed = cookies.get(cookieNames.allowed);
-    if (cookiesAllowed == null) {
-        banner?.classList.add("md-banner--visible");
-    }
-    if (cookiesAllowed != "true") {
-        return;
-    }
-    changeTheme(document.getElementById("change-theme"), cookies.get(cookieNames.theme, "light"));
+    changeTheme(document.getElementById("change-theme"), localStorage.getItem(storageKeys.theme ?? "light"));
 }
 export function save() {
-    if (cookies.get(cookieNames.allowed) != "true") {
-        return;
-    }
-    // TODO: save cookies
     // TODO: save selected tab
-    // TODO: save checked boxes (localStorage)
-    // TODO: save expanded sections (localStorage)
+    // TODO: save checked boxes
+    // TODO: save expanded sections
 }

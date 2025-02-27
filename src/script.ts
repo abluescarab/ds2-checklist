@@ -3,15 +3,8 @@ import { initialize, getChildByClassName } from "@material/material";
 import { populate, toggleAll } from "@material/modules/components/tree";
 
 // local imports
+import { bonfires, bosses, npcs, dynaAndTillo } from "./constants";
 import { save, load, changeTheme } from "./utils";
-import {
-    cookieNames,
-    cookies,
-    bonfires,
-    bosses,
-    npcs,
-    dynaAndTillo,
-} from "./constants";
 
 const cookieBanner = document.getElementById("cookie-banner");
 
@@ -30,20 +23,6 @@ document.getElementById("change-theme")?.addEventListener("click", (e) => {
     changeTheme(e.currentTarget as HTMLElement);
 });
 
-document
-    .getElementById("accept-cookies")
-    ?.addEventListener("click", function (e) {
-        cookies.set(cookieNames.allowed, "true");
-        cookieBanner?.classList.remove("md-banner--visible");
-        save();
-    });
-
-document
-    .getElementById("decline-cookies")
-    ?.addEventListener("click", function (e) {
-        cookies.set(cookieNames.allowed, "false");
-        cookieBanner?.classList.remove("md-banner--visible");
-    });
 
 document.getElementById("fab-expand")?.addEventListener("click", (e) => {
     const fab = getChildByClassName(e.currentTarget, "md-fab__icon");

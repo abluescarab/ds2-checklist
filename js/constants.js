@@ -1,14 +1,7 @@
-import Cookies from "./cookies.js";
-export const cookieNames = Object.freeze({
-    allowed: "cookiesAllowed",
+export const storageKeys = Object.freeze({
     theme: "theme",
     tab: "tab",
-    bonfires: "bonfires",
-    npcs: "npcs",
-    bosess: "bosses",
-    dynaAndTillo: "dyna",
 });
-export const cookies = new Cookies("ds2Checklist_");
 export const bonfires = Object.freeze({
     "Base game": {
         "Things Betwixt": {
