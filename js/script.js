@@ -61,6 +61,9 @@ document.getElementById("fab-top")?.addEventListener("click", (e) => {
 });
 document.getElementById("settings")?.addEventListener("click", (e) => {
     document
+        .querySelectorAll(".md-tooltip--visible")
+        .forEach((t) => t.classList.remove("md-tooltip--visible"));
+    document
         .getElementById("settings-dialog")
         ?.classList.add("md-dialog--visible");
 });
