@@ -87,7 +87,7 @@
                                 id="bonfires"
                                 class="md-tree md-pane__content"
                                 data-md-indicator="secondary medium"
-                                data-md-button-style="tonal"
+                                data-md-button-type="tonal"
                                 data-md-checkboxes="subtrees"
                                 data-md-cascade-checked="checked">
                                 <!-- filled with javascript -->
@@ -103,7 +103,7 @@
                                 id="secrets"
                                 class="md-tree md-pane__content"
                                 data-md-indicator="secondary medium"
-                                data-md-button-style="tonal"
+                                data-md-button-type="tonal"
                                 data-md-checkboxes="subtrees">
                                 <!-- filled with javascript -->
                             </div>
@@ -116,7 +116,7 @@
                                 id="npcs"
                                 class="md-tree md-pane__content"
                                 data-md-indicator="secondary medium"
-                                data-md-button-style="tonal"
+                                data-md-button-type="tonal"
                                 data-md-checkboxes="subtrees"
                                 data-md-cascade-checked="checked">
                                 <!-- filled with javascript -->
@@ -129,7 +129,7 @@
                                 id="bosses"
                                 class="md-tree md-pane__content"
                                 data-md-indicator="secondary medium"
-                                data-md-button-style="tonal"
+                                data-md-button-type="tonal"
                                 data-md-checkboxes="subtrees">
                                 <!-- filled with javascript -->
                             </div>
@@ -141,7 +141,7 @@
                                 id="dyna-and-tillo"
                                 class="md-tree md-pane__content"
                                 data-md-indicator="secondary medium"
-                                data-md-button-style="tonal"
+                                data-md-button-type="tonal"
                                 data-md-checkboxes="subtrees">
                                 <!-- filled with javascript -->
                             </div>
@@ -181,53 +181,151 @@
                     <div class="md-dialog__headline">Settings</div>
                 </div>
                 <div class="md-dialog__content">
+                    <h2 data-md-typescale="title-large">Tree behavior</h2>
                     <section class="settings-section">
-                        <h2 data-md-typescale="title-large">Tree behavior</h2>
-                        <div class="md-checkbox">
-                            <input
-                                id="cascade-checked"
-                                type="checkbox"
-                                checked />
-                            <label for="cascade-checked"
-                                >Check tree items when their parent is
-                                checked</label
-                            >
+                        <div class="md-switch">
+                            <label>
+                                <input
+                                    id="cascade-checked"
+                                    type="checkbox"
+                                    checked />
+                                <span class="md-switch__track">
+                                    <span class="md-switch__handle"></span>
+                                </span>
+                                <span class="md-switch__text">
+                                    Check tree items when their parent is
+                                    checked
+                                </span>
+                            </label>
                         </div>
-                        <div class="md-checkbox">
-                            <input id="cascade-unchecked" type="checkbox" />
-                            <label for="cascade-unchecked"
-                                >Uncheck tree items when their parent is
-                                unchecked</label
-                            >
+                        <div class="md-switch">
+                            <label>
+                                <input id="cascade-unchecked" type="checkbox" />
+                                <span class="md-switch__track">
+                                    <span class="md-switch__handle"></span>
+                                </span>
+                                <span class="md-switch__text"
+                                    >Uncheck tree items when their parent is
+                                    unchecked</span
+                                >
+                            </label>
                         </div>
-                        <div class="md-checkbox">
-                            <input
-                                id="cascade-collapsed"
-                                type="checkbox"
-                                checked />
-                            <label for="cascade-collapsed"
-                                >Collapse tree items when their parent is
-                                collapsed</label
-                            >
+                        <div class="md-switch">
+                            <label>
+                                <input
+                                    id="cascade-collapsed"
+                                    type="checkbox"
+                                    checked />
+                                <span class="md-switch__track">
+                                    <span class="md-switch__handle"></span>
+                                </span>
+                                <span class="md-switch__text"
+                                    >Collapse tree items when their parent is
+                                    collapsed</span
+                                >
+                            </label>
                         </div>
                     </section>
+                    <h2 data-md-typescale="title-large">Page settings</h2>
                     <section class="settings-section">
-                        <h2 data-md-typescale="title-large">Page settings</h2>
-                        <div class="md-checkbox">
-                            <input
-                                id="hide-expand-all-button"
-                                type="checkbox" />
-                            <label for="hide-expand-all-button"
-                                >Hide expand/collapse all button</label
-                            >
+                        <div class="md-switch">
+                            <label>
+                                <input
+                                    id="hide-expand-all-button"
+                                    type="checkbox" />
+                                <span class="md-switch__track">
+                                    <span class="md-switch__handle"></span>
+                                </span>
+                                <span class="md-switch__text"
+                                    >Hide expand/collapse all button</span
+                                >
+                            </label>
                         </div>
-                        <div class="md-checkbox">
-                            <input
-                                id="hide-scroll-to-top-button"
-                                type="checkbox" />
-                            <label for="hide-scroll-to-top-button"
-                                >Hide scroll to top button</label
-                            >
+                        <div class="md-switch">
+                            <label>
+                                <input
+                                    id="hide-scroll-to-top-button"
+                                    type="checkbox" />
+                                <span class="md-switch__track">
+                                    <span class="md-switch__handle"></span>
+                                </span>
+                                <span class="md-switch__text"
+                                    >Hide scroll to top button</span
+                                >
+                            </label>
+                        </div>
+                    </section>
+                    <h2 data-md-typescale="title-large">Data settings</h2>
+                    <section class="settings-section">
+                        <div class="settings-row">
+                            <button
+                                id="settings-reset"
+                                class="md-button"
+                                data-md-type="filled">
+                                Reset settings
+                            </button>
+                            <button
+                                id="settings-clear"
+                                class="md-button"
+                                data-md-type="filled">
+                                Clear all data
+                            </button>
+                        </div>
+                        <div id="reset-dialog" class="md-dialog">
+                            <div class="md-dialog__wrapper">
+                                <div class="md-dialog__header">
+                                    <div class="md-dialog__headline">
+                                        Reset settings?
+                                    </div>
+                                </div>
+                                <div class="md-dialog__content">
+                                    This will reset your preferences back to
+                                    their default settings. This action is
+                                    irreversible.
+                                </div>
+                                <div class="md-dialog__actions">
+                                    <button
+                                        id="reset-no"
+                                        class="md-button"
+                                        data-md-type="text">
+                                        No
+                                    </button>
+                                    <button
+                                        id="reset-yes"
+                                        class="md-button"
+                                        data-md-type="text">
+                                        Yes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="clear-dialog" class="md-dialog">
+                            <div class="md-dialog__wrapper">
+                                <div class="md-dialog__header">
+                                    <div class="md-dialog__headline">
+                                        Clear all data?
+                                    </div>
+                                </div>
+                                <div class="md-dialog__content">
+                                    This will clear all data from this page,
+                                    including your theme, preferences, and
+                                    checked items. This action is irreversible.
+                                </div>
+                                <div class="md-dialog__actions">
+                                    <button
+                                        id="clear-no"
+                                        class="md-button"
+                                        data-md-type="text">
+                                        No
+                                    </button>
+                                    <button
+                                        id="clear-yes"
+                                        class="md-button"
+                                        data-md-type="text">
+                                        Yes
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>

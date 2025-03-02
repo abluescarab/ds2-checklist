@@ -1,4 +1,5 @@
-import { storageKeys } from "./constants";
+import { storageKeys } from "../constants";
+import { closeDialog, showDialog } from "./dialogs";
 
 // tree behavior
 const cascadeCheckedControl = document.getElementById(
@@ -47,6 +48,32 @@ function changeTreeSettings(cascadeChecked: string, cascadeToggled: string) {
         tree.dataset.mdCascadeChecked = cascadeChecked;
         tree.dataset.mdCascadeToggled = cascadeToggled;
     }
+}
+
+export function initialize() {
+    document.getElementById("settings")?.addEventListener("click", (e) => {
+        document
+            .querySelectorAll(".md-tooltip--visible")
+            .forEach((t) => t.classList.remove("md-tooltip--visible"));
+        showDialog("settings-dialog");
+    });
+
+    document
+        .getElementById("settings-reset")
+        ?.addEventListener("click", () => showDialog("reset-dialog"));
+
+    document
+        .getElementById("settings-clear")
+        ?.addEventListener("click", () => showDialog("clear-dialog"));
+
+    document
+        .getElementById("settings-cancel")
+        ?.addEventListener("click", (e) => closeDialog(e.currentTarget));
+
+    document.getElementById("settings-save")?.addEventListener("click", (e) => {
+        saveSettings();
+        closeDialog(e.currentTarget);
+    });
 }
 
 export function loadSettings() {

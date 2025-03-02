@@ -1,6 +1,6 @@
 // material imports
 import {
-    initialize,
+    initialize as initializeMaterial,
     getChildByClassName,
     getParentWithClass,
     MaterialChangeEvent,
@@ -15,21 +15,40 @@ import {
 
 // local imports
 import { storageKeys, trees } from "./constants";
+import { initialize as initializeDialogs } from "./dialogs/dialogs";
 import { load, changeTheme } from "./utils";
-import { saveSettings } from "./settings";
 
 const fabExpand = document.getElementById("fab-expand");
 const fabExpandIcon = getChildByClassName(
     fabExpand,
     "md-fab__icon"
 ) as HTMLElement;
-const fabExpandTooltip = document.getElementById(
-    "fab-expand-tooltip"
-) as HTMLElement;
 
 function changeFabExpand(expanded: boolean) {
+    const tooltip = document.getElementById(
+        "fab-expand-tooltip"
+    ) as HTMLElement;
+
     fabExpandIcon.innerText = expanded ? "remove" : "add";
-    fabExpandTooltip.innerText = expanded ? "Collapse all" : "Expand all";
+    tooltip.innerText = expanded ? "Collapse all" : "Expand all";
+}
+
+function confirm(headline: string, content: string, onYes: () => void) {
+    const dialog = document.getElementById("confirmation-dialog");
+    const headlineElement = getChildByClassName(dialog, "md-dialog__headline");
+    const contentElement = getChildByClassName(dialog, "md-dialog__content");
+    const yesButton = document.getElementById(
+        "confirmation-yes"
+    ) as HTMLElement;
+
+    if (!headlineElement || !contentElement) {
+        return;
+    }
+
+    headlineElement.innerText = headline;
+    contentElement.innerText = content;
+
+    dialog?.classList.add("md-dialog--visible");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -52,12 +71,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     load();
-    initialize();
+    initializeMaterial();
+    initializeDialogs();
 });
 
-document.getElementById("change-theme")?.addEventListener("click", (e) => {
-    changeTheme(e.currentTarget as HTMLElement);
-});
+document
+    .getElementById("change-theme")
+    ?.addEventListener("click", (e) =>
+        changeTheme(e.currentTarget as HTMLElement)
+    );
 
 document
     .getElementById("main-tabs")
@@ -79,40 +101,17 @@ fabExpand?.addEventListener("click", (e) => {
     const expand = fabExpandIcon?.innerText == "add";
     const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
 
-    if (tabName && fabExpandIcon) {
+    if (tabName) {
         const tree = document.getElementById(tabName);
         toggleAll(tree, expand, expand ? "expanded" : "collapsed");
         changeFabExpand(expand);
     }
 });
 
-document.getElementById("fab-top")?.addEventListener("click", (e) => {
+document.getElementById("fab-top")?.addEventListener("click", (e) =>
     window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth",
-    });
-});
-
-document.getElementById("settings")?.addEventListener("click", (e) => {
-    document
-        .querySelectorAll(".md-tooltip--visible")
-        .forEach((t) => t.classList.remove("md-tooltip--visible"));
-    document
-        .getElementById("settings-dialog")
-        ?.classList.add("md-dialog--visible");
-});
-
-document.getElementById("settings-cancel")?.addEventListener("click", (e) => {
-    getParentWithClass(e.currentTarget, "md-dialog")?.classList.remove(
-        "md-dialog--visible"
-    );
-});
-
-document.getElementById("settings-save")?.addEventListener("click", () => {
-    saveSettings();
-
-    document
-        .getElementById("settings-dialog")
-        ?.classList.remove("md-dialog--visible");
-});
+    })
+);

@@ -1,6 +1,6 @@
 import { cycleThemes, setTheme } from "@material/material.js";
 import { storageKeys } from "./constants";
-import { loadSettings } from "./settings";
+import { loadSettings } from "./dialogs/settings";
 
 export function changeTheme(
     themeButton: HTMLElement,
@@ -23,7 +23,7 @@ export function changeTheme(
 export function load(): void {
     changeTheme(
         document.getElementById("change-theme") as HTMLElement,
-        localStorage.getItem(storageKeys.theme ?? "light")
+        localStorage.getItem(storageKeys.theme) ?? document.body.dataset.mdTheme
     );
 
     const tab = localStorage.getItem(storageKeys.tab) ?? "";

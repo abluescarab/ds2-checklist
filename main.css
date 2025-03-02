@@ -3,12 +3,18 @@
 /* layout */
 /* components */
 #settings-dialog .settings-section {
+  margin: 0 16px;
   display: flex;
   flex-flow: column wrap;
   gap: 16px;
 }
-#settings-dialog .settings-section > *:not(h2) {
-  margin-left: 16px;
+#settings-dialog .settings-section .settings-row {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+#settings-dialog .settings-section .md-switch {
+  width: 100%;
 }
 
 /* pages */
@@ -222,9 +228,9 @@ code * {
   font-family: "Material Symbols Outlined", sans-serif;
   font-weight: normal;
   font-style: normal;
-  font-size: 24px; /* Preferred icon size */
+  font-size: 28px; /* Preferred icon size + padding */
   display: inline-block;
-  line-height: 1;
+  line-height: 28px;
   text-transform: none;
   letter-spacing: normal;
   word-wrap: normal;
@@ -1993,6 +1999,214 @@ code * {
   height: 18px;
   line-height: 18px;
   font-size: 18px;
+}
+
+[data-md-theme=dark] .md-switch {
+  color: rgb(241, 222, 220);
+}
+[data-md-theme=light] .md-switch {
+  color: rgb(35, 25, 24);
+}
+.md-switch label {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.md-switch input[type=checkbox] {
+  opacity: 0 !important;
+  width: 0;
+  height: 0;
+}
+.md-switch__text {
+  flex: 1;
+  order: 1;
+  margin-right: 16px;
+}
+.md-switch__track {
+  display: flex;
+  align-items: center;
+  width: 48px;
+  height: 28px;
+  order: 2;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+}
+.md-switch__handle {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  margin: 6px;
+  border-radius: 9999px;
+}
+.md-switch__handle::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Material Symbols Outlined", sans-serif;
+  font-size: 20px;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:hover .md-switch__track {
+  border-color: #dac4c1;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:hover .md-switch__handle {
+  background-color: #dac4c1;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:hover:has(input:checked) .md-switch__handle {
+  background-color: #7d413d;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:hover .md-switch__track {
+  border-color: #4f403f;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:hover .md-switch__handle {
+  background-color: #4f403f;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:hover:has(input:checked) .md-switch__handle {
+  background-color: #edcbc7;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:focus .md-switch__track {
+  border-color: #dbc5c2;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:focus .md-switch__handle {
+  background-color: #dbc5c2;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:focus:has(input:checked) .md-switch__handle {
+  background-color: #804440;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:focus .md-switch__track {
+  border-color: #4e3f3e;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:focus .md-switch__handle {
+  background-color: #4e3f3e;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:focus:has(input:checked) .md-switch__handle {
+  background-color: #e9c7c3;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:active .md-switch__track {
+  border-color: #dbc5c2;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:active .md-switch__handle {
+  background-color: #dbc5c2;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:active:has(input:checked) .md-switch__handle {
+  background-color: #804440;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:active .md-switch__track {
+  border-color: #4e3f3e;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:active .md-switch__handle {
+  background-color: #4e3f3e;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)) label:active:has(input:checked) .md-switch__handle {
+  background-color: #e9c7c3;
+}
+.md-switch:not(:has(input:disabled)):active .md-switch__handle {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  margin: 0;
+}
+.md-switch:has(input:checked) .md-switch__track {
+  justify-content: flex-end;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled, input:checked)) .md-switch__track {
+  background-color: #3d3231;
+  border-color: #a08c8a;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled, input:checked)) .md-switch__track {
+  background-color: #f1dedc;
+  border-color: #857371;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled, input:checked)) .md-switch__handle {
+  background-color: #a08c8a;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled, input:checked)) .md-switch__handle::after {
+  color: #3d3231;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled, input:checked)) .md-switch__handle {
+  background-color: #857371;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled, input:checked)) .md-switch__handle::after {
+  color: #f1dedc;
+}
+[data-md-theme=dark] .md-switch:has(input:disabled):not(:has(input:checked)) .md-switch__track {
+  background-color: rgba(241, 222, 220, 0.12);
+  border-color: rgba(241, 222, 220, 0.12);
+}
+[data-md-theme=light] .md-switch:has(input:disabled):not(:has(input:checked)) .md-switch__track {
+  background-color: rgba(35, 25, 24, 0.12);
+  border-color: rgba(35, 25, 24, 0.12);
+}
+[data-md-theme=dark] .md-switch:has(input:disabled):not(:has(input:checked)) .md-switch__handle {
+  background-color: rgba(241, 222, 220, 0.38);
+}
+[data-md-theme=dark] .md-switch:has(input:disabled):not(:has(input:checked)) .md-switch__handle::after {
+  color: rgba(61, 50, 49, 0.38);
+}
+[data-md-theme=light] .md-switch:has(input:disabled):not(:has(input:checked)) .md-switch__handle {
+  background-color: rgba(35, 25, 24, 0.38);
+}
+[data-md-theme=light] .md-switch:has(input:disabled):not(:has(input:checked)) .md-switch__handle::after {
+  color: rgba(241, 222, 220, 0.38);
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)):has(input:checked) .md-switch__track {
+  background-color: #ffb3ac;
+  border-color: rgba(160, 140, 138, 0);
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)):has(input:checked) .md-switch__track {
+  background-color: #904a45;
+  border-color: rgba(133, 115, 113, 0);
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)):has(input:checked) .md-switch__handle {
+  background-color: #571e1b;
+}
+[data-md-theme=dark] .md-switch:not(:has(input:disabled)):has(input:checked) .md-switch__handle::after {
+  color: #ffdad6;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)):has(input:checked) .md-switch__handle {
+  background-color: white;
+}
+[data-md-theme=light] .md-switch:not(:has(input:disabled)):has(input:checked) .md-switch__handle::after {
+  color: #3b0908;
+}
+[data-md-theme=dark] .md-switch:has(input:disabled:checked) .md-switch__track {
+  background-color: rgba(255, 179, 172, 0.12);
+  border-color: rgba(160, 140, 138, 0);
+}
+[data-md-theme=light] .md-switch:has(input:disabled:checked) .md-switch__track {
+  background-color: rgba(144, 74, 69, 0.12);
+  border-color: rgba(133, 115, 113, 0);
+}
+[data-md-theme=dark] .md-switch:has(input:disabled:checked) .md-switch__handle {
+  background-color: #1a1110;
+}
+[data-md-theme=dark] .md-switch:has(input:disabled:checked) .md-switch__handle::after {
+  color: rgba(241, 222, 220, 0.38);
+}
+[data-md-theme=light] .md-switch:has(input:disabled:checked) .md-switch__handle {
+  background-color: #fff8f7;
+}
+[data-md-theme=light] .md-switch:has(input:disabled:checked) .md-switch__handle::after {
+  color: rgba(35, 25, 24, 0.38);
+}
+.md-switch[data-md-icons=both] .md-switch__handle, .md-switch:has(input:checked) .md-switch__handle {
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  margin: 2px;
+}
+.md-switch[data-md-icons=selected] :has(input:checked) .md-switch__handle::after, .md-switch[data-md-icons=both] :has(input:checked) .md-switch__handle::after {
+  content: "check";
+}
+.md-switch[data-md-icons=both]:not(:has(input:checked)) .md-switch__handle::after {
+  content: "close";
+}
+.md-switch--left .md-switch__text {
+  order: 2;
+  margin-right: 0;
+  margin-left: 16px;
+}
+.md-switch--left .md-switch__track {
+  order: 1;
 }
 
 .md-tabs {
