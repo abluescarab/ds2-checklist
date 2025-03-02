@@ -7,6 +7,11 @@ import { load, changeTheme } from "./utils.js";
 import { saveSettings } from "./settings.js";
 const fabExpand = document.getElementById("fab-expand");
 const fabExpandIcon = getChildByClassName(fabExpand, "md-fab__icon");
+const fabExpandTooltip = document.getElementById("fab-expand-tooltip");
+function changeFabExpand(expanded) {
+    fabExpandIcon.innerText = expanded ? "remove" : "add";
+    fabExpandTooltip.innerText = expanded ? "Collapse all" : "Expand all";
+}
 document.addEventListener("DOMContentLoaded", function () {
     for (const [tree, items] of Object.entries(trees)) {
         const element = document.getElementById(tree);
@@ -14,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
         element?.addEventListener("material:toggle", (e) => {
             const ev = e;
             if (ev.state == MaterialState.Expanded) {
-                fabExpandIcon.innerText = "remove";
+                changeFabExpand(true);
             }
             else if (ev.state == MaterialState.Collapsed &&
                 !hasExpanded(element, false)) {
-                fabExpandIcon.innerText = "add";
+                changeFabExpand(false);
             }
         });
     }
@@ -34,12 +39,7 @@ document
     const ev = e;
     if (ev && ev.newValue) {
         const tree = document.getElementById(ev.newValue);
-        if (hasExpanded(tree)) {
-            fabExpandIcon.innerText = "remove";
-        }
-        else {
-            fabExpandIcon.innerText = "add";
-        }
+        changeFabExpand(hasExpanded(tree) ?? false);
     }
     localStorage.setItem(storageKeys.tab, e.newValue ?? "");
 });
@@ -49,7 +49,7 @@ fabExpand?.addEventListener("click", (e) => {
     if (tabName && fabExpandIcon) {
         const tree = document.getElementById(tabName);
         toggleAll(tree, expand, expand ? "expanded" : "collapsed");
-        fabExpandIcon.innerText = expand ? "remove" : "add";
+        changeFabExpand(expand);
     }
 });
 document.getElementById("fab-top")?.addEventListener("click", (e) => {

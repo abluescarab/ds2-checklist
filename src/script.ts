@@ -23,6 +23,14 @@ const fabExpandIcon = getChildByClassName(
     fabExpand,
     "md-fab__icon"
 ) as HTMLElement;
+const fabExpandTooltip = document.getElementById(
+    "fab-expand-tooltip"
+) as HTMLElement;
+
+function changeFabExpand(expanded: boolean) {
+    fabExpandIcon.innerText = expanded ? "remove" : "add";
+    fabExpandTooltip.innerText = expanded ? "Collapse all" : "Expand all";
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     for (const [tree, items] of Object.entries(trees)) {
@@ -33,12 +41,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const ev = e as MaterialToggleEvent;
 
             if (ev.state == MaterialState.Expanded) {
-                fabExpandIcon.innerText = "remove";
+                changeFabExpand(true);
             } else if (
                 ev.state == MaterialState.Collapsed &&
                 !hasExpanded(element, false)
             ) {
-                fabExpandIcon.innerText = "add";
+                changeFabExpand(false);
             }
         });
     }
@@ -58,12 +66,7 @@ document
 
         if (ev && ev.newValue) {
             const tree = document.getElementById(ev.newValue);
-
-            if (hasExpanded(tree)) {
-                fabExpandIcon.innerText = "remove";
-            } else {
-                fabExpandIcon.innerText = "add";
-            }
+            changeFabExpand(hasExpanded(tree) ?? false);
         }
 
         localStorage.setItem(
@@ -79,7 +82,7 @@ fabExpand?.addEventListener("click", (e) => {
     if (tabName && fabExpandIcon) {
         const tree = document.getElementById(tabName);
         toggleAll(tree, expand, expand ? "expanded" : "collapsed");
-        fabExpandIcon.innerText = expand ? "remove" : "add";
+        changeFabExpand(expand);
     }
 });
 

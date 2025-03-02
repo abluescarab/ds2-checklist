@@ -10,9 +10,15 @@
     <body class="md-body" data-md-theme="light">
         <header>
             <div class="md-app-bar" data-md-type="center">
-                <button id="change-theme" class="md-app-bar__icon md-symbol">
+                <button
+                    id="change-theme"
+                    class="md-app-bar__icon md-symbol"
+                    data-md-tooltip="change-theme-tooltip">
                     dark_mode
                 </button>
+                <div class="md-tooltip" id="change-theme-tooltip">
+                    Change theme
+                </div>
                 <h1 class="md-app-bar__headline">
                     Dark Souls 2 SotFS Checklist
                 </h1>
@@ -21,19 +27,29 @@
                         id="source-link"
                         class="md-app-bar__icon md-symbol"
                         href="https://github.com/abluescarab/ds2-checklist"
-                        target="_blank">
+                        target="_blank"
+                        data-md-tooltip="source-tooltip">
                         code_blocks
                     </a>
+                    <div class="md-tooltip" id="source-tooltip">Source</div>
                     <a
                         id="calculator-link"
                         class="md-app-bar__icon md-symbol"
                         href="https://github.com/abluescarab/ds2-soul-calculator"
-                        target="_blank">
+                        target="_blank"
+                        data-md-tooltip="calculator-tooltip">
                         calculate
                     </a>
-                    <button id="settings" class="md-app-bar__icon md-symbol">
+                    <div class="md-tooltip" id="calculator-tooltip">
+                        Soul Calculator
+                    </div>
+                    <button
+                        id="settings"
+                        class="md-app-bar__icon md-symbol"
+                        data-md-tooltip="settings-tooltip">
                         settings
                     </button>
+                    <div class="md-tooltip" id="settings-tooltip">Settings</div>
                 </div>
             </div>
         </header>
@@ -140,16 +156,23 @@
             data-md-lr="right"
             data-md-tb="bottom"
             data-md-direction="vertical">
-            <button id="fab-expand" class="md-fab" data-md-size="small">
-                <span class="md-fab__icon md-symbol"> add </span>
+            <button
+                id="fab-expand"
+                class="md-fab"
+                data-md-size="small"
+                data-md-tooltip="fab-expand-tooltip">
+                <span class="md-fab__icon md-symbol">add</span>
             </button>
+            <div class="md-tooltip" id="fab-expand-tooltip">Expand all</div>
             <button
                 id="fab-top"
                 class="md-fab"
                 data-md-size="small"
-                data-md-color="secondary">
-                <span class="md-fab__icon md-symbol"> arrow_upward </span>
+                data-md-color="secondary"
+                data-md-tooltip="fab-top-tooltip">
+                <span class="md-fab__icon md-symbol">arrow_upward</span>
             </button>
+            <div class="md-tooltip" id="fab-top-tooltip">Scroll to top</div>
         </div>
 
         <div id="settings-dialog" class="md-dialog">
