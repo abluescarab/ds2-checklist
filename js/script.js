@@ -7,6 +7,7 @@ import { initialize as initializeDialogs } from "./dialogs/dialogs.js";
 import { load, changeTheme } from "./utils.js";
 const fabExpand = document.getElementById("fab-expand");
 const fabExpandIcon = getChildByClassName(fabExpand, "md-fab__icon");
+let initialized = false;
 function changeFabExpand(expanded) {
     const tooltip = document.getElementById("fab-expand-tooltip");
     fabExpandIcon.innerText = expanded ? "remove" : "add";
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     initializeMaterial();
     initializeDialogs();
+    initialized = true;
     load();
 });
 document
@@ -37,6 +39,9 @@ document
 document
     .getElementById("main-tabs")
     ?.addEventListener("material:change", (e) => {
+    if (!initialized) {
+        return;
+    }
     const ev = e;
     if (ev && ev.newValue) {
         const tree = document.getElementById(ev.newValue);

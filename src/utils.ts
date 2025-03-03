@@ -1,6 +1,7 @@
 import { cycleThemes, setTheme } from "@material/material.js";
 import { storageKeys } from "./constants";
 import { loadSettings } from "./dialogs/settings";
+import { changeTab } from "@material/modules/components/tabs";
 
 export function changeTheme(
     themeButton: HTMLElement,
@@ -30,7 +31,7 @@ export function load(): void {
     const tabs = document.getElementById("main-tabs");
 
     if (tabs && tab) {
-        tabs.dataset.mdTab = tab;
+        changeTab(tabs, tab);
     }
 
     loadSettings();

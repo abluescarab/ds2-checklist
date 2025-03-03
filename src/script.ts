@@ -24,6 +24,8 @@ const fabExpandIcon = getChildByClassName(
     "md-fab__icon"
 ) as HTMLElement;
 
+let initialized = false;
+
 function changeFabExpand(expanded: boolean) {
     const tooltip = document.getElementById(
         "fab-expand-tooltip"
@@ -54,6 +56,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initializeMaterial();
     initializeDialogs();
+
+    initialized = true;
+
     load();
 });
 
@@ -66,6 +71,10 @@ document
 document
     .getElementById("main-tabs")
     ?.addEventListener("material:change", (e) => {
+        if (!initialized) {
+            return;
+        }
+
         const ev = e as MaterialChangeEvent<string>;
 
         if (ev && ev.newValue) {
