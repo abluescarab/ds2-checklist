@@ -33,24 +33,6 @@ function changeFabExpand(expanded: boolean) {
     tooltip.innerText = expanded ? "Collapse all" : "Expand all";
 }
 
-function confirm(headline: string, content: string, onYes: () => void) {
-    const dialog = document.getElementById("confirmation-dialog");
-    const headlineElement = getChildByClassName(dialog, "md-dialog__headline");
-    const contentElement = getChildByClassName(dialog, "md-dialog__content");
-    const yesButton = document.getElementById(
-        "confirmation-yes"
-    ) as HTMLElement;
-
-    if (!headlineElement || !contentElement) {
-        return;
-    }
-
-    headlineElement.innerText = headline;
-    contentElement.innerText = content;
-
-    dialog?.classList.add("md-dialog--visible");
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     for (const [tree, items] of Object.entries(trees)) {
         const element = document.getElementById(tree);
@@ -70,9 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    load();
     initializeMaterial();
     initializeDialogs();
+    load();
 });
 
 document

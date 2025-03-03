@@ -1,12 +1,12 @@
 import { storageKeys } from "../constants.js";
-import { closeDialog, showDialog } from "./dialogs.js";
+import { hideDialog, showDialog } from "./dialogs.js";
 // tree behavior
-const cascadeCheckedControl = document.getElementById("cascade-checked");
-const cascadeUncheckedControl = document.getElementById("cascade-unchecked");
-const cascadeCollapsedControl = document.getElementById("cascade-collapsed");
+let cascadeCheckedControl = null;
+let cascadeUncheckedControl = null;
+let cascadeCollapsedControl = null;
 // page settings
-const hideExpandAllControl = document.getElementById("hide-expand-all-button");
-const hideScrollToTopControl = document.getElementById("hide-scroll-to-top-button");
+let hideExpandAllControl = null;
+let hideScrollToTopControl = null;
 function toggleStorage(key, add, value = "") {
     if (add) {
         localStorage.setItem(key, value ?? "");
@@ -47,13 +47,35 @@ export function initialize() {
         ?.addEventListener("click", () => showDialog("clear-dialog"));
     document
         .getElementById("settings-cancel")
-        ?.addEventListener("click", (e) => closeDialog(e.currentTarget));
+        ?.addEventListener("click", (e) => hideDialog(e.currentTarget));
     document.getElementById("settings-save")?.addEventListener("click", (e) => {
         saveSettings();
-        closeDialog(e.currentTarget);
+        hideDialog(e.currentTarget);
     });
+    cascadeCheckedControl = document
+        .getElementById("cascade-checked")
+        ?.querySelector("input");
+    cascadeUncheckedControl = document
+        .getElementById("cascade-unchecked")
+        ?.querySelector("input");
+    cascadeCollapsedControl = document
+        .getElementById("cascade-collapsed")
+        ?.querySelector("input");
+    hideExpandAllControl = document
+        .getElementById("hide-expand-all-button")
+        ?.querySelector("input");
+    hideScrollToTopControl = document
+        .getElementById("hide-scroll-to-top-button")
+        ?.querySelector("input");
 }
 export function loadSettings() {
+    if (!hideExpandAllControl ||
+        !hideScrollToTopControl ||
+        !cascadeCheckedControl ||
+        !cascadeUncheckedControl ||
+        !cascadeCollapsedControl) {
+        return;
+    }
     // page settings
     const hideExpandAll = localStorage.getItem(storageKeys.hideExpandAll) != null;
     const hideScrollToTop = localStorage.getItem(storageKeys.hideScrollToTop) != null;
@@ -71,6 +93,13 @@ export function loadSettings() {
     changeTreeSettings(cascadeChecked, cascadeToggled);
 }
 export function saveSettings() {
+    if (!cascadeCheckedControl ||
+        !cascadeUncheckedControl ||
+        !cascadeCollapsedControl ||
+        !hideExpandAllControl ||
+        !hideScrollToTopControl) {
+        return;
+    }
     // page settings
     toggleStorage(storageKeys.hideExpandAll, hideExpandAllControl.checked);
     toggleStorage(storageKeys.hideScrollToTop, hideScrollToTopControl.checked);

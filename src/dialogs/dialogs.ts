@@ -3,7 +3,7 @@ import { initialize as initializeClear } from "./clear";
 import { initialize as initializeReset } from "./reset";
 import { initialize as initializeSettings } from "./settings";
 
-export function closeDialog(target: Element | EventTarget | null) {
+export function hideDialog(target: Element | EventTarget | null) {
     getParentWithClass(target, "md-dialog")?.classList.remove(
         "md-dialog--visible"
     );

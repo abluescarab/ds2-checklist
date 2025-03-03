@@ -1,24 +1,16 @@
 import { storageKeys } from "../constants";
-import { closeDialog, showDialog } from "./dialogs";
+import { hideDialog, showDialog } from "./dialogs";
+
+type Nullable<T> = T | null | undefined;
 
 // tree behavior
-const cascadeCheckedControl = document.getElementById(
-    "cascade-checked"
-) as HTMLInputElement;
-const cascadeUncheckedControl = document.getElementById(
-    "cascade-unchecked"
-) as HTMLInputElement;
-const cascadeCollapsedControl = document.getElementById(
-    "cascade-collapsed"
-) as HTMLInputElement;
+let cascadeCheckedControl: Nullable<HTMLInputElement> = null;
+let cascadeUncheckedControl: Nullable<HTMLInputElement> = null;
+let cascadeCollapsedControl: Nullable<HTMLInputElement> = null;
 
 // page settings
-const hideExpandAllControl = document.getElementById(
-    "hide-expand-all-button"
-) as HTMLInputElement;
-const hideScrollToTopControl = document.getElementById(
-    "hide-scroll-to-top-button"
-) as HTMLInputElement;
+let hideExpandAllControl: Nullable<HTMLInputElement> = null;
+let hideScrollToTopControl: Nullable<HTMLInputElement> = null;
 
 function toggleStorage(key: string, add: boolean, value: string | null = "") {
     if (add) {
@@ -68,15 +60,42 @@ export function initialize() {
 
     document
         .getElementById("settings-cancel")
-        ?.addEventListener("click", (e) => closeDialog(e.currentTarget));
+        ?.addEventListener("click", (e) => hideDialog(e.currentTarget));
 
     document.getElementById("settings-save")?.addEventListener("click", (e) => {
         saveSettings();
-        closeDialog(e.currentTarget);
+        hideDialog(e.currentTarget);
     });
+
+    cascadeCheckedControl = document
+        .getElementById("cascade-checked")
+        ?.querySelector("input");
+    cascadeUncheckedControl = document
+        .getElementById("cascade-unchecked")
+        ?.querySelector("input");
+    cascadeCollapsedControl = document
+        .getElementById("cascade-collapsed")
+        ?.querySelector("input");
+
+    hideExpandAllControl = document
+        .getElementById("hide-expand-all-button")
+        ?.querySelector("input");
+    hideScrollToTopControl = document
+        .getElementById("hide-scroll-to-top-button")
+        ?.querySelector("input");
 }
 
 export function loadSettings() {
+    if (
+        !hideExpandAllControl ||
+        !hideScrollToTopControl ||
+        !cascadeCheckedControl ||
+        !cascadeUncheckedControl ||
+        !cascadeCollapsedControl
+    ) {
+        return;
+    }
+
     // page settings
     const hideExpandAll =
         localStorage.getItem(storageKeys.hideExpandAll) != null;
@@ -104,6 +123,16 @@ export function loadSettings() {
 }
 
 export function saveSettings() {
+    if (
+        !cascadeCheckedControl ||
+        !cascadeUncheckedControl ||
+        !cascadeCollapsedControl ||
+        !hideExpandAllControl ||
+        !hideScrollToTopControl
+    ) {
+        return;
+    }
+
     // page settings
     toggleStorage(storageKeys.hideExpandAll, hideExpandAllControl.checked);
     toggleStorage(storageKeys.hideScrollToTop, hideScrollToTopControl.checked);

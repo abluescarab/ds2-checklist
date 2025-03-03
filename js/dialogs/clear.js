@@ -1,8 +1,8 @@
-import { closeDialog } from "./dialogs.js";
+import { hideDialog } from "./dialogs.js";
 export function initialize() {
     document
         .getElementById("clear-no")
-        ?.addEventListener("click", (e) => closeDialog(e.currentTarget));
+        ?.addEventListener("click", (e) => hideDialog(e.currentTarget));
     document.getElementById("clear-yes")?.addEventListener("click", (e) => {
         localStorage.clear();
         location.reload();
