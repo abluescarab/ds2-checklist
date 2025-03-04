@@ -1,7 +1,7 @@
-import { storageKeys } from "../constants";
+import { Nullable } from "@material/modules/types";
 import { hideDialog, showDialog } from "./dialogs";
-
-type Nullable<T> = T | null | undefined;
+import { storageKeys } from "../constants";
+import { toggleStorage } from "../utils";
 
 // tree behavior
 let cascadeCheckedControl: Nullable<HTMLInputElement> = null;
@@ -11,14 +11,6 @@ let cascadeCollapsedControl: Nullable<HTMLInputElement> = null;
 // page settings
 let hideExpandAllControl: Nullable<HTMLInputElement> = null;
 let hideScrollToTopControl: Nullable<HTMLInputElement> = null;
-
-function toggleStorage(key: string, add: boolean, value: string | null = "") {
-    if (add) {
-        localStorage.setItem(key, value ?? "");
-    } else {
-        localStorage.removeItem(key);
-    }
-}
 
 function changePageSettings(hideExpandAll: boolean, hideScrollToTop: boolean) {
     const expandAllButton = document.getElementById("fab-expand");

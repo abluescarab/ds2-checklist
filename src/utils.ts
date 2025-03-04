@@ -1,11 +1,11 @@
-import { cycleThemes, setTheme } from "@material/material.js";
+import { cycleThemes, Nullable, setTheme } from "@material/material";
+import { changeTab } from "@material/modules/components/tabs";
 import { storageKeys } from "./constants";
 import { loadSettings } from "./dialogs/settings";
-import { changeTab } from "@material/modules/components/tabs";
 
 export function changeTheme(
     themeButton: HTMLElement,
-    theme: string | null | undefined = null
+    theme: Nullable<string> = null
 ): void {
     if (theme) {
         setTheme(document.body, theme);
@@ -35,4 +35,19 @@ export function load(): void {
     }
 
     loadSettings();
+}
+
+export function toggleStorage(
+    key: string,
+    add: boolean,
+    value: string | null = "",
+    session: boolean = false
+) {
+    const storage = session ? sessionStorage : localStorage;
+
+    if (add) {
+        storage.setItem(key, value ?? "");
+    } else {
+        storage.removeItem(key);
+    }
 }

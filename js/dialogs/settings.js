@@ -1,5 +1,6 @@
-import { storageKeys } from "../constants.js";
 import { hideDialog, showDialog } from "./dialogs.js";
+import { storageKeys } from "../constants.js";
+import { toggleStorage } from "../utils.js";
 // tree behavior
 let cascadeCheckedControl = null;
 let cascadeUncheckedControl = null;
@@ -7,14 +8,6 @@ let cascadeCollapsedControl = null;
 // page settings
 let hideExpandAllControl = null;
 let hideScrollToTopControl = null;
-function toggleStorage(key, add, value = "") {
-    if (add) {
-        localStorage.setItem(key, value ?? "");
-    }
-    else {
-        localStorage.removeItem(key);
-    }
-}
 function changePageSettings(hideExpandAll, hideScrollToTop) {
     const expandAllButton = document.getElementById("fab-expand");
     const scrollToTopButton = document.getElementById("fab-top");

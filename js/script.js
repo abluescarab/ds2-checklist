@@ -49,7 +49,7 @@ document
     }
     localStorage.setItem(storageKeys.tab, e.newValue ?? "");
 });
-fabExpand?.addEventListener("click", (e) => {
+fabExpand?.addEventListener("click", () => {
     const expand = fabExpandIcon?.innerText == "add";
     const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
     if (tabName) {
@@ -58,7 +58,7 @@ fabExpand?.addEventListener("click", (e) => {
         changeFabExpand(expand);
     }
 });
-document.getElementById("fab-top")?.addEventListener("click", (e) => window.scrollTo({
+document.getElementById("fab-top")?.addEventListener("click", () => window.scrollTo({
     top: 0,
     left: 0,
     behavior: "smooth",
