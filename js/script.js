@@ -4,7 +4,7 @@ import { hasExpanded, populate, toggleAll, } from "../lib/material/dist/modules/
 // local imports
 import { storageKeys, trees } from "./constants.js";
 import { initialize as initializeDialogs } from "./dialogs/dialogs.js";
-import { load, changeTheme } from "./utils.js";
+import { load, changeTheme, toggleStorage } from "./utils.js";
 const fabExpand = document.getElementById("fab-expand");
 const fabExpandIcon = getChildByClassName(fabExpand, "md-fab__icon");
 let initialized = false;
@@ -19,19 +19,36 @@ document.addEventListener("DOMContentLoaded", function () {
         populate(element, items);
         element?.addEventListener("material:toggle", (e) => {
             const ev = e;
-            if (ev.state == MaterialState.Expanded) {
-                changeFabExpand(true);
+            let state = false;
+            // if expanded or collapsed
+            if (ev.state == MaterialState.Expanded ||
+                ev.state == MaterialState.Collapsed) {
+                if (ev.state == MaterialState.Expanded) {
+                    changeFabExpand(true);
+                }
+                else if (!hasExpanded(element, false)) {
+                    changeFabExpand(false);
+                }
+                state = ev.state == MaterialState.Expanded;
             }
-            else if (ev.state == MaterialState.Collapsed &&
-                !hasExpanded(element, false)) {
-                changeFabExpand(false);
+            if (ev.state == MaterialState.Checked ||
+                ev.state == MaterialState.Unchecked) {
+                state = ev.state == MaterialState.Checked;
+            }
+            if (ev.source?.id) {
+                toggleStorage(ev.source?.id, state, "");
+            }
+            for (const el of ev.elements) {
+                if (el.id) {
+                    toggleStorage(el.id, state, "");
+                }
             }
         });
     }
     initializeMaterial();
     initializeDialogs();
-    initialized = true;
     load();
+    initialized = true;
 });
 document
     .getElementById("change-theme")

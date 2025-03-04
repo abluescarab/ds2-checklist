@@ -1,5 +1,6 @@
 import { cycleThemes, Nullable, setTheme } from "@material/material";
 import { changeTab } from "@material/modules/components/tabs";
+import { toggle } from "@material/modules/components/tree";
 import { storageKeys } from "./constants";
 import { loadSettings } from "./dialogs/settings";
 
@@ -32,6 +33,24 @@ export function load(): void {
 
     if (tabs && tab) {
         changeTab(tabs, tab);
+    }
+
+    const settingsKeys: string[] = Object.values(storageKeys);
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+
+        if (!key || settingsKeys.includes(key)) {
+            continue;
+        }
+
+        const element = document.getElementById(key);
+
+        if (element instanceof HTMLButtonElement) {
+            toggle(element.parentElement?.nextElementSibling, true);
+        } else if (element instanceof HTMLInputElement) {
+            element.checked = true;
+        }
     }
 
     loadSettings();

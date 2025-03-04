@@ -16,7 +16,7 @@ import {
 // local imports
 import { storageKeys, trees } from "./constants";
 import { initialize as initializeDialogs } from "./dialogs/dialogs";
-import { load, changeTheme } from "./utils";
+import { load, changeTheme, toggleStorage } from "./utils";
 
 const fabExpand = document.getElementById("fab-expand");
 const fabExpandIcon = getChildByClassName(
@@ -42,24 +42,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
         element?.addEventListener("material:toggle", (e) => {
             const ev = e as MaterialToggleEvent;
+            let state = false;
 
-            if (ev.state == MaterialState.Expanded) {
-                changeFabExpand(true);
-            } else if (
-                ev.state == MaterialState.Collapsed &&
-                !hasExpanded(element, false)
+            // if expanded or collapsed
+            if (
+                ev.state == MaterialState.Expanded ||
+                ev.state == MaterialState.Collapsed
             ) {
-                changeFabExpand(false);
+                if (ev.state == MaterialState.Expanded) {
+                    changeFabExpand(true);
+                } else if (!hasExpanded(element, false)) {
+                    changeFabExpand(false);
+                }
+
+                state = ev.state == MaterialState.Expanded;
+            }
+
+            if (
+                ev.state == MaterialState.Checked ||
+                ev.state == MaterialState.Unchecked
+            ) {
+                state = ev.state == MaterialState.Checked;
+            }
+
+            if (ev.source?.id) {
+                toggleStorage(ev.source?.id, state, "");
+            }
+
+            for (const el of ev.elements) {
+                if (el.id) {
+                    toggleStorage(el.id, state, "");
+                }
             }
         });
     }
 
     initializeMaterial();
     initializeDialogs();
+    load();
 
     initialized = true;
-
-    load();
 });
 
 document
