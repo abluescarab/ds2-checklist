@@ -988,6 +988,53 @@ export const trees = Object.freeze({
             },
         },
         // "Invisible Hollows": {},
-        // "Pharros' Lockstones": {},
+        "Pharros' Lockstones": {
+            "Forest of Fallen Giants": {
+                "Titanite Slab": {},
+                "Chloranthy Ring": {},
+            },
+            "Lost Bastille": {
+                "Belfry Luna entrance": {},
+                "Soul Vessel": {},
+            },
+            "Earthen Peak": {
+                "Poisonbite Ring": {},
+                "Soul of a Proud Knight": {},
+            },
+            "Iron Keep": {
+                "Belfry Sol entrance": {},
+            },
+            "Doors of Pharros": {
+                "Santier's Spear": {},
+            },
+            "Grave of Saints": {
+                "Poison Moss x2": {},
+                "Whisper of Despair": {},
+                Torch: {},
+            },
+            "Shrine of Amana": {
+                "Helix Halberd": {},
+            },
+            "Undead Crypt": {
+                "Olenford's Staff": {},
+                "Great Lightning Spear": {},
+            },
+            "Dragon Shrine": {
+                "Mask of Judgement": {},
+                "Robe of Judgement": {},
+                "Manchettes of Judgement": {},
+                "Tights of Judgement": {},
+            },
+            "Memory of Orro": {
+                "Steel Helm": {},
+                "Steel Armor": {},
+                "Steel Gauntlets": {},
+                "Steel Leggings": {},
+                "Fire Seed": {},
+            },
+            "Frozen Elyseum Loyce": {
+                "Durgo's Hat": {},
+            },
+        },
     },
 });

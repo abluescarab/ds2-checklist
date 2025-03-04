@@ -70,20 +70,28 @@ export function loadSettings() {
         return;
     }
     // page settings
-    const hideExpandAll = localStorage.getItem(storageKeys.hideExpandAll) != null;
-    const hideScrollToTop = localStorage.getItem(storageKeys.hideScrollToTop) != null;
-    hideExpandAllControl.checked = hideExpandAll;
-    hideScrollToTopControl.checked = hideScrollToTop;
-    changePageSettings(hideExpandAll, hideScrollToTop);
+    const hideExpandAll = localStorage.getItem(storageKeys.hideExpandAll);
+    const hideScrollToTop = localStorage.getItem(storageKeys.hideScrollToTop);
+    if (hideExpandAll) {
+        hideExpandAllControl.checked = hideExpandAll != null;
+    }
+    if (hideScrollToTop) {
+        hideScrollToTopControl.checked = hideScrollToTop != null;
+    }
+    changePageSettings(hideExpandAll != null, hideScrollToTop != null);
     // tree behavior
-    const cascadeChecked = localStorage.getItem(storageKeys.cascadeChecked) ?? "";
-    const cascadeToggled = localStorage.getItem(storageKeys.cascadeToggled) ?? "";
-    cascadeCheckedControl.checked =
-        cascadeChecked == "checked" || cascadeChecked == "both";
-    cascadeUncheckedControl.checked =
-        cascadeChecked == "unchecked" || cascadeChecked == "both";
-    cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
-    changeTreeSettings(cascadeChecked, cascadeToggled);
+    const cascadeChecked = localStorage.getItem(storageKeys.cascadeChecked);
+    const cascadeToggled = localStorage.getItem(storageKeys.cascadeToggled);
+    if (cascadeChecked) {
+        cascadeCheckedControl.checked =
+            cascadeChecked == "checked" || cascadeChecked == "both";
+    }
+    if (cascadeToggled) {
+        cascadeUncheckedControl.checked =
+            cascadeChecked == "unchecked" || cascadeChecked == "both";
+        cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
+    }
+    changeTreeSettings(cascadeChecked ?? "", cascadeToggled ?? "");
 }
 export function saveSettings() {
     if (!cascadeCheckedControl ||

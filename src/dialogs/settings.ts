@@ -89,29 +89,35 @@ export function loadSettings() {
     }
 
     // page settings
-    const hideExpandAll =
-        localStorage.getItem(storageKeys.hideExpandAll) != null;
-    const hideScrollToTop =
-        localStorage.getItem(storageKeys.hideScrollToTop) != null;
+    const hideExpandAll = localStorage.getItem(storageKeys.hideExpandAll);
+    const hideScrollToTop = localStorage.getItem(storageKeys.hideScrollToTop);
 
-    hideExpandAllControl.checked = hideExpandAll;
-    hideScrollToTopControl.checked = hideScrollToTop;
+    if (hideExpandAll) {
+        hideExpandAllControl.checked = hideExpandAll != null;
+    }
 
-    changePageSettings(hideExpandAll, hideScrollToTop);
+    if (hideScrollToTop) {
+        hideScrollToTopControl.checked = hideScrollToTop != null;
+    }
+
+    changePageSettings(hideExpandAll != null, hideScrollToTop != null);
 
     // tree behavior
-    const cascadeChecked =
-        localStorage.getItem(storageKeys.cascadeChecked) ?? "";
-    const cascadeToggled =
-        localStorage.getItem(storageKeys.cascadeToggled) ?? "";
+    const cascadeChecked = localStorage.getItem(storageKeys.cascadeChecked);
+    const cascadeToggled = localStorage.getItem(storageKeys.cascadeToggled);
 
-    cascadeCheckedControl.checked =
-        cascadeChecked == "checked" || cascadeChecked == "both";
-    cascadeUncheckedControl.checked =
-        cascadeChecked == "unchecked" || cascadeChecked == "both";
-    cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
+    if (cascadeChecked) {
+        cascadeCheckedControl.checked =
+            cascadeChecked == "checked" || cascadeChecked == "both";
+    }
 
-    changeTreeSettings(cascadeChecked, cascadeToggled);
+    if (cascadeToggled) {
+        cascadeUncheckedControl.checked =
+            cascadeChecked == "unchecked" || cascadeChecked == "both";
+        cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
+    }
+
+    changeTreeSettings(cascadeChecked ?? "", cascadeToggled ?? "");
 }
 
 export function saveSettings() {
