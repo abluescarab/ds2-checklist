@@ -33,7 +33,7 @@ function changeTreeSettings(cascadeChecked, cascadeToggled) {
     }
 }
 export function initialize() {
-    document.getElementById("settings")?.addEventListener("click", (e) => {
+    document.getElementById("settings")?.addEventListener("click", () => {
         document
             .querySelectorAll(".md-tooltip--visible")
             .forEach((t) => t.classList.remove("md-tooltip--visible"));
