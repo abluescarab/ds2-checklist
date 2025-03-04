@@ -7,6 +7,7 @@ import { initialize as initializeDialogs } from "./dialogs/dialogs.js";
 import { load, changeTheme, toggleStorage } from "./utils.js";
 const fabExpand = document.getElementById("fab-expand");
 const fabExpandIcon = getChildByClassName(fabExpand, "md-fab__icon");
+const tabs = document.getElementById("main-tabs");
 let initialized = false;
 function changeFabExpand(expanded) {
     const tooltip = document.getElementById("fab-expand-tooltip");
@@ -18,44 +19,40 @@ document.addEventListener("DOMContentLoaded", function () {
         const element = document.getElementById(tree);
         populate(element, items);
         element?.addEventListener("material:toggle", (e) => {
-            const ev = e;
+            const event = e;
             let state = false;
             // if expanded or collapsed
-            if (ev.state == MaterialState.Expanded ||
-                ev.state == MaterialState.Collapsed) {
-                if (ev.state == MaterialState.Expanded) {
+            if (event.state == MaterialState.Expanded ||
+                event.state == MaterialState.Collapsed) {
+                if (event.state == MaterialState.Expanded) {
                     changeFabExpand(true);
                 }
                 else if (!hasExpanded(element, false)) {
                     changeFabExpand(false);
                 }
-                state = ev.state == MaterialState.Expanded;
+                state = event.state == MaterialState.Expanded;
             }
-            if (ev.state == MaterialState.Checked ||
-                ev.state == MaterialState.Unchecked) {
-                state = ev.state == MaterialState.Checked;
+            if (event.state == MaterialState.Checked ||
+                event.state == MaterialState.Unchecked) {
+                state = event.state == MaterialState.Checked;
             }
-            if (ev.source?.id) {
-                toggleStorage(ev.source?.id, state, "");
-            }
-            for (const el of ev.elements) {
-                if (el.id) {
-                    toggleStorage(el.id, state, "");
-                }
-            }
+            toggleStorage(event.source?.id, state);
+            event.elements.forEach((el) => toggleStorage(el?.id, state));
         });
     }
     initializeMaterial();
     initializeDialogs();
     load();
     initialized = true;
+    if (tabs?.dataset.mdTab &&
+        hasExpanded(document.getElementById(tabs?.dataset.mdTab))) {
+        changeFabExpand(true);
+    }
 });
 document
     .getElementById("change-theme")
     ?.addEventListener("click", (e) => changeTheme(e.currentTarget));
-document
-    .getElementById("main-tabs")
-    ?.addEventListener("material:change", (e) => {
+tabs?.addEventListener("material:change", (e) => {
     if (!initialized) {
         return;
     }
@@ -71,8 +68,9 @@ fabExpand?.addEventListener("click", () => {
     const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
     if (tabName) {
         const tree = document.getElementById(tabName);
-        toggleAll(tree, expand, expand ? "expanded" : "collapsed");
+        const elements = toggleAll(tree, expand, expand ? "expanded" : "collapsed");
         changeFabExpand(expand);
+        elements.forEach((el) => toggleStorage(el.previousElementSibling?.firstElementChild?.id, expand));
     }
 });
 document.getElementById("fab-top")?.addEventListener("click", () => window.scrollTo({

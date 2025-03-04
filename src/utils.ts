@@ -1,4 +1,10 @@
-import { cycleThemes, Nullable, setTheme } from "@material/material";
+import {
+    cycleThemes,
+    MaterialState,
+    MaterialToggleEvent,
+    Nullable,
+    setTheme,
+} from "@material/material";
 import { changeTab } from "@material/modules/components/tabs";
 import { toggle } from "@material/modules/components/tree";
 import { storageKeys } from "./constants";
@@ -57,11 +63,15 @@ export function load(): void {
 }
 
 export function toggleStorage(
-    key: string,
+    key: Nullable<string>,
     add: boolean,
     value: string | null = "",
     session: boolean = false
 ) {
+    if (!key) {
+        return;
+    }
+
     const storage = session ? sessionStorage : localStorage;
 
     if (add) {

@@ -2,7 +2,6 @@
 import {
     initialize as initializeMaterial,
     getChildByClassName,
-    getParentWithClass,
     MaterialChangeEvent,
     MaterialToggleEvent,
     MaterialState,
@@ -23,6 +22,7 @@ const fabExpandIcon = getChildByClassName(
     fabExpand,
     "md-fab__icon"
 ) as HTMLElement;
+const tabs = document.getElementById("main-tabs");
 
 let initialized = false;
 
@@ -41,39 +41,32 @@ document.addEventListener("DOMContentLoaded", function () {
         populate(element, items);
 
         element?.addEventListener("material:toggle", (e) => {
-            const ev = e as MaterialToggleEvent;
+            const event = e as MaterialToggleEvent;
             let state = false;
 
             // if expanded or collapsed
             if (
-                ev.state == MaterialState.Expanded ||
-                ev.state == MaterialState.Collapsed
+                event.state == MaterialState.Expanded ||
+                event.state == MaterialState.Collapsed
             ) {
-                if (ev.state == MaterialState.Expanded) {
+                if (event.state == MaterialState.Expanded) {
                     changeFabExpand(true);
                 } else if (!hasExpanded(element, false)) {
                     changeFabExpand(false);
                 }
 
-                state = ev.state == MaterialState.Expanded;
+                state = event.state == MaterialState.Expanded;
             }
 
             if (
-                ev.state == MaterialState.Checked ||
-                ev.state == MaterialState.Unchecked
+                event.state == MaterialState.Checked ||
+                event.state == MaterialState.Unchecked
             ) {
-                state = ev.state == MaterialState.Checked;
+                state = event.state == MaterialState.Checked;
             }
 
-            if (ev.source?.id) {
-                toggleStorage(ev.source?.id, state, "");
-            }
-
-            for (const el of ev.elements) {
-                if (el.id) {
-                    toggleStorage(el.id, state, "");
-                }
-            }
+            toggleStorage(event.source?.id, state);
+            event.elements.forEach((el) => toggleStorage(el?.id, state));
         });
     }
 
@@ -82,6 +75,13 @@ document.addEventListener("DOMContentLoaded", function () {
     load();
 
     initialized = true;
+
+    if (
+        tabs?.dataset.mdTab &&
+        hasExpanded(document.getElementById(tabs?.dataset.mdTab))
+    ) {
+        changeFabExpand(true);
+    }
 });
 
 document
@@ -90,25 +90,23 @@ document
         changeTheme(e.currentTarget as HTMLElement)
     );
 
-document
-    .getElementById("main-tabs")
-    ?.addEventListener("material:change", (e) => {
-        if (!initialized) {
-            return;
-        }
+tabs?.addEventListener("material:change", (e) => {
+    if (!initialized) {
+        return;
+    }
 
-        const ev = e as MaterialChangeEvent<string>;
+    const ev = e as MaterialChangeEvent<string>;
 
-        if (ev && ev.newValue) {
-            const tree = document.getElementById(ev.newValue);
-            changeFabExpand(hasExpanded(tree) ?? false);
-        }
+    if (ev && ev.newValue) {
+        const tree = document.getElementById(ev.newValue);
+        changeFabExpand(hasExpanded(tree) ?? false);
+    }
 
-        localStorage.setItem(
-            storageKeys.tab,
-            (e as MaterialChangeEvent<string>).newValue ?? ""
-        );
-    });
+    localStorage.setItem(
+        storageKeys.tab,
+        (e as MaterialChangeEvent<string>).newValue ?? ""
+    );
+});
 
 fabExpand?.addEventListener("click", () => {
     const expand = fabExpandIcon?.innerText == "add";
@@ -116,8 +114,20 @@ fabExpand?.addEventListener("click", () => {
 
     if (tabName) {
         const tree = document.getElementById(tabName);
-        toggleAll(tree, expand, expand ? "expanded" : "collapsed");
+        const elements = toggleAll(
+            tree,
+            expand,
+            expand ? "expanded" : "collapsed"
+        );
+
         changeFabExpand(expand);
+
+        elements.forEach((el) =>
+            toggleStorage(
+                el.previousElementSibling?.firstElementChild?.id,
+                expand
+            )
+        );
     }
 });
 
