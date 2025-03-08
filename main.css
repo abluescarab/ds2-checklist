@@ -13,6 +13,10 @@
   flex-flow: row wrap;
   gap: 8px;
 }
+#settings-dialog .settings-section .settings-row:has(button) {
+  align-items: center;
+  justify-content: center;
+}
 
 /* pages */
 /* themes */
@@ -1080,6 +1084,8 @@ code * {
   width: 14px;
   height: 14px;
   line-height: 14px;
+  flex-grow: 0;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   border-radius: 2px;
@@ -1266,7 +1272,7 @@ code * {
 }
 .md-dialog:not(.md-dialog--full) > .md-dialog__wrapper {
   margin: 48px;
-  min-width: 280px;
+  min-width: 232px;
   max-width: 560px;
 }
 [data-md-theme=dark] .md-dialog:not(.md-dialog--full) > .md-dialog__wrapper {
@@ -2438,7 +2444,7 @@ code * {
   box-sizing: border-box;
   border: 0;
   flex: 1 0 0;
-  padding: 0 8px;
+  padding: 0 16px;
   white-space: nowrap;
   background-color: transparent;
 }

@@ -11,6 +11,11 @@
             display: flex;
             flex-flow: row wrap;
             gap: $gap;
+
+            &:has(button) {
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 }
