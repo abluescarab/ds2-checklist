@@ -52,8 +52,8 @@ export function load(): void {
 
         const element = document.getElementById(key);
 
-        if (element instanceof HTMLButtonElement) {
-            toggle(element.parentElement?.nextElementSibling, true);
+        if (element?.classList.contains("md-tree__subtree")) {
+            toggle(element, true);
         } else if (element instanceof HTMLInputElement) {
             element.checked = true;
         }

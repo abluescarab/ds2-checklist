@@ -80,18 +80,14 @@ export function loadSettings() {
     }
     changePageSettings(hideExpandAll != null, hideScrollToTop != null);
     // tree behavior
-    const cascadeChecked = localStorage.getItem(storageKeys.cascadeChecked);
-    const cascadeToggled = localStorage.getItem(storageKeys.cascadeToggled);
-    if (cascadeChecked) {
-        cascadeCheckedControl.checked =
-            cascadeChecked == "checked" || cascadeChecked == "both";
-    }
-    if (cascadeToggled) {
-        cascadeUncheckedControl.checked =
-            cascadeChecked == "unchecked" || cascadeChecked == "both";
-        cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
-    }
-    changeTreeSettings(cascadeChecked ?? "", cascadeToggled ?? "");
+    const cascadeChecked = localStorage.getItem(storageKeys.cascadeChecked) ?? "checked";
+    const cascadeToggled = localStorage.getItem(storageKeys.cascadeToggled) ?? "collapsed";
+    cascadeCheckedControl.checked =
+        cascadeChecked == "checked" || cascadeChecked == "both";
+    cascadeUncheckedControl.checked =
+        cascadeChecked == "unchecked" || cascadeChecked == "both";
+    cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
+    changeTreeSettings(cascadeChecked, cascadeToggled);
 }
 export function saveSettings() {
     if (!cascadeCheckedControl ||

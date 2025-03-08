@@ -103,21 +103,19 @@ export function loadSettings() {
     changePageSettings(hideExpandAll != null, hideScrollToTop != null);
 
     // tree behavior
-    const cascadeChecked = localStorage.getItem(storageKeys.cascadeChecked);
-    const cascadeToggled = localStorage.getItem(storageKeys.cascadeToggled);
+    const cascadeChecked =
+        localStorage.getItem(storageKeys.cascadeChecked) ?? "checked";
+    const cascadeToggled =
+        localStorage.getItem(storageKeys.cascadeToggled) ?? "collapsed";
 
-    if (cascadeChecked) {
-        cascadeCheckedControl.checked =
-            cascadeChecked == "checked" || cascadeChecked == "both";
-    }
+    cascadeCheckedControl.checked =
+        cascadeChecked == "checked" || cascadeChecked == "both";
 
-    if (cascadeToggled) {
-        cascadeUncheckedControl.checked =
-            cascadeChecked == "unchecked" || cascadeChecked == "both";
-        cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
-    }
+    cascadeUncheckedControl.checked =
+        cascadeChecked == "unchecked" || cascadeChecked == "both";
+    cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
 
-    changeTreeSettings(cascadeChecked ?? "", cascadeToggled ?? "");
+    changeTreeSettings(cascadeChecked, cascadeToggled);
 }
 
 export function saveSettings() {
