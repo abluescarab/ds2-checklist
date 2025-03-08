@@ -987,7 +987,73 @@ export const trees = Object.freeze({
                 "Hollow Skin": {},
             },
         },
-        // "Invisible Hollows": {},
+        "Invisible Hollows": {
+            "Forest of Fallen Giants": {
+                "Near the firebomb throwers above the courtyard": {},
+            },
+            "No Man's Wharf": {
+                "By a house near the Pharros' Contraption": {},
+            },
+            "The Lost Bastille": {
+                "Against a broken stone to the left of a chest": {},
+                "In the cell next to Straid's cell": {},
+            },
+            "Sinner's Rise": {
+                "In the first jail cell on the upper left": {},
+            },
+            "Huntsman's Copse": {
+                "In the building after the Undead Refuge bonfire": {},
+            },
+            "Shaded Woods": {
+                "To the left of the King's Gate": {},
+            },
+            "Doors of Pharros": {
+                "In the alcove with the sitting dwarf": {},
+            },
+            "The Gutter": {
+                "On the slanted walkway before the first bonfire": {},
+                "On top of the house with the mimic": {},
+                "Underneath a platform with a chest": {},
+                "To the right of the fog wall before the second bonfire": {},
+                "Below the second bonfire on a platform with a brazier": {},
+            },
+            "Drangleic Castle": {
+                "Against the castle wall to the left of the main gate": {},
+                "In a guarded treasure room with Sublime Bone Dust": {},
+                "Outside the cage with the Milfanito": {},
+            },
+            "Shrine of Amana": {
+                "Outside the building with the second bonfire": {},
+                "In the deep water before the Demon of Song boss room": {},
+            },
+            "Undead Crypt": {
+                "Left alcove in the entrance": {},
+                "In the room with the witches near the left staircase": {},
+                "On the stairs before Agdayne": {},
+                "On the wall to the right of Agdayne": {},
+                "On a platform on the left past Agdayne's room": {},
+                "At the entrance to the hallway with the ghosts": {},
+                "In the room with a hole in the middle": {
+                    "Near the third statue on the left": {},
+                    "Near the third statue on the right": {},
+                },
+                "In the bell room before Velstadt": {},
+                "In the corridor before Velstadt": {
+                    "On the left": {
+                        "Between the third and fourth pillar from the boss room": {},
+                    },
+                    "On the right": {
+                        "Between the wall and the second pillar (x2)": {},
+                        "Near to the fifth pillar from the boss room": {},
+                        "Near the pillar closest to the boss room": {},
+                    },
+                },
+            },
+            "Aldia's Keep": {
+                "In the room with the lever after the dragon skeleton": {},
+                "By the elevator after the Guardian Dragon boss room": {},
+            },
+        },
         "Pharros' Lockstones": {
             "Forest of Fallen Giants": {
                 "Titanite Slab": {},
