@@ -866,6 +866,42 @@ export const trees = Object.freeze({
                 },
             },
         },
+        "Fragrant Branch of Yore": {
+            "Things Betwixt": {
+                "Area with Basilisks, Ogres, and Estus Flask Shard": {},
+            },
+            Majula: {
+                "Rosabeth of Melfia at the entrance to the Shaded Woods": {},
+            },
+            "Heide's Tower of Flame": {
+                "Room with Estus Flask Shard and the Knight Set": {},
+            },
+            "The Lost Bastille": {
+                "Path to the Ruin Sentinels": {},
+                "Straid of Olaphis in his cell": {},
+            },
+            "Shaded Woods": {
+                "Lion that drops the Fang Key": {},
+                "Chest with Repair": {},
+                "Lion with the Warlock Mask": {},
+                "Chest with the Lion Mage Set and another branch": {},
+                "Vengarl's Body miniboss": {},
+            },
+            "Black Gulch": {
+                "Entrance to the Hidden Chamber bonfire": {},
+            },
+            "Shrine of Amana": {
+                "Access to the Rise of the Dead bonfire": {},
+            },
+            "Aldia's Keep": {
+                "Ogre holding the Dragon Acolyte Mask": {},
+                "Undead with Elizabeth Mushrooms and Wilted Dusk Herbs": {},
+                "Undead with two Bonfire Ascetics": {},
+            },
+            "Dragon Aerie": {
+                "Entrance to the first Guardian Dragon platform": {},
+            },
+        },
         "Hidden Moths": {
             "Lost Bastille": {
                 "Servants' Quarters": {},
