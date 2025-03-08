@@ -98,8 +98,8 @@ export const trees = Object.freeze({
             },
             "Drangleic Castle": {
                 "King's Gate": {},
-                "Under Castle Drangleic": {},
                 "Forgotten Chamber": {},
+                "Under Castle Drangleic": {},
                 "Central Castle Drangleic": {},
             },
             "Shrine of Amana": {
