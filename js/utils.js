@@ -1,4 +1,4 @@
-import { cycleThemes, setTheme, } from "../lib/material/dist/material.js";
+import { cycleThemes, setTheme } from "../lib/material/dist/material.js";
 import { changeTab } from "../lib/material/dist/modules/components/tabs.js";
 import { toggle } from "../lib/material/dist/modules/components/tree.js";
 import { storageKeys } from "./constants.js";
