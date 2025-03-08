@@ -1,10 +1,10 @@
-import { getParentWithClass } from "@material/material";
+import { getParentByClassName } from "@material/material";
 import { initialize as initializeClear } from "./clear";
 import { initialize as initializeReset } from "./reset";
 import { initialize as initializeSettings } from "./settings";
 
 export function hideDialog(target: Element | EventTarget | null) {
-    getParentWithClass(target, "md-dialog")?.classList.remove(
+    getParentByClassName(target, "md-dialog")?.classList.remove(
         "md-dialog--visible"
     );
 }

@@ -1,4 +1,4 @@
-import { Nullable } from "@material/modules/types";
+import { Nullable } from "@material/material";
 import { hideDialog, showDialog } from "./dialogs";
 import { storageKeys } from "../constants";
 import { toggleStorage } from "../utils";
