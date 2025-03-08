@@ -10,11 +10,11 @@ export const storageKeys = Object.freeze({
 export const trees = Object.freeze({
     bonfires: {
         "Base game": {
-            "Things Betwixt": {
-                "Fire Keepers' Dwelling": {},
-            },
             Majula: {
                 "The Far Fire": {},
+            },
+            "Things Betwixt": {
+                "Fire Keepers' Dwelling": {},
             },
             "Forest of Fallen Giants": {
                 "The Crestfallen's Retreat": {},
@@ -39,11 +39,11 @@ export const trees = Object.freeze({
                 "Straid's Cell": {},
                 "The Tower Apart": {},
             },
-            "Belfry Luna": {
-                "Upper Ramparts": {},
-            },
             "Sinner's Rise": {
                 "The Saltfort": {},
+            },
+            "Belfry Luna": {
+                "Upper Ramparts": {},
             },
             "Huntsman's Copse": {
                 "Undead Refuge": {},
