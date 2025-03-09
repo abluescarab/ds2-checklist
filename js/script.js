@@ -70,7 +70,7 @@ fabExpand?.addEventListener("click", () => {
         const tree = document.getElementById(tabName);
         const elements = toggleAll(tree, expand, expand ? "expanded" : "collapsed");
         changeFabExpand(expand);
-        elements.forEach((el) => toggleStorage(el.previousElementSibling?.firstElementChild?.id, expand));
+        elements.forEach((el) => toggleStorage(el.id, expand));
     }
 });
 document.getElementById("fab-top")?.addEventListener("click", () => window.scrollTo({

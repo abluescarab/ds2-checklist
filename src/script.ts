@@ -122,12 +122,7 @@ fabExpand?.addEventListener("click", () => {
 
         changeFabExpand(expand);
 
-        elements.forEach((el) =>
-            toggleStorage(
-                el.previousElementSibling?.firstElementChild?.id,
-                expand
-            )
-        );
+        elements.forEach((el) => toggleStorage(el.id, expand));
     }
 });
 
