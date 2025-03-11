@@ -728,6 +728,7 @@ export const trees = Object.freeze({
                 "Red Rust Scimitar": {},
                 "Red Rust Shield": {},
                 "Red Rust Sword": {},
+                "Ring of Soul Protection": {},
             },
             "Manscorpion Tark": {},
         },
