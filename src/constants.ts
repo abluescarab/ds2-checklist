@@ -476,16 +476,6 @@ export const trees = Object.freeze({
                 "Small Ladder": {},
             },
             "Licia of Lindeldt": {
-                "Caressing Prayer": {},
-                Force: {},
-                "Great Heal Excerpt": {},
-                Guidance: {},
-                Heal: {},
-                Homeward: {},
-                "Lightning Spear": {},
-                "Med Heal": {},
-                Replenishment: {},
-                "Resplendent Life": {},
                 "Ring of Prayer": {},
             },
             "Maughlin the Armourer": {
