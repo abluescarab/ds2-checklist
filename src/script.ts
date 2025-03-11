@@ -18,29 +18,38 @@ import { initialize as initializeDialogs } from "./dialogs/dialogs";
 import { load, changeTheme, toggleStorage } from "./utils";
 
 const fabExpand = document.getElementById("fab-expand");
-const fabExpandIcon = getChildByClassName(
-    fabExpand,
-    "md-fab__icon"
-) as HTMLElement;
+const fabExpandIcon = fabExpand
+    ? (getChildByClassName(fabExpand, "md-fab__icon") as HTMLElement)
+    : null;
 const tabs = document.getElementById("main-tabs");
 
 let initialized = false;
 
 function changeFabExpand(expanded: boolean) {
-    const tooltip = document.getElementById(
-        "fab-expand-tooltip"
-    ) as HTMLElement;
+    if (!fabExpandIcon) {
+        return;
+    }
+
+    const tooltip = document.getElementById("fab-expand-tooltip");
 
     fabExpandIcon.innerText = expanded ? "remove" : "add";
-    tooltip.innerText = expanded ? "Collapse all" : "Expand all";
+
+    if (tooltip) {
+        tooltip.innerText = expanded ? "Collapse all" : "Expand all";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     for (const [tree, items] of Object.entries(trees)) {
         const element = document.getElementById(tree);
+
+        if (!element) {
+            continue;
+        }
+
         populate(element, items);
 
-        element?.addEventListener("material:toggle", (e) => {
+        element.addEventListener("material:toggle", (e) => {
             const event = e as MaterialToggleEvent;
             let state = false;
 
@@ -76,10 +85,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initialized = true;
 
-    if (
-        tabs?.dataset.mdTab &&
-        hasExpanded(document.getElementById(tabs?.dataset.mdTab))
-    ) {
+    const tab = tabs?.dataset.mdTab;
+
+    if (!tab) {
+        return;
+    }
+
+    const tree = document.getElementById(tab);
+
+    if (tree && hasExpanded(tree)) {
         changeFabExpand(true);
     }
 });
@@ -99,7 +113,7 @@ tabs?.addEventListener("material:change", (e) => {
 
     if (ev && ev.newValue) {
         const tree = document.getElementById(ev.newValue);
-        changeFabExpand(hasExpanded(tree) ?? false);
+        changeFabExpand(tree ? hasExpanded(tree) : false);
     }
 
     localStorage.setItem(
@@ -112,18 +126,20 @@ fabExpand?.addEventListener("click", () => {
     const expand = fabExpandIcon?.innerText == "add";
     const tabName = document.getElementById("main-tabs")?.dataset.mdTab;
 
-    if (tabName) {
-        const tree = document.getElementById(tabName);
-        const elements = toggleAll(
-            tree,
-            expand,
-            expand ? "expanded" : "collapsed"
-        );
-
-        changeFabExpand(expand);
-
-        elements.forEach((el) => toggleStorage(el.id, expand));
+    if (!tabName) {
+        return;
     }
+
+    const tree = document.getElementById(tabName);
+
+    if (!tree) {
+        return;
+    }
+
+    const elements = toggleAll(tree, expand, expand ? "expanded" : "collapsed");
+
+    changeFabExpand(expand);
+    elements.forEach((el) => toggleStorage(el.id, expand));
 });
 
 document.getElementById("fab-top")?.addEventListener("click", () =>
