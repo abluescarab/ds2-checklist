@@ -18,13 +18,13 @@
 @use "themes/light";
 
 /* material */
-@use "../../lib/material/src/sass/abstracts/variables" with (
-    $assets: "lib/material/dist/assets"
+@use "sass-material-design/src/sass/abstracts/variables" with (
+    $assets: "sass-material-design/dist/assets"
 );
-@use "../../lib/material/src/sass/themes" with (
+@use "sass-material-design/src/sass/themes" with (
     $themes: (
         dark: dark.$theme,
         light: light.$theme,
     )
 );
-@use "../../lib/material/src/sass/material.scss";
+@use "sass-material-design/src/sass/material";

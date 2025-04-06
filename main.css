@@ -37,32 +37,24 @@ hr {
   border: 0;
 }
 
-input:not(:disabled), input:not(:disabled) + label {
-  cursor: pointer;
-}
-
-label:has(input:not(:disabled), button:not(:disabled)) {
-  cursor: pointer;
-}
-
 pre code {
   white-space: pre-line;
 }
 
 /* material */
 /* material */
-.md-tabs__icon, .md-switch__handle::after, .md-segmented__icon, .md-segmented__check, .md-menu__icon, .md-icon-button, .md-fab__icon, .md-dialog__icon, .md-checkbox__box::after, .md-button__icon, .md-banner__icon, .md-app-bar__icon {
+.md-text-field__icon, .md-tabs__icon, .md-table th[data-md-sortable]::after, .md-switch__handle::after, .md-segmented__icon, .md-segmented__check, .md-menu__icon, .md-icon-button, .md-fab__icon, .md-dialog__icon, .md-checkbox__box::after, .md-button__icon, .md-banner__icon, .md-app-bar__icon {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
   line-height: 24px;
+  font-size: 24px;
   border: 0;
   border-radius: 9999px;
   background-color: transparent;
   font-family: "Material Symbols Outlined", sans-serif;
-  font-size: 24px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -74,47 +66,47 @@ pre code {
   font-style: normal;
   font-weight: 100 900;
   font-stretch: 0% 200%;
-  src: url("lib/material/dist/assets/fonts/roboto.ttf") format("truetype");
+  src: url("../../node_modules/sass-material-design/dist/assets/fonts/roboto.ttf") format("truetype");
 }
 @font-face {
   font-family: Roboto;
   font-style: italic;
   font-weight: 100 900;
   font-stretch: 0% 200%;
-  src: url("lib/material/dist/assets/fonts/roboto-italic.ttf") format("truetype");
+  src: url("../../node_modules/sass-material-design/dist/assets/fonts/roboto-italic.ttf") format("truetype");
 }
 @font-face {
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 100 900;
   font-stretch: 0% 200%;
-  src: url("lib/material/dist/assets/fonts/roboto-mono.ttf") format("truetype");
+  src: url("../../node_modules/sass-material-design/dist/assets/fonts/roboto-mono.ttf") format("truetype");
 }
 @font-face {
   font-family: "Roboto Mono";
   font-style: italic;
   font-weight: 100 900;
   font-stretch: 0% 200%;
-  src: url("lib/material/dist/assets/fonts/roboto-mono-italic.ttf") format("truetype");
+  src: url("../../node_modules/sass-material-design/dist/assets/fonts/roboto-mono-italic.ttf") format("truetype");
 }
 /* Material Symbols */
 @font-face {
   font-family: "Material Symbols Outlined";
   font-style: normal;
   font-weight: 400;
-  src: url("lib/material/dist/assets/fonts/material-symbols-outlined.ttf") format("truetype");
+  src: url("../../node_modules/sass-material-design/dist/assets/fonts/material-symbols-outlined.ttf") format("truetype");
 }
 @font-face {
   font-family: "Material Symbols Round";
   font-style: normal;
   font-weight: 400;
-  src: url("lib/material/dist/assets/fonts/material-symbols-round.ttf") format("truetype");
+  src: url("../../node_modules/sass-material-design/dist/assets/fonts/material-symbols-rounded.ttf") format("truetype");
 }
 @font-face {
   font-family: "Material Symbols Sharp";
   font-style: normal;
   font-weight: 400;
-  src: url("lib/material/dist/assets/fonts/material-symbols-sharp.ttf") format("truetype");
+  src: url("../../node_modules/sass-material-design/dist/assets/fonts/material-symbols-sharp.ttf") format("truetype");
 }
 * {
   font-family: Roboto, sans-serif;
@@ -227,6 +219,15 @@ pre code {
   font-size: 11px;
   letter-spacing: 0.5px;
   font-weight: 500;
+}
+*[data-md-text-align=left] {
+  text-align: left;
+}
+*[data-md-text-align=center] {
+  text-align: center;
+}
+*[data-md-text-align=right] {
+  text-align: right;
 }
 *[data-md-monospace] {
   font-family: "Roboto Mono";
@@ -373,6 +374,7 @@ code * {
   overflow: hidden;
   margin: 24px;
   gap: 8px;
+  background-color: inherit;
 }
 [data-md-theme=dark] .md-pane[data-md-background=primary] {
   background-color: rgb(115, 51, 47);
@@ -431,6 +433,7 @@ code * {
   flex: 1;
   padding: 24px;
   gap: 8px;
+  background-color: inherit;
 }
 .md-pane__content--fill {
   padding: 0;
@@ -1103,6 +1106,9 @@ code * {
 .md-checkbox__text {
   order: 2;
   margin-left: 16px;
+}
+.md-checkbox:not(:has(input:disabled)) *:hover {
+  cursor: pointer;
 }
 [data-md-theme=dark] .md-checkbox:not(:has(input:disabled)) label:hover .md-checkbox__box {
   border-color: rgb(241, 222, 220);
@@ -1977,9 +1983,6 @@ code * {
   padding: 0 12px;
   cursor: pointer;
 }
-.md-menu__item:not(:has(.md-menu__icon:last-child)) .md-menu__label {
-  grid-column-end: 4;
-}
 .md-menu__label {
   font-family: "Roboto";
   line-height: 20px;
@@ -1988,6 +1991,9 @@ code * {
   font-weight: 500;
   grid-column: 2;
   white-space: nowrap;
+}
+.md-menu__label:not(:has(+ .md-menu__icon)) {
+  grid-column-end: 4;
 }
 [data-md-theme=dark] .md-menu__icon {
   color: rgb(216, 194, 191);
@@ -2258,6 +2264,9 @@ code * {
 .md-switch__handle::after {
   font-size: 20px;
 }
+.md-switch:not(:has(input:disabled)) *:hover {
+  cursor: pointer;
+}
 [data-md-theme=dark] .md-switch:not(:has(input:disabled)) label:hover .md-switch__track {
   border-color: #dac4c1;
 }
@@ -2422,10 +2431,103 @@ code * {
   order: 1;
 }
 
+.md-table {
+  width: -moz-max-content;
+  width: max-content;
+  border-collapse: separate;
+  border-radius: 4px;
+  border-spacing: 0;
+}
+[data-md-theme=dark] .md-table {
+  background-color: rgb(35, 25, 24);
+  color: rgb(216, 194, 191);
+  border: 1px solid rgb(160, 140, 138);
+}
+[data-md-theme=light] .md-table {
+  background-color: rgb(255, 240, 239);
+  color: rgb(83, 67, 66);
+  border: 1px solid rgb(133, 115, 113);
+}
+[data-md-theme=dark] .md-table tr:hover {
+  background-color: rgba(255, 179, 172, 0.08);
+}
+[data-md-theme=light] .md-table tr:hover {
+  background-color: rgba(144, 74, 69, 0.08);
+}
+.md-table th,
+.md-table td {
+  padding: 0 16px;
+}
+.md-table th {
+  height: 56px;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  font-family: "Roboto";
+  line-height: 20px;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  font-weight: 500;
+}
+.md-table th[data-md-sortable] {
+  padding-right: 56px;
+  cursor: pointer;
+}
+[data-md-theme=dark] .md-table th[data-md-sortable]:hover {
+  color: rgb(255, 179, 172);
+}
+[data-md-theme=light] .md-table th[data-md-sortable]:hover {
+  color: rgb(144, 74, 69);
+}
+.md-table th[data-md-sortable]::after {
+  position: absolute;
+  top: calc(50% - 12px);
+  right: 16px;
+  content: "unfold_more";
+}
+[data-md-theme=dark] .md-table th[data-md-sortable][data-md-order] {
+  color: rgb(255, 179, 172);
+}
+[data-md-theme=light] .md-table th[data-md-sortable][data-md-order] {
+  color: rgb(144, 74, 69);
+}
+.md-table th[data-md-sortable][data-md-order][data-md-order=ascending]::after {
+  content: "keyboard_arrow_down";
+}
+.md-table th[data-md-sortable][data-md-order][data-md-order=descending]::after {
+  content: "keyboard_arrow_up";
+}
+.md-table td {
+  height: 52px;
+  font-family: "Roboto";
+  line-height: 20px;
+  font-size: 14px;
+  letter-spacing: 0.25px;
+  font-weight: 400;
+}
+[data-md-theme=dark] .md-table thead th,
+[data-md-theme=dark] .md-table tr:not(:last-child) td {
+  border-bottom: 1px solid rgb(160, 140, 138);
+}
+[data-md-theme=light] .md-table thead th,
+[data-md-theme=light] .md-table tr:not(:last-child) td {
+  border-bottom: 1px solid rgb(133, 115, 113);
+}
+.md-table[data-md-sortable=left] th[data-md-sortable] {
+  padding-right: 16px;
+  padding-left: 56px;
+}
+.md-table[data-md-sortable=left] th[data-md-sortable]::after {
+  right: auto;
+  left: 16px;
+}
+
 .md-tabs {
   display: flex;
   flex-direction: column;
   flex: 1;
+  background-color: inherit;
 }
 .md-tabs__nav {
   display: flex;
@@ -2470,10 +2572,14 @@ code * {
 .md-tabs__page {
   display: block;
   padding: 16px;
+  background-color: inherit;
 }
 .md-tabs__page:not(.md-tabs__page--selected) {
   position: absolute !important;
   inset: -99999px auto auto -99999px !important;
+}
+.md-tabs__page--fill {
+  padding: 0;
 }
 .md-tabs[data-md-type=primary] .md-tabs__button {
   display: grid;
@@ -2648,6 +2754,210 @@ code * {
 }
 [data-md-theme=light] .md-tabs[data-md-type=secondary] .md-tabs__button--selected:focus {
   box-shadow: inset 0 -3px 0 0 rgb(119, 86, 83);
+}
+
+.md-text-field {
+  position: relative;
+  background-color: inherit;
+}
+[data-md-theme=dark] .md-text-field {
+  color: rgb(216, 194, 191);
+}
+[data-md-theme=light] .md-text-field {
+  color: rgb(83, 67, 66);
+}
+[data-md-theme=dark] .md-text-field:has(input:disabled) input::-moz-placeholder {
+  color: rgba(241, 222, 220, 0.38);
+}
+[data-md-theme=dark] .md-text-field:has(input:disabled),
+[data-md-theme=dark] .md-text-field:has(input:disabled) input::placeholder {
+  color: rgba(241, 222, 220, 0.38);
+}
+[data-md-theme=light] .md-text-field:has(input:disabled) input::-moz-placeholder {
+  color: rgba(35, 25, 24, 0.38);
+}
+[data-md-theme=light] .md-text-field:has(input:disabled),
+[data-md-theme=light] .md-text-field:has(input:disabled) input::placeholder {
+  color: rgba(35, 25, 24, 0.38);
+}
+.md-text-field:has(input:not(:focus):-moz-placeholder-shown) .md-text-field__prefix, .md-text-field:has(input:not(:focus):-moz-placeholder-shown) .md-text-field__suffix {
+  position: relative !important;
+  inset: -99999px auto auto -99999px !important;
+}
+.md-text-field:has(input:not(:focus):placeholder-shown) .md-text-field__prefix,
+.md-text-field:has(input:not(:focus):placeholder-shown) .md-text-field__suffix {
+  position: relative !important;
+  inset: -99999px auto auto -99999px !important;
+}
+.md-text-field__container {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  min-height: 56px;
+  width: -moz-max-content;
+  width: max-content;
+  margin-top: 8px;
+  padding: 0 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: inherit;
+}
+[data-md-theme=dark] .md-text-field__container {
+  border: 1px solid rgb(160, 140, 138);
+}
+[data-md-theme=light] .md-text-field__container {
+  border: 1px solid rgb(133, 115, 113);
+}
+.md-text-field__container:has(input:not(:-moz-placeholder-shown))::before {
+  position: absolute;
+  left: 12px;
+  top: -8px;
+  padding: 0 4px;
+  background-color: inherit;
+  content: attr(data-md-placeholder);
+  font-family: "Roboto";
+  line-height: 16px;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+}
+.md-text-field__container:has(input:not(:placeholder-shown))::before {
+  position: absolute;
+  left: 12px;
+  top: -8px;
+  padding: 0 4px;
+  background-color: inherit;
+  content: attr(data-md-placeholder);
+  font-family: "Roboto";
+  line-height: 16px;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+}
+[data-md-theme=dark] .md-text-field__container:has(input:not(:-moz-placeholder-shown))::before {
+  color: rgb(216, 194, 191);
+}
+[data-md-theme=dark] .md-text-field__container:has(input:not(:placeholder-shown))::before {
+  color: rgb(216, 194, 191);
+}
+[data-md-theme=light] .md-text-field__container:has(input:not(:-moz-placeholder-shown))::before {
+  color: rgb(83, 67, 66);
+}
+[data-md-theme=light] .md-text-field__container:has(input:not(:placeholder-shown))::before {
+  color: rgb(83, 67, 66);
+}
+[data-md-theme=dark] .md-text-field__container:has(input:focus) {
+  border: 2px solid rgb(255, 179, 172);
+}
+[data-md-theme=light] .md-text-field__container:has(input:focus) {
+  border: 2px solid rgb(144, 74, 69);
+}
+.md-text-field__container:has(input:focus)::before {
+  position: absolute;
+  left: 12px;
+  top: -8px;
+  padding: 0 4px;
+  background-color: inherit;
+  content: attr(data-md-placeholder);
+  font-family: "Roboto";
+  line-height: 16px;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+}
+[data-md-theme=dark] .md-text-field__container:has(input:focus)::before {
+  color: rgb(216, 194, 191);
+}
+[data-md-theme=light] .md-text-field__container:has(input:focus)::before {
+  color: rgb(83, 67, 66);
+}
+[data-md-theme=dark] .md-text-field__container:has(input:focus)::before {
+  color: rgb(255, 179, 172);
+}
+[data-md-theme=light] .md-text-field__container:has(input:focus)::before {
+  color: rgb(144, 74, 69);
+}
+.md-text-field__container:has(.md-text-field__icon:first-child) {
+  padding-left: 12px;
+}
+.md-text-field__container:has(.md-text-field__icon:last-child) {
+  padding-right: 12px;
+}
+[data-md-theme=dark] .md-text-field__container:has(input:disabled) {
+  border-color: rgba(241, 222, 220, 0.12);
+}
+[data-md-theme=light] .md-text-field__container:has(input:disabled) {
+  border-color: rgba(35, 25, 24, 0.12);
+}
+[data-md-theme=dark] .md-text-field__container:not(:has(input:disabled, input:focus)):hover {
+  border-color: rgb(241, 222, 220);
+}
+[data-md-theme=light] .md-text-field__container:not(:has(input:disabled, input:focus)):hover {
+  border-color: rgb(35, 25, 24);
+}
+[data-md-theme=dark] .md-text-field__icon {
+  color: rgb(216, 194, 191);
+}
+[data-md-theme=light] .md-text-field__icon {
+  color: rgb(83, 67, 66);
+}
+.md-text-field__icon:first-child {
+  margin-right: 16px;
+}
+.md-text-field__icon:last-child {
+  margin-left: 16px;
+}
+.md-text-field__input {
+  position: relative;
+  background-color: inherit;
+  border: 0;
+  outline: none;
+  font-family: "Roboto";
+  line-height: 24px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+}
+[data-md-theme=dark] .md-text-field__input {
+  color: rgb(241, 222, 220);
+  caret-color: rgb(255, 179, 172);
+}
+[data-md-theme=light] .md-text-field__input {
+  color: rgb(35, 25, 24);
+  caret-color: rgb(144, 74, 69);
+}
+.md-text-field__input::-moz-placeholder {
+  opacity: 1;
+}
+.md-text-field__input::placeholder {
+  opacity: 1;
+}
+[data-md-theme=dark] .md-text-field__input::-moz-placeholder {
+  color: rgb(216, 194, 191);
+}
+[data-md-theme=dark] .md-text-field__input::placeholder {
+  color: rgb(216, 194, 191);
+}
+[data-md-theme=light] .md-text-field__input::-moz-placeholder {
+  color: rgb(83, 67, 66);
+}
+[data-md-theme=light] .md-text-field__input::placeholder {
+  color: rgb(83, 67, 66);
+}
+.md-text-field__input:focus::-moz-placeholder {
+  color: transparent;
+}
+.md-text-field__input:focus::placeholder {
+  color: transparent;
+}
+.md-text-field__supporting {
+  margin: 4px 16px 0;
+  font-family: "Roboto";
+  line-height: 16px;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
 }
 
 .md-tooltip {
