@@ -35,7 +35,7 @@ esbuild
             }),
         ],
     })
-    .then(() => console.log("\nBuilt all files to ./public\n"))
+    .then(() => console.log(`\nBuilt all files to ${out}\n`))
     .catch((reason) => {
         console.log(`\n${reason}\n`);
         process.exit(1);
