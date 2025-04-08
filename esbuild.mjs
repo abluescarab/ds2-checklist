@@ -20,7 +20,6 @@ esbuild
         assetNames: "assets/[ext]/[name]",
         bundle: true,
         minify: true,
-        sourcemap: true,
         format: "esm",
         loader: {
             ".ttf": "copy",
