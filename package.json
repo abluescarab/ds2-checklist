@@ -1,8 +1,9 @@
 {
   "scripts": {
     "prebuild": "shx mkdir -p ./public && shx cp ./src/index.html ./public",
-    "build": "node ./esbuild.mjs",
+    "build": "npm run lint && node ./esbuild.mjs",
     "clean": "shx rm -rf ./public",
+    "lint": "eslint . && prettier . -w",
     "rebuild": "npm run clean && npm run build",
     "watch": "npm run build -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
