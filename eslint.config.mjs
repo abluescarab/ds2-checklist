@@ -7,7 +7,7 @@ import tseslint from "typescript-eslint";
 export default defineConfig([
   tseslint.configs.recommended,
   jsdoc.configs["flat/stylistic-typescript"],
-  globalIgnores(["**/dist", "**/out", "**/public"]),
+  globalIgnores(["esbuild.mjs", "**/dist", "**/out", "**/public"]),
   {
     plugins: { js, jsdoc },
     extends: ["js/recommended"],
@@ -18,11 +18,17 @@ export default defineConfig([
     languageOptions: { globals: globals.jest },
   },
   {
+    // general options
+    rules: {
+      "prefer-const": "warn",
+    },
+  },
+  {
+    // jsdoc options
     ignores: [
       "**/babel.config.mjs",
       "**/eslint.config.mjs",
       "**/jest.config.mjs",
-      "**/esbuild.mjs",
       "**/tests/*",
     ],
     rules: {
@@ -81,16 +87,12 @@ export default defineConfig([
     },
   },
   {
-    files: ["src/index.mts"],
-    rules: {
-      "jsdoc/require-file-overview": "off",
-    },
-  },
-  {
+    // jsdoc typescript options
     files: ["**/*.?([cm])ts?(x)"],
     rules: {
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-require-imports": "off",
       "jsdoc/no-types": "warn",
       "jsdoc/require-hyphen-before-param-description": ["warn", "always"],
       "jsdoc/require-param-type": "off", // Recommended
