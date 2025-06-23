@@ -19,12 +19,12 @@
 
 /* material */
 @use "sass-material-design/src/sass/abstracts/variables" with (
-    $assets: "sass-material-design/dist/assets"
+  $assets: "sass-material-design/dist/assets"
 );
 @use "sass-material-design/src/sass/themes" with (
-    $themes: (
-        dark: dark.$theme,
-        light: light.$theme,
-    )
+  $themes: (
+    dark: dark.$theme,
+    light: light.$theme,
+  )
 );
 @use "sass-material-design/src/sass/material";

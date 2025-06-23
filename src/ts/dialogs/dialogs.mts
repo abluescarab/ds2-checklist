@@ -4,27 +4,27 @@ import { initialize as initializeReset } from "./reset.mjs";
 import { initialize as initializeSettings } from "./settings.mjs";
 
 export function hideDialog(target: Element | EventTarget | null) {
-    if (!(target instanceof Element)) {
-        return;
-    }
+  if (!(target instanceof Element)) {
+    return;
+  }
 
-    getParentByClassName(target, "md-dialog")?.classList.remove(
-        "md-dialog--visible"
-    );
+  getParentByClassName(target, "md-dialog")?.classList.remove(
+    "md-dialog--visible",
+  );
 }
 
 export function showDialog(id: string) {
-    const dialog = document.getElementById(id);
+  const dialog = document.getElementById(id);
 
-    if (!dialog?.classList.contains("md-dialog")) {
-        return;
-    }
+  if (!dialog?.classList.contains("md-dialog")) {
+    return;
+  }
 
-    dialog.classList.add("md-dialog--visible");
+  dialog.classList.add("md-dialog--visible");
 }
 
 export function initialize() {
-    initializeSettings();
-    initializeReset();
-    initializeClear();
+  initializeSettings();
+  initializeReset();
+  initializeClear();
 }

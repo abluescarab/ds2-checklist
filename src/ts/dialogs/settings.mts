@@ -13,163 +13,160 @@ let hideExpandAllControl: Nullable<HTMLInputElement> = null;
 let hideScrollToTopControl: Nullable<HTMLInputElement> = null;
 
 function changePageSettings(hideExpandAll: boolean, hideScrollToTop: boolean) {
-    const expandAllButton = document.getElementById("fab-expand");
-    const scrollToTopButton = document.getElementById("fab-top");
+  const expandAllButton = document.getElementById("fab-expand");
+  const scrollToTopButton = document.getElementById("fab-top");
 
-    if (expandAllButton) {
-        expandAllButton.style.display = hideExpandAll ? "none" : "flex";
-    }
+  if (expandAllButton) {
+    expandAllButton.style.display = hideExpandAll ? "none" : "flex";
+  }
 
-    if (scrollToTopButton) {
-        scrollToTopButton.style.display = hideScrollToTop ? "none" : "flex";
-    }
+  if (scrollToTopButton) {
+    scrollToTopButton.style.display = hideScrollToTop ? "none" : "flex";
+  }
 }
 
 function changeTreeSettings(cascadeChecked: string, cascadeToggled: string) {
-    for (const element of document.getElementsByClassName("md-tree")) {
-        const tree = element as HTMLElement;
+  for (const element of document.getElementsByClassName("md-tree")) {
+    const tree = element as HTMLElement;
 
-        tree.dataset.mdCascadeChecked = cascadeChecked;
-        tree.dataset.mdCascadeToggled = cascadeToggled;
-    }
+    tree.dataset.mdCascadeChecked = cascadeChecked;
+    tree.dataset.mdCascadeToggled = cascadeToggled;
+  }
 }
 
 export function initialize() {
-    document.getElementById("settings")?.addEventListener("click", () => {
-        document
-            .querySelectorAll(".md-tooltip--visible")
-            .forEach((t) => t.classList.remove("md-tooltip--visible"));
-        showDialog("settings-dialog");
-    });
-
+  document.getElementById("settings")?.addEventListener("click", () => {
     document
-        .getElementById("settings-reset")
-        ?.addEventListener("click", () => showDialog("reset-dialog"));
+      .querySelectorAll(".md-tooltip--visible")
+      .forEach((t) => t.classList.remove("md-tooltip--visible"));
+    showDialog("settings-dialog");
+  });
 
-    document
-        .getElementById("settings-clear")
-        ?.addEventListener("click", () => showDialog("clear-dialog"));
+  document
+    .getElementById("settings-reset")
+    ?.addEventListener("click", () => showDialog("reset-dialog"));
 
-    document
-        .getElementById("settings-cancel")
-        ?.addEventListener("click", (e) => hideDialog(e.currentTarget));
+  document
+    .getElementById("settings-clear")
+    ?.addEventListener("click", () => showDialog("clear-dialog"));
 
-    document.getElementById("settings-save")?.addEventListener("click", (e) => {
-        saveSettings();
-        hideDialog(e.currentTarget);
-    });
+  document
+    .getElementById("settings-cancel")
+    ?.addEventListener("click", (e) => hideDialog(e.currentTarget));
 
-    cascadeCheckedControl = document
-        .getElementById("cascade-checked")
-        ?.querySelector("input");
-    cascadeUncheckedControl = document
-        .getElementById("cascade-unchecked")
-        ?.querySelector("input");
-    cascadeCollapsedControl = document
-        .getElementById("cascade-collapsed")
-        ?.querySelector("input");
+  document.getElementById("settings-save")?.addEventListener("click", (e) => {
+    saveSettings();
+    hideDialog(e.currentTarget);
+  });
 
-    hideExpandAllControl = document
-        .getElementById("hide-expand-all-button")
-        ?.querySelector("input");
-    hideScrollToTopControl = document
-        .getElementById("hide-scroll-to-top-button")
-        ?.querySelector("input");
+  cascadeCheckedControl = document
+    .getElementById("cascade-checked")
+    ?.querySelector("input");
+  cascadeUncheckedControl = document
+    .getElementById("cascade-unchecked")
+    ?.querySelector("input");
+  cascadeCollapsedControl = document
+    .getElementById("cascade-collapsed")
+    ?.querySelector("input");
+
+  hideExpandAllControl = document
+    .getElementById("hide-expand-all-button")
+    ?.querySelector("input");
+  hideScrollToTopControl = document
+    .getElementById("hide-scroll-to-top-button")
+    ?.querySelector("input");
 }
 
 export function loadSettings() {
-    if (
-        !hideExpandAllControl ||
-        !hideScrollToTopControl ||
-        !cascadeCheckedControl ||
-        !cascadeUncheckedControl ||
-        !cascadeCollapsedControl
-    ) {
-        return;
-    }
+  if (
+    !hideExpandAllControl ||
+    !hideScrollToTopControl ||
+    !cascadeCheckedControl ||
+    !cascadeUncheckedControl ||
+    !cascadeCollapsedControl
+  ) {
+    return;
+  }
 
-    // page settings
-    const hideExpandAll = localStorage.getItem(storageKeys.hideExpandAll);
-    const hideScrollToTop = localStorage.getItem(storageKeys.hideScrollToTop);
+  // page settings
+  const hideExpandAll = localStorage.getItem(storageKeys.hideExpandAll);
+  const hideScrollToTop = localStorage.getItem(storageKeys.hideScrollToTop);
 
-    if (hideExpandAll) {
-        hideExpandAllControl.checked = hideExpandAll != null;
-    }
+  if (hideExpandAll) {
+    hideExpandAllControl.checked = hideExpandAll != null;
+  }
 
-    if (hideScrollToTop) {
-        hideScrollToTopControl.checked = hideScrollToTop != null;
-    }
+  if (hideScrollToTop) {
+    hideScrollToTopControl.checked = hideScrollToTop != null;
+  }
 
-    changePageSettings(hideExpandAll != null, hideScrollToTop != null);
+  changePageSettings(hideExpandAll != null, hideScrollToTop != null);
 
-    // tree behavior
-    const cascadeChecked =
-        localStorage.getItem(storageKeys.cascadeChecked) ?? "checked";
-    const cascadeToggled =
-        localStorage.getItem(storageKeys.cascadeToggled) ?? "collapsed";
+  // tree behavior
+  const cascadeChecked =
+    localStorage.getItem(storageKeys.cascadeChecked) ?? "checked";
+  const cascadeToggled =
+    localStorage.getItem(storageKeys.cascadeToggled) ?? "collapsed";
 
-    cascadeCheckedControl.checked =
-        cascadeChecked == "checked" || cascadeChecked == "both";
+  cascadeCheckedControl.checked =
+    cascadeChecked == "checked" || cascadeChecked == "both";
 
-    cascadeUncheckedControl.checked =
-        cascadeChecked == "unchecked" || cascadeChecked == "both";
-    cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
+  cascadeUncheckedControl.checked =
+    cascadeChecked == "unchecked" || cascadeChecked == "both";
+  cascadeCollapsedControl.checked = cascadeToggled == "collapsed";
 
-    changeTreeSettings(cascadeChecked, cascadeToggled);
+  changeTreeSettings(cascadeChecked, cascadeToggled);
 }
 
 export function saveSettings() {
-    if (
-        !cascadeCheckedControl ||
-        !cascadeUncheckedControl ||
-        !cascadeCollapsedControl ||
-        !hideExpandAllControl ||
-        !hideScrollToTopControl
-    ) {
-        return;
-    }
+  if (
+    !cascadeCheckedControl ||
+    !cascadeUncheckedControl ||
+    !cascadeCollapsedControl ||
+    !hideExpandAllControl ||
+    !hideScrollToTopControl
+  ) {
+    return;
+  }
 
-    // page settings
-    toggleStorage(storageKeys.hideExpandAll, hideExpandAllControl.checked);
-    toggleStorage(storageKeys.hideScrollToTop, hideScrollToTopControl.checked);
+  // page settings
+  toggleStorage(storageKeys.hideExpandAll, hideExpandAllControl.checked);
+  toggleStorage(storageKeys.hideScrollToTop, hideScrollToTopControl.checked);
 
-    changePageSettings(
-        hideExpandAllControl.checked,
-        hideScrollToTopControl.checked
-    );
+  changePageSettings(
+    hideExpandAllControl.checked,
+    hideScrollToTopControl.checked,
+  );
 
-    // tree behavior
-    const cascadeToggledValue = cascadeCollapsedControl.checked
-        ? "collapsed"
-        : "";
-    let cascadeCheckedValue: string = "";
+  // tree behavior
+  const cascadeToggledValue = cascadeCollapsedControl.checked
+    ? "collapsed"
+    : "";
+  let cascadeCheckedValue: string = "";
 
-    // TODO: replace with dropdown/dialog/etc.
-    if (cascadeCheckedControl.checked && !cascadeUncheckedControl.checked) {
-        cascadeCheckedValue = "checked";
-    } else if (
-        cascadeUncheckedControl.checked &&
-        !cascadeCheckedControl.checked
-    ) {
-        cascadeCheckedValue = "unchecked";
-    } else if (
-        cascadeCheckedControl.checked &&
-        cascadeUncheckedControl.checked
-    ) {
-        cascadeCheckedValue = "both";
-    }
+  // TODO: replace with dropdown/dialog/etc.
+  if (cascadeCheckedControl.checked && !cascadeUncheckedControl.checked) {
+    cascadeCheckedValue = "checked";
+  } else if (
+    cascadeUncheckedControl.checked &&
+    !cascadeCheckedControl.checked
+  ) {
+    cascadeCheckedValue = "unchecked";
+  } else if (cascadeCheckedControl.checked && cascadeUncheckedControl.checked) {
+    cascadeCheckedValue = "both";
+  }
 
-    toggleStorage(
-        storageKeys.cascadeChecked,
-        cascadeCheckedValue != "",
-        cascadeCheckedValue
-    );
+  toggleStorage(
+    storageKeys.cascadeChecked,
+    cascadeCheckedValue != "",
+    cascadeCheckedValue,
+  );
 
-    toggleStorage(
-        storageKeys.cascadeToggled,
-        cascadeCollapsedControl.checked,
-        "collapsed"
-    );
+  toggleStorage(
+    storageKeys.cascadeToggled,
+    cascadeCollapsedControl.checked,
+    "collapsed",
+  );
 
-    changeTreeSettings(cascadeCheckedValue, cascadeToggledValue);
+  changeTreeSettings(cascadeCheckedValue, cascadeToggledValue);
 }

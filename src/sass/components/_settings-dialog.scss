@@ -3,23 +3,23 @@
 /// ============================================================================
 
 #settings-dialog {
-    $gap: 8px;
+  $gap: 8px;
 
-    .settings-section {
-        margin: 0 16px;
-        display: flex;
-        flex-flow: column wrap;
-        gap: $gap;
+  .settings-section {
+    margin: 0 16px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: $gap;
 
-        .settings-row {
-            display: flex;
-            flex-flow: row wrap;
-            gap: $gap;
+    .settings-row {
+      display: flex;
+      flex-flow: row wrap;
+      gap: $gap;
 
-            &:has(button) {
-                align-items: center;
-                justify-content: center;
-            }
-        }
+      &:has(button) {
+        align-items: center;
+        justify-content: center;
+      }
     }
+  }
 }
