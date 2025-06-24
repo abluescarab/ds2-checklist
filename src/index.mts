@@ -11,13 +11,13 @@ import {
 // TODO: connect elements like Straid's boss soul items and boss item directly
 
 // local imports
-import { storageKeys, trees } from "./constants.mjs";
-import { initialize as initializeDialogs } from "./dialogs/dialogs.mjs";
-import { load, changeTheme, toggleStorage } from "./utils.mjs";
+import { storageKeys, trees } from "./ts/constants.mjs";
+import { initialize as initializeDialogs } from "./ts/dialogs/dialogs.mjs";
+import { load, changeTheme, toggleStorage } from "./ts/utils.mjs";
 
 const fabExpand = document.getElementById("fab-expand");
 const fabExpandIcon = fabExpand?.getElementsByClassName(
-  "md-fab__icon",
+  "md-fab__icon"
 )[0] as HTMLElement;
 const tabs = document.getElementById("main-tabs");
 
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document
   .getElementById("change-theme")
   ?.addEventListener("click", (e) =>
-    changeTheme(e.currentTarget as HTMLElement),
+    changeTheme(e.currentTarget as HTMLElement)
   );
 
 tabs?.addEventListener("material:change", (e) => {
@@ -118,7 +118,7 @@ tabs?.addEventListener("material:change", (e) => {
 
   localStorage.setItem(
     storageKeys.tab,
-    (e as MaterialChangeEvent<string>).newValue ?? "",
+    (e as MaterialChangeEvent<string>).newValue ?? ""
   );
 });
 
@@ -139,7 +139,7 @@ fabExpand?.addEventListener("click", () => {
   const elements = toggleAll(
     treeElement,
     expand,
-    expand ? "expanded" : "collapsed",
+    expand ? "expanded" : "collapsed"
   );
 
   changeFabExpand(expand);
@@ -151,5 +151,5 @@ document.getElementById("fab-top")?.addEventListener("click", () =>
     top: 0,
     left: 0,
     behavior: "smooth",
-  }),
+  })
 );

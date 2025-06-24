@@ -1,7 +1,8 @@
 {
   "scripts": {
     "prebuild": "shx mkdir -p ./public && shx cp ./src/index.html ./public",
-    "build": "npm run lint && node ./esbuild.mjs",
+    "build": "node ./esbuild.mjs -tvo public",
+    "build:prod": "npm run lint && npm run build",
     "clean": "shx rm -rf ./public",
     "lint": "eslint . && prettier . -w",
     "rebuild": "npm run clean && npm run build",
